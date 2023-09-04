@@ -1,0 +1,47 @@
+@import "./../../index.scss";
+
+.menu {
+    background-color: $lightBlack;
+    height: 50px;
+    color: $white;
+
+    .container {
+        width: 1085px;
+        height: 50px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+
+        .left {
+            display: flex;
+            height: 100%;
+        }
+
+        .right {
+            display: flex;
+            height: 100%;
+        }
+
+        .logo {
+            text-align: right;
+            display: flex;
+            text-decoration: none;
+            color: $white;
+            height: 100%;
+            align-items: center;
+            font-size: 16px;
+            font-weight: bold;
+            width: 170px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+    }
+}
