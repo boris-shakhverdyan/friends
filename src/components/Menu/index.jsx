@@ -9,7 +9,7 @@ const Menu = () => {
             <div className="container">
                 <div className="left">
                     <a href="/" className="logo">
-                        Friends
+                        <span>Friends</span>
                     </a>
                     <div className="nav">
                         <SearchInput />

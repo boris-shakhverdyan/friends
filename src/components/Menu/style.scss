@@ -1,9 +1,12 @@
-@import "./../../index.scss";
-
 .menu {
-    background-color: $lightBlack;
+    background-color: #222222;
     height: 50px;
-    color: $white;
+    color: #e1e3e6;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
 
     .container {
         width: 1085px;
@@ -25,10 +28,9 @@
         }
 
         .logo {
-            text-align: right;
             display: flex;
             text-decoration: none;
-            color: $white;
+            color: #e1e3e6;
             height: 100%;
             align-items: center;
             font-size: 16px;
@@ -36,6 +38,12 @@
             width: 170px;
             text-transform: uppercase;
             letter-spacing: 5px;
+
+            span {
+                width: 100%;
+                display: block;
+                text-align: center;
+            }
         }
 
         .nav {

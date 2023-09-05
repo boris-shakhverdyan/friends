@@ -1,0 +1,47 @@
+.sidebar {
+    position: absolute;
+    width: 170px;
+    top: 0;
+    left: 0;
+
+    &>.fixed {
+        width: 170px;
+
+        position: fixed;
+    }
+
+    .nav-item {
+        color: #e1e3e6;
+        text-decoration: none;
+        padding: 8px;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        font-size: 14px;
+        width: 94%;
+        border-radius: 7px;
+
+        &:hover {
+            background-color: #222222;
+        }
+
+        span {
+            display: flex;
+            height: 100%;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        svg {
+            width: 18px;
+            height: 18px;
+            color: #6898d0;
+        }
+    }
+
+    hr {
+        margin: 10px 0;
+        width: 150px;
+        border: 1px solid #333333;
+    }
+}
