@@ -1,4 +1,3 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./style.scss";
 import {
     faBasketShopping,
@@ -17,45 +16,38 @@ import {
     faUsersRectangle,
     faVideo,
 } from "@fortawesome/free-solid-svg-icons";
+import NavItem from "./NavItem";
 
 const Sidebar = () => {
     const links = [
-        { text: "Profile", href: "/profile", icon: faUserCircle },
-        { text: "News", href: "/news", icon: faNewspaper },
-        { text: "Messenger", href: "/messenger", icon: faEnvelope },
-        { text: "Friends", href: "/friends", icon: faUserGroup },
-        { text: "Groups", href: "/groups", icon: faUsersRectangle },
-        { text: "Photos", href: "/photos", icon: faImage },
-        { text: "Audios", href: "/audios", icon: faHeadphones },
-        { text: "Videos", href: "/videos", icon: faVideo },
-        { text: "Games", href: "/games", icon: faChessKnight },
-        { text: "Stickers", href: "/stickers", icon: faFaceSmile },
-        { text: "Market", href: "/market", icon: faBasketShopping },
-        { text: "Services", href: "/services", icon: faMicrochip },
+        { text: "Profile", path: "profile", icon: faUserCircle },
+        { text: "News", path: "news", icon: faNewspaper },
+        { text: "Messenger", path: "messenger", icon: faEnvelope },
+        { text: "Friends", path: "friends", icon: faUserGroup },
+        { text: "Groups", path: "groups", icon: faUsersRectangle },
+        { text: "Photos", path: "photos", icon: faImage },
+        { text: "Audios", path: "audios", icon: faHeadphones },
+        { text: "Videos", path: "videos", icon: faVideo },
+        { text: "Games", path: "games", icon: faChessKnight },
+        { text: "Stickers", path: "stickers", icon: faFaceSmile },
+        { text: "Market", path: "market", icon: faBasketShopping },
+        { text: "Services", path: "services", icon: faMicrochip },
     ];
 
     return (
         <div className="sidebar">
             <div className="fixed">
-                {links.map(({ text, href, icon }, index) => (
-                    <a key={index} className="nav-item" href={href}>
-                        <FontAwesomeIcon icon={icon} />
-                        <span>{text}</span>
-                    </a>
+                {links.map((route, index) => (
+                    <NavItem key={index} {...route} />
                 ))}
                 <hr />
-                <a className="nav-item" href="/bookmarks">
-                    <FontAwesomeIcon icon={faBookmark} />
-                    <span>Bookmarks</span>
-                </a>
-                <a className="nav-item" href="/files">
-                    <FontAwesomeIcon icon={faFile} />
-                    <span>Files</span>
-                </a>
-                <a className="nav-item" href="/ads">
-                    <FontAwesomeIcon icon={faBullhorn} />
-                    <span>Ads</span>
-                </a>
+                <NavItem
+                    text={"Bookmarks"}
+                    path={"bookmarks"}
+                    icon={faBookmark}
+                />
+                <NavItem text={"Files"} path={"files"} icon={faFile} />
+                <NavItem text={"Ads"} path={"ads"} icon={faBullhorn} />
             </div>
         </div>
     );

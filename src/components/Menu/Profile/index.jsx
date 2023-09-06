@@ -10,6 +10,7 @@ import {
 import "./style.scss";
 import { useRef, useState } from "react";
 import Link from "./Link";
+import { Link as NavLink } from "react-router-dom";
 
 const Profile = ({ avatar }) => {
     const profileRef = useRef(null);
@@ -26,11 +27,11 @@ const Profile = ({ avatar }) => {
     });
 
     const links = [
-        { href: "/settings", text: "Settings", icon: faGear },
-        { href: "/theme", text: "Theme", icon: faPalette },
-        { href: "/lang", text: "Language", icon: faGlobeAmericas },
-        { href: "/help", text: "Help", icon: faQuestionCircle },
-        { href: "/logout", text: "Quit", icon: faRightFromBracket },
+        { href: "settings", text: "Settings", icon: faGear },
+        { href: "theme", text: "Theme", icon: faPalette },
+        { href: "lang", text: "Language", icon: faGlobeAmericas },
+        { href: "help", text: "Help", icon: faQuestionCircle },
+        { href: "logout", text: "Quit", icon: faRightFromBracket },
     ];
 
     return (
@@ -43,13 +44,21 @@ const Profile = ({ avatar }) => {
                 <FontAwesomeIcon icon={faChevronDown} />
             </div>
             <div className={`dropdown ${isOpened ? "opened" : ""}`}>
-                <a href="/profile" className="avatar">
+                <NavLink
+                    onClick={() => setIsOpened(false)}
+                    to={"profile"}
+                    className="avatar"
+                >
                     <img src={avatar} alt="avatar" />
                     <span>Boris Shakhverdyan</span>
-                </a>
+                </NavLink>
                 <div className="links">
                     {links.map((link, index) => (
-                        <Link key={index} {...link} />
+                        <Link
+                            onClick={() => setIsOpened(false)}
+                            key={index}
+                            {...link}
+                        />
                     ))}
                 </div>
             </div>

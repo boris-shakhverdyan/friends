@@ -1,12 +1,13 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./style.module.scss";
+import { Link as NavLink } from "react-router-dom";
 
-const Link = ({ icon, text, href }) => {
+const Link = ({ icon, text, href, onClick = null }) => {
     return (
-        <a href={href} className={styles.link}>
+        <NavLink to={href} className={styles.link} onClick={onClick}>
             <FontAwesomeIcon icon={icon} />
             <span>{text}</span>
-        </a>
+        </NavLink>
     );
 };
 
