@@ -48,8 +48,8 @@ const Profile = ({ avatar }) => {
                     <span>Boris Shakhverdyan</span>
                 </a>
                 <div className="links">
-                    {links.map((link) => (
-                        <Link {...link} />
+                    {links.map((link, index) => (
+                        <Link key={index} {...link} />
                     ))}
                 </div>
             </div>

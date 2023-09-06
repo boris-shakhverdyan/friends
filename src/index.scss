@@ -6,6 +6,7 @@ $darkGray: #333333;
 $gray: #424242;
 $white: #e1e3e6;
 $blue: #6898d0;
+$green: #4bb34b;
 
 * {
     margin: 0;
@@ -18,49 +19,145 @@ $blue: #6898d0;
 
 body {
     background-color: $black;
-
-    /* width */
-    &::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    /* Track */
-    &::-webkit-scrollbar-track {
-        background: #f1f1f1;
-    }
-
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: #888;
-    }
-
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
+    overflow: hidden;
 }
 
 .app {
     height: 100vh;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 
     &>.container {
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        display: block;
-        width: 1085px;
-        height: 100%;
-        margin: 70px auto 0;
-        // display: grid;
-        // grid-template-columns: 170px 1fr;
+        height: calc(100vh - 50px);
+        overflow-y: auto;
+
+        .center {
+            width: 1085px;
+            margin: 20px auto;
+            height: 100%;
+            // display: grid;
+            // grid-template-columns: 170px 1fr;
+            position: relative;
+
+            .content {
+                position: absolute;
+                width: calc(100% - 170px);
+                right: 0;
+            }
+        }
+
+        &::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: $darkGray;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: lighten($gray, 5);
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: lighten($gray, 10);
+        }
+
+        &::-webkit-scrollbar-thumb:active {
+            background: lighten($gray, 15);
+        }
     }
 }
 
-.content {
-    position: absolute;
-    right: 0;
-    width: calc(100% - 170px);
-    margin-bottom: 20px;
+.profileHeader {
+    height: 350px;
+    background-color: $lightBlack;
+    border-radius: 12px;
+    border: 1px solid $gray;
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 1fr 123px;
+
+    .profileCover {
+        background-position: center;
+        margin-bottom: -30px;
+    }
+
+    .profileInfoWrapper {
+        border-radius: 12px 12px 0 0;
+        background-color: inherit;
+        padding: 20px;
+        display: flex;
+        color: $white;
+
+        .avatar {
+            box-sizing: content-box;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-position: center;
+            background-size: contain;
+            border: 4px solid $lightBlack;
+            position: relative;
+            margin-top: calc(150px*-1/2 - 20px);
+
+            .status-active {
+                position: absolute;
+                bottom: 10px;
+                right: 10px;
+                display: block;
+                width: 20px;
+                height: 20px;
+                border: 4px solid $lightBlack;
+                border-radius: 50%;
+                background-color: $green;
+                z-index: 999;
+            }
+        }
+
+        .profileInfo {
+            margin-left: 20px;
+            font-size: 14px;
+            display: flex;
+            gap: 20px;
+
+            .mainInfo {
+                width: 400px;
+
+                h2 {
+                    font-weight: lighter;
+                }
+            }
+
+            .actions {
+                display: flex;
+                gap: 10px;
+
+                button {
+                    height: fit-content;
+                    color: $white;
+                    padding: 10px 15px;
+                    background-color: $gray;
+                    border: none;
+                    border-radius: 10px;
+                    cursor: pointer;
+                    transition: background-color .2s;
+
+                    &:hover {
+                        background-color: lighten($gray, 2);
+                    }
+
+                    &:active {
+                        background-color: lighten($gray, 4);
+                    }
+
+                    .withIcon {
+                        display: flex;
+                        gap: 10px;
+                        align-items: center;
+                    }
+                }
+            }
+        }
+    }
 }

@@ -37,8 +37,8 @@ const Sidebar = () => {
     return (
         <div className="sidebar">
             <div className="fixed">
-                {links.map(({ text, href, icon }) => (
-                    <a className="nav-item" href={href}>
+                {links.map(({ text, href, icon }, index) => (
+                    <a key={index} className="nav-item" href={href}>
                         <FontAwesomeIcon icon={icon} />
                         <span>{text}</span>
                     </a>

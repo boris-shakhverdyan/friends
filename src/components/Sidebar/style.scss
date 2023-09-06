@@ -1,14 +1,6 @@
 .sidebar {
-    position: absolute;
     width: 170px;
-    top: 0;
-    left: 0;
-
-    &>.fixed {
-        width: 170px;
-
-        position: fixed;
-    }
+    position: fixed;
 
     .nav-item {
         color: #e1e3e6;

@@ -40,8 +40,8 @@
         right: 0;
         border-radius: 0 0 10px 10px;
         overflow: hidden;
-        // padding-bottom: 10px;
         box-shadow: 0 20px 40px 0 rgba(0, 0, 0, .3);
+        z-index: 999;
 
         &.opened {
             display: block;
