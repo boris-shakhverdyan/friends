@@ -27,11 +27,11 @@ const Profile = ({ avatar }) => {
     });
 
     const links = [
-        { href: "settings", text: "Settings", icon: faGear },
-        { href: "theme", text: "Theme", icon: faPalette },
-        { href: "lang", text: "Language", icon: faGlobeAmericas },
-        { href: "help", text: "Help", icon: faQuestionCircle },
-        { href: "logout", text: "Quit", icon: faRightFromBracket },
+        { href: "settings", text: "Правки", icon: faGear },
+        { href: "theme", text: "Тема", icon: faPalette },
+        { href: "lang", text: "Язык", icon: faGlobeAmericas },
+        { href: "help", text: "Справочная", icon: faQuestionCircle },
+        { href: "logout", text: "Эмигрировать", icon: faRightFromBracket },
     ];
 
     return (

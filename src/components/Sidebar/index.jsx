@@ -1,37 +1,39 @@
 import "./style.scss";
 import {
+    faArchive,
     faBasketShopping,
     faBookmark,
     faBullhorn,
-    faChessKnight,
+    faCircleNodes,
+    faDice,
     faEnvelope,
-    faFaceSmile,
-    faFile,
-    faHeadphones,
-    faImage,
-    faMicrochip,
+    faIdCard,
+    faImages,
     faNewspaper,
-    faUserCircle,
+    faRadio,
+    faStamp,
+    faTaxi,
+    faTv,
     faUserGroup,
     faUsersRectangle,
-    faVideo,
 } from "@fortawesome/free-solid-svg-icons";
 import NavItem from "./NavItem";
 
 const Sidebar = () => {
     const links = [
-        { text: "Profile", path: "profile", icon: faUserCircle },
-        { text: "News", path: "news", icon: faNewspaper },
-        { text: "Messenger", path: "messenger", icon: faEnvelope },
-        { text: "Friends", path: "friends", icon: faUserGroup },
-        { text: "Groups", path: "groups", icon: faUsersRectangle },
-        { text: "Photos", path: "photos", icon: faImage },
-        { text: "Audios", path: "audios", icon: faHeadphones },
-        { text: "Videos", path: "videos", icon: faVideo },
-        { text: "Games", path: "games", icon: faChessKnight },
-        { text: "Stickers", path: "stickers", icon: faFaceSmile },
-        { text: "Market", path: "market", icon: faBasketShopping },
-        { text: "Services", path: "services", icon: faMicrochip },
+        { text: "Моё досье", path: "profile", icon: faIdCard },
+        { text: "Газета", path: "news", icon: faNewspaper },
+        { text: "Письма", path: "messenger", icon: faEnvelope },
+        { text: "Связи", path: "calls", icon: faCircleNodes },
+        { text: "Товарищи", path: "friends", icon: faUserGroup },
+        { text: "Группировки", path: "groups", icon: faUsersRectangle },
+        { text: "Альбомы", path: "photos", icon: faImages },
+        { text: "Магнитофон", path: "audios", icon: faRadio },
+        { text: "Телевидение", path: "videos", icon: faTv },
+        { text: "Потехи", path: "games", icon: faDice },
+        { text: "Печати", path: "stickers", icon: faStamp },
+        { text: "Ярмарка", path: "market", icon: faBasketShopping },
+        { text: "Услуги", path: "services", icon: faTaxi },
     ];
 
     return (
@@ -42,12 +44,12 @@ const Sidebar = () => {
                 ))}
                 <hr />
                 <NavItem
-                    text={"Bookmarks"}
+                    text={"Коллекции"}
                     path={"bookmarks"}
                     icon={faBookmark}
                 />
-                <NavItem text={"Files"} path={"files"} icon={faFile} />
-                <NavItem text={"Ads"} path={"ads"} icon={faBullhorn} />
+                <NavItem text={"Архив"} path={"files"} icon={faArchive} />
+                <NavItem text={"Агитация"} path={"ads"} icon={faBullhorn} />
             </div>
         </div>
     );

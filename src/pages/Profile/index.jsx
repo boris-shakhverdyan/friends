@@ -14,7 +14,7 @@ const Profile = () => {
                 ></div>
                 <div className="profileInfoWrapper">
                     <div
-                        className="avatar"
+                        className="avatar-big"
                         style={{
                             backgroundImage: `url(https://vk.com/images/camera_200.png)`,
                         }}
