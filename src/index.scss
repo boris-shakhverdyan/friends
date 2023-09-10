@@ -6,6 +6,7 @@ $darkGray: #333333;
 $gray: #424242;
 $white: #e1e3e6;
 $blue: #6898d0;
+$linkColor: #71aaeb;
 $green: #4bb34b;
 
 * {
@@ -36,11 +37,9 @@ body {
             width: 1085px;
             margin: 20px auto;
             height: 100%;
-            // display: grid;
-            // grid-template-columns: 170px 1fr;
             position: relative;
 
-            .content {
+            >.content {
                 position: absolute;
                 width: calc(100% - 170px);
                 right: 0;
