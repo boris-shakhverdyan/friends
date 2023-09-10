@@ -1,8 +1,18 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./style.scss";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { useEffect, useState } from "react";
+import Post from "../News/Post";
 
-const Profile = () => {
+const Profile = ({ authUser }) => {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        fetch(`https://dummyjson.com/users/${authUser.id}/posts`)
+            .then((res) => res.json())
+            .then((data) => setPosts(data.posts));
+    }, [authUser]);
+
     return (
         <div className="profile">
             <div className="profileHeader">
@@ -16,14 +26,14 @@ const Profile = () => {
                     <div
                         className="avatar-big"
                         style={{
-                            backgroundImage: `url(https://vk.com/images/camera_200.png)`,
+                            backgroundImage: `url(${authUser.image})`,
                         }}
                     >
                         <span className="status-active"></span>
                     </div>
                     <div className="profileInfo">
                         <div className="mainInfo">
-                            <h2>Boris Shakhverdyan</h2>
+                            <h2>{`${authUser.firstName} ${authUser.lastName} (${authUser.username})`}</h2>
                             <div className="fullInfo"></div>
                         </div>
                         <div className="actions">
@@ -34,6 +44,11 @@ const Profile = () => {
                         </div>
                     </div>
                 </div>
+            </div>
+            <div className="posts">
+                {posts.map((post) => (
+                    <Post key={post.id} {...post} />
+                ))}
             </div>
         </div>
     );

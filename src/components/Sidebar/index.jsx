@@ -32,7 +32,7 @@ const Sidebar = () => {
         { text: "Телевидение", path: "videos", icon: faTv },
         { text: "Потехи", path: "games", icon: faDice },
         { text: "Печати", path: "stickers", icon: faStamp },
-        { text: "Ярмарка", path: "market", icon: faBasketShopping },
+        { text: "Ярмарка", path: "shop", icon: faBasketShopping },
         { text: "Услуги", path: "services", icon: faTaxi },
     ];
 

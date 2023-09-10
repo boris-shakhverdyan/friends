@@ -55,14 +55,16 @@ const Post = ({ id, title, body, userId, tags, reactions }) => {
                 </button>
             </div>
             <div className="comments">
-                {comments
-                    ? comments.map((comment) => (
-                          <div key={comment.id} className="comment">
-                              <p>{comment.body}</p>
-                              <p className="link">{comment.user.username}</p>
-                          </div>
-                      ))
-                    : null}
+                {comments && comments.length ? (
+                    comments.map((comment) => (
+                        <div key={comment.id} className="comment">
+                            <p>{comment.body}</p>
+                            <p className="link">{comment.user.username}</p>
+                        </div>
+                    ))
+                ) : (
+                    <p className="no-comments">No comments</p>
+                )}
             </div>
         </div>
     );

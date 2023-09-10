@@ -20,6 +20,22 @@
         .right {
             display: flex;
             height: 100%;
+            align-items: center;
+
+            a {
+                color: #e1e3e6;
+                text-decoration: none;
+                padding: 10px;
+                transition: background-color .2s;
+
+                &:hover {
+                    background-color: #424242;
+                }
+
+                &.active {
+                    background-color: #424242;
+                }
+            }
         }
 
         .logo {

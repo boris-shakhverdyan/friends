@@ -12,7 +12,7 @@ import { useRef, useState } from "react";
 import Link from "./Link";
 import { Link as NavLink } from "react-router-dom";
 
-const Profile = ({ avatar }) => {
+const Profile = ({ authUser, setAuthUser }) => {
     const profileRef = useRef(null);
     const [isOpened, setIsOpened] = useState(false);
 
@@ -26,12 +26,23 @@ const Profile = ({ avatar }) => {
         }
     });
 
+    const logoutUser = (e) => {
+        e.preventDefault();
+        setIsOpened(false);
+        setAuthUser(null);
+    };
+
     const links = [
         { href: "settings", text: "Правки", icon: faGear },
         { href: "theme", text: "Тема", icon: faPalette },
         { href: "lang", text: "Язык", icon: faGlobeAmericas },
         { href: "help", text: "Справочная", icon: faQuestionCircle },
-        { href: "logout", text: "Эмигрировать", icon: faRightFromBracket },
+        {
+            href: "logout",
+            text: "Эмигрировать",
+            icon: faRightFromBracket,
+            onClick: logoutUser,
+        },
     ];
 
     return (
@@ -40,7 +51,7 @@ const Profile = ({ avatar }) => {
                 className={`avatar ${isOpened ? "active" : ""}`}
                 onClick={() => setIsOpened(!isOpened)}
             >
-                <img src={avatar} alt="avatar" />
+                <img src={authUser.image} alt="avatar" />
                 <FontAwesomeIcon icon={faChevronDown} />
             </div>
             <div className={`dropdown ${isOpened ? "opened" : ""}`}>
@@ -49,8 +60,8 @@ const Profile = ({ avatar }) => {
                     to={"profile"}
                     className="avatar"
                 >
-                    <img src={avatar} alt="avatar" />
-                    <span>Boris Shakhverdyan</span>
+                    <img src={authUser.image} alt="avatar" />
+                    <span>{authUser.firstName + " " + authUser.lastName}</span>
                 </NavLink>
                 <div className="links">
                     {links.map((link, index) => (
