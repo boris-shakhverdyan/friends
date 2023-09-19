@@ -26,7 +26,7 @@ const Profile = ({ authUser }) => {
                     <div
                         className="avatar-big"
                         style={{
-                            backgroundImage: `url(${authUser.image})`,
+                            backgroundImage: `url(${authUser.avatar})`,
                         }}
                     >
                         <span className="status-active"></span>

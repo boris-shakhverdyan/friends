@@ -51,7 +51,7 @@ const Profile = ({ authUser, setAuthUser }) => {
                 className={`avatar ${isOpened ? "active" : ""}`}
                 onClick={() => setIsOpened(!isOpened)}
             >
-                <img src={authUser.image} alt="avatar" />
+                <img src={authUser.avatar} alt="avatar" />
                 <FontAwesomeIcon icon={faChevronDown} />
             </div>
             <div className={`dropdown ${isOpened ? "opened" : ""}`}>
@@ -60,7 +60,7 @@ const Profile = ({ authUser, setAuthUser }) => {
                     to={"profile"}
                     className="avatar"
                 >
-                    <img src={authUser.image} alt="avatar" />
+                    <img src={authUser.avatar} alt="avatar" />
                     <span>{authUser.firstName + " " + authUser.lastName}</span>
                 </NavLink>
                 <div className="links">

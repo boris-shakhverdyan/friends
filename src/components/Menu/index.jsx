@@ -1,8 +1,8 @@
-import SearchInput from "./SearchInput";
-import "./style.scss";
-import Profile from "./Profile";
-import Notifications from "./Notifications";
 import { Link, NavLink } from "react-router-dom";
+import Notifications from "./Notifications";
+import SearchInput from "./SearchInput";
+import Profile from "./Profile";
+import "./style.scss";
 
 const Menu = ({ authUser, setAuthUser }) => {
     return (
@@ -21,7 +21,10 @@ const Menu = ({ authUser, setAuthUser }) => {
                 </div>
                 <div className="right">
                     {authUser ? (
-                        <Profile setAuthUser={setAuthUser} authUser={authUser} />
+                        <Profile
+                            setAuthUser={setAuthUser}
+                            authUser={authUser}
+                        />
                     ) : (
                         <>
                             <NavLink to={"login"}>Login</NavLink>

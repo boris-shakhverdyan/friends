@@ -1,0 +1,14 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "firstName": "Boris",
+            "lastName": "Shakhverdyan",
+            "email": "test@test.test",
+            "birthdate": "2002-12-01",
+            "username": "rentgen",
+            "password": "asdasdasd",
+            "avatar": "https://robohash.org/hicveldicta.png"
+        }
+    ]
+}
