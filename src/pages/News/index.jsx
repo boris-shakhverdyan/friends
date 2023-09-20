@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import "./style.scss";
 import Post from "./Post";
+import { useSendRequest } from "../../hooks/useSendRequest";
 
 const News = () => {
     const [posts, setPosts] = useState([]);
+    const { get } = useSendRequest();
 
     useEffect(() => {
-        fetch("https://dummyjson.com/posts?limit=10")
-            .then((res) => res.json())
-            .then((data) => setPosts(data.posts));
+        (async () => {
+            setPosts(await get(`posts?_sort=created_at&_order=desc`));
+        })();
     }, []);
 
     return (

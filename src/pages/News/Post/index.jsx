@@ -1,20 +1,28 @@
 import { useEffect, useState } from "react";
-import "./style.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart, faMessage, faShare } from "@fortawesome/free-solid-svg-icons";
+import { useSendRequest } from "../../../hooks/useSendRequest";
+import "./style.scss";
+import moment from "moment/moment";
 
-const Post = ({ id, title, body, userId, tags, reactions }) => {
+const Post = ({ id, body, userId, reactions, created_at, authUser = null }) => {
     const [author, setAuthor] = useState(null);
     const [comments, setComments] = useState(null);
+    const { get } = useSendRequest();
 
     useEffect(() => {
-        fetch(`https://dummyjson.com/users/${userId}`)
-            .then((res) => res.json())
-            .then((data) => setAuthor(data));
+        if (authUser?.id !== userId) {
+            (async () => {
+                const author = await get(`users/${userId}`);
+                setAuthor(author);
+            })();
+        } else {
+            setAuthor(authUser);
+        }
 
-        fetch(`https://dummyjson.com/comments/post/${id}`)
-            .then((res) => res.json())
-            .then((data) => setComments(data.comments));
+        (async () => {
+            setComments(await get(`comments?postId=${id}`));
+        })();
     }, [id, userId]);
 
     if (!author || !comments) {
@@ -25,19 +33,12 @@ const Post = ({ id, title, body, userId, tags, reactions }) => {
         <div className="post">
             <div className="header">
                 <div className="author">
-                    <img src={author.image} alt={author.image} />
+                    <img src={author.avatar} alt={author.avatar} />
                     <h4>{`${author.firstName} ${author.lastName} (${author.username})`}</h4>
-                </div>
-                <div className="tags">
-                    {tags.map((tag, index) => (
-                        <span key={index} className="tag">
-                            {tag}
-                        </span>
-                    ))}
+                    <span className="datetime">{moment(created_at).fromNow()}</span>
                 </div>
             </div>
             <div className="content">
-                <h3>{title}</h3>
                 <p>{body}</p>
             </div>
             <div className="actions">

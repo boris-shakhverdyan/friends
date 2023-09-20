@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Profile from "./pages/Profile";
@@ -7,10 +7,13 @@ import Messages from "./pages/Messages";
 import Friends from "./pages/Friends";
 import Shop from "./pages/Shop";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
+import { useSendRequest } from "./hooks/useSendRequest";
 
 const AppRouter = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [authUser, setAuthUser] = useState(null);
+    const { post } = useSendRequest();
 
     return (
         <Routes>
@@ -24,11 +27,16 @@ const AppRouter = () => {
                     />
                 }
             >
-                {authUser ? (
+                {authUser?.id ? (
                     <>
                         <Route
                             path="profile"
-                            element={<Profile authUser={authUser} />}
+                            element={
+                                <Profile
+                                    authUser={authUser}
+                                    setIsLoading={setIsLoading}
+                                />
+                            }
                         />
                         <Route index element={<News />} />
                         <Route path="messenger" element={<Messages />} />
@@ -40,8 +48,23 @@ const AppRouter = () => {
                     <>
                         <Route
                             path="login"
-                            element={<Login setAuthUser={setAuthUser} />}
+                            element={
+                                <Login
+                                    setAuthUser={setAuthUser}
+                                    setIsLoading={setIsLoading}
+                                />
+                            }
                         />
+                        <Route
+                            path="register"
+                            element={
+                                <Register
+                                    setAuthUser={setAuthUser}
+                                    setIsLoading={setIsLoading}
+                                />
+                            }
+                        />
+                        <Route index element={<Navigate to={"login"} />} />
                         <Route path="*" element={<Navigate to={"login"} />} />
                     </>
                 )}

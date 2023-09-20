@@ -10,16 +10,20 @@ export const useSendRequest = () => {
     };
 
     const post = async (url, data = null) => {
-        let response = fetch(HOST_LOCAL_SERVER + url, {
+        return await fetch(HOST_LOCAL_SERVER + url, {
             method: "POST",
             headers,
             body: JSON.stringify(data),
         });
-
-        response = await response.json();
-
-        return response;
     };
 
-    return { get, post };
+    const put = async (url, data = null) => {
+        return await fetch(HOST_LOCAL_SERVER + url, {
+            method: "PUT",
+            headers,
+            body: JSON.stringify(data),
+        });
+    };
+
+    return { get, post, put };
 };

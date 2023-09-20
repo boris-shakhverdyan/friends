@@ -27,6 +27,7 @@ const Menu = ({ authUser, setAuthUser }) => {
                         />
                     ) : (
                         <>
+                            <NavLink to={"register"}>Register</NavLink>
                             <NavLink to={"login"}>Login</NavLink>
                         </>
                     )}

@@ -1,3 +1,5 @@
+import { useRef, useState } from "react";
+import { Link as NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faChevronDown,
@@ -7,10 +9,8 @@ import {
     faQuestionCircle,
     faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
-import "./style.scss";
-import { useRef, useState } from "react";
 import Link from "./Link";
-import { Link as NavLink } from "react-router-dom";
+import "./style.scss";
 
 const Profile = ({ authUser, setAuthUser }) => {
     const profileRef = useRef(null);

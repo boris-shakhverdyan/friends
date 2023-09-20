@@ -1,17 +1,37 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import "./style.scss";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
+import { useSendRequest } from "../../hooks/useSendRequest";
+import CreatePost from "../../components/CreatePost";
 import Post from "../News/Post";
+import "./style.scss";
 
-const Profile = ({ authUser }) => {
+const Profile = ({ authUser, setIsLoading }) => {
     const [posts, setPosts] = useState([]);
+    const { get, post } = useSendRequest();
 
     useEffect(() => {
-        fetch(`https://dummyjson.com/users/${authUser.id}/posts`)
-            .then((res) => res.json())
-            .then((data) => setPosts(data.posts));
+        setIsLoading(true);
+
+        (async () => {
+            setPosts(await get(`posts?userId=${authUser.id}&_sort=created_at&_order=desc`));
+            setIsLoading(false);
+        })();
     }, [authUser]);
+
+    const addPost = async (value) => {
+        const newPost = {
+            id: new Date().getTime(),
+            body: value,
+            userId: authUser.id,
+            reactions: 0,
+            created_at: new Date().getTime(),
+        };
+
+        await post("posts", newPost);
+
+        setPosts([newPost, ...posts]);
+    };
 
     return (
         <div className="profile">
@@ -46,6 +66,7 @@ const Profile = ({ authUser }) => {
                 </div>
             </div>
             <div className="posts">
+                <CreatePost addPost={addPost} authUser={authUser} />
                 {posts.map((post) => (
                     <Post key={post.id} {...post} />
                 ))}
