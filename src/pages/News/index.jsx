@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import "./style.scss";
-import Post from "./Post";
 import { useSendRequest } from "../../hooks/useSendRequest";
+import CreatePost from "../../components/CreatePost";
+import Post from "../../components/Post";
+import "./style.scss";
 
-const News = () => {
+const News = ({ authUser }) => {
     const [posts, setPosts] = useState([]);
     const { get } = useSendRequest();
 
@@ -15,8 +16,14 @@ const News = () => {
 
     return (
         <div className="news">
+            <CreatePost setPosts={setPosts} authUser={authUser} />
             {posts.map((post) => (
-                <Post key={post.id} {...post} />
+                <Post
+                    setPosts={setPosts}
+                    authUser={authUser}
+                    key={post.id}
+                    post={post}
+                />
             ))}
         </div>
     );

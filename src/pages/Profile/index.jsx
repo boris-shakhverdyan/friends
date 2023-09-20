@@ -3,35 +3,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useSendRequest } from "../../hooks/useSendRequest";
 import CreatePost from "../../components/CreatePost";
-import Post from "../News/Post";
+import Post from "../../components/Post";
 import "./style.scss";
 
 const Profile = ({ authUser, setIsLoading }) => {
     const [posts, setPosts] = useState([]);
-    const { get, post } = useSendRequest();
+    const { get } = useSendRequest();
 
     useEffect(() => {
         setIsLoading(true);
 
         (async () => {
-            setPosts(await get(`posts?userId=${authUser.id}&_sort=created_at&_order=desc`));
+            setPosts(
+                await get(
+                    `posts?userId=${authUser.id}&_sort=created_at&_order=desc`
+                )
+            );
             setIsLoading(false);
         })();
     }, [authUser]);
-
-    const addPost = async (value) => {
-        const newPost = {
-            id: new Date().getTime(),
-            body: value,
-            userId: authUser.id,
-            reactions: 0,
-            created_at: new Date().getTime(),
-        };
-
-        await post("posts", newPost);
-
-        setPosts([newPost, ...posts]);
-    };
 
     return (
         <div className="profile">
@@ -66,9 +56,14 @@ const Profile = ({ authUser, setIsLoading }) => {
                 </div>
             </div>
             <div className="posts">
-                <CreatePost addPost={addPost} authUser={authUser} />
+                <CreatePost setPosts={setPosts} authUser={authUser} />
                 {posts.map((post) => (
-                    <Post key={post.id} {...post} />
+                    <Post
+                        key={post.id}
+                        authUser={authUser}
+                        post={post}
+                        setPosts={setPosts}
+                    />
                 ))}
             </div>
         </div>

@@ -12,8 +12,69 @@
 
         .author {
             display: flex;
-            gap: 20px;
+            justify-content: space-between;
             align-items: center;
+
+            .left {
+                display: flex;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .right {
+                position: relative;
+
+                .popup {
+                    position: absolute;
+                    top: 100%;
+                    right: 0;
+                    border-radius: 10px;
+                    padding: 5px 0;
+                    width: 173px;
+                    background-color: #333333;
+                    overflow: hidden;
+                    transition: opacity .2s, visibility .2s, transform .2s;
+
+                    &.opened {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+
+                    &.closed {
+                        opacity: 0;
+                        transform: translateY(5px);
+                        visibility: hidden;
+                    }
+
+                    ul {
+                        list-style-type: none;
+
+                        li {
+                            display: block;
+                            width: 100%;
+                            padding: 5px 10px;
+                            transition: background-color .2s;
+                            cursor: pointer;
+
+                            &:hover {
+                                background-color: #424242;
+                            }
+                        }
+                    }
+                }
+
+                svg {
+                    font-size: 24px;
+                    color: #555555;
+                    padding: 0px 20px;
+                    cursor: pointer;
+                    transition: color .1s;
+                }
+
+                &:hover svg {
+                    color: #424242;
+                }
+            }
 
             img {
                 width: 40px;
@@ -51,7 +112,7 @@
         }
     }
 
-    .actions {
+    >.actions {
         display: flex;
         gap: 10px;
         align-items: center;
@@ -78,6 +139,14 @@
 
             &:hover {
                 background-color: #555555;
+            }
+
+            &.liked {
+                background-color: crimson;
+
+                &:hover {
+                    background-color: darken(crimson, 5);
+                }
             }
         }
     }

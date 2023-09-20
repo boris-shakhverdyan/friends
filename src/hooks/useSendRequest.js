@@ -25,5 +25,9 @@ export const useSendRequest = () => {
         });
     };
 
-    return { get, post, put };
+    const del = async (url) => {
+        return await fetch(HOST_LOCAL_SERVER + url, { method: "DELETE" });
+    };
+
+    return { get, post, put, del };
 };

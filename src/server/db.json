@@ -97,50 +97,50 @@
       "id": 1,
       "body": "His mother had always taught him not to ever think of himself as better than others. He'd tried to live by this motto. He never looked down on those who were less fortunate or who had less money than him. But the stupidity of the group of people he was talking to made him change his mind.",
       "userId": 1695149534759,
-      "reactions": 2,
+      "reactions": [
+        9
+      ],
       "created_at": 1695155341586
-    },
-    {
-      "id": 2,
-      "body": "He was an expert but not in a discipline that anyone could fully appreciate. He knew how to hold the cone just right so that the soft server ice-cream fell into it at the precise angle to form a perfect cone each and every time. It had taken years to perfect and he could now do it without even putting any thought behind it.",
-      "userId": 1695149534759,
-      "reactions": 2,
-      "created_at": 1695155354732
     },
     {
       "id": 3,
       "body": "Dave watched as the forest burned up on the hill, only a few miles from her house. The car had been hastily packed and Marta was inside trying to round up the last of the pets. Dave went through his mental list of the most important papers and documents that they couldn't leave behind. He scolded himself for not having prepared these better in advance and hoped that he had remembered everything that was needed. He continued to wait for Marta to appear with the pets, but she still was nowhere to be seen.",
       "userId": 1695149534759,
-      "reactions": 5,
+      "reactions": [
+        1695149534759,
+        1
+      ],
       "created_at": 1695155365142
     },
     {
       "id": 4,
       "body": "Things aren't going well at all with mom today. She is just a limp noodle and wants to sleep all the time. I sure hope that things get better soon.",
       "userId": 2,
-      "reactions": 0,
+      "reactions": [],
       "created_at": 1695155374906
     },
     {
-      "id": 1695158509426,
-      "body": "Some info",
+      "id": 1695244976623,
+      "body": "Everyone can like the posts!!!1",
       "userId": 1695149534759,
-      "reactions": 0,
-      "created_at": 1695158509426
+      "reactions": [
+        1695149534759
+      ],
+      "created_at": 1695244976623
     },
     {
-      "id": 1695158734161,
-      "body": "test",
+      "id": 1695245409060,
+      "body": "dasdd",
       "userId": 1695149534759,
-      "reactions": 0,
-      "created_at": 1695158734161
+      "reactions": [],
+      "created_at": 1695245409060
     },
     {
-      "id": 1695158925066,
-      "body": "new post",
+      "id": 1695245423779,
+      "body": "Post from profile",
       "userId": 1695149534759,
-      "reactions": 0,
-      "created_at": 1695158925066
+      "reactions": [],
+      "created_at": 1695245423779
     }
   ],
   "comments": [
@@ -160,24 +160,6 @@
       "user": {
         "id": 71,
         "username": "omarsland1y"
-      }
-    },
-    {
-      "id": 3,
-      "body": "You are an amazing writer!",
-      "postId": 61,
-      "user": {
-        "id": 29,
-        "username": "jissetts"
-      }
-    },
-    {
-      "id": 4,
-      "body": "Wow! You have improved so much!",
-      "postId": 8,
-      "user": {
-        "id": 19,
-        "username": "bleveragei"
       }
     }
   ]
