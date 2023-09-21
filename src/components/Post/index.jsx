@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import moment from "moment/moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faEllipsis,
@@ -7,13 +8,14 @@ import {
     faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import { useSendRequest } from "../../hooks/useSendRequest";
-import moment from "moment/moment";
+import Comments from "./Comments";
 import "./style.scss";
 
 const Post = ({ setPosts, post, authUser }) => {
     const [author, setAuthor] = useState(null);
     const [comments, setComments] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const [isWantToComment, setIsWantToComment] = useState(false);
     const { get, put, del } = useSendRequest();
 
     useEffect(() => {
@@ -27,7 +29,34 @@ const Post = ({ setPosts, post, authUser }) => {
         }
 
         (async () => {
-            setComments(await get(`comments?postId=${post.id}`));
+            let comments = await get(
+                `comments?postId=${post.id}&_sort=created_at`
+            );
+
+            const usersIds = new Set(comments.map((comment) => comment.userId));
+            usersIds.delete(authUser.id);
+
+            let users = [];
+
+            if (usersIds.size) {
+                const query = `users?id=${[...usersIds].join(",")}`;
+
+                users = await get(query);
+            }
+
+            setComments(
+                comments.map((comment) => {
+                    if (comment.userId === authUser.id) {
+                        comment.user = authUser;
+                    } else {
+                        comment.user = users.find(
+                            (user) => comment.userId === user.id
+                        );
+                    }
+
+                    return comment;
+                })
+            );
         })();
     }, [post.id, post.userId]);
 
@@ -111,7 +140,7 @@ const Post = ({ setPosts, post, authUser }) => {
                     <FontAwesomeIcon icon={faHeart} />
                     <span>{post.reactions.length}</span>
                 </button>
-                <button>
+                <button onClick={() => setIsWantToComment(!isWantToComment)}>
                     <FontAwesomeIcon icon={faMessage} />
                     <span>{0}</span>
                 </button>
@@ -120,18 +149,12 @@ const Post = ({ setPosts, post, authUser }) => {
                     <span>{0}</span>
                 </button>
             </div>
-            <div className="comments">
-                {comments && comments.length ? (
-                    comments.map((comment) => (
-                        <div key={comment.id} className="comment">
-                            <p>{comment.body}</p>
-                            <p className="link">{comment.user.username}</p>
-                        </div>
-                    ))
-                ) : (
-                    <p className="no-comments">No comments</p>
-                )}
-            </div>
+            <Comments
+                post={post}
+                authUser={authUser}
+                isWantToComment={isWantToComment}
+                setIsWantToComment={setIsWantToComment}
+            />
         </div>
     );
 };

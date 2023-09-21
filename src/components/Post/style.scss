@@ -4,6 +4,7 @@
     color: #e1e3e6;
     border-radius: 10px;
     border: 1px solid #424242;
+    overflow: hidden;
 
     >.header {
         padding: 10px;
@@ -103,10 +104,6 @@
     .content {
         padding: 10px;
 
-        h3 {
-            padding-bottom: 10px;
-        }
-
         p {
             text-align: justify;
         }
@@ -117,7 +114,6 @@
         gap: 10px;
         align-items: center;
         padding: 10px;
-        border-bottom: 1px solid #424242;
 
         button {
             display: flex;
@@ -149,28 +145,6 @@
                 }
             }
         }
-    }
-
-    .comments {
-        .comment {
-            padding: 10px;
-            display: flex;
-            justify-content: space-between;
-
-            .link {
-                color: #71aaeb;
-                cursor: pointer;
-
-                &:hover {
-                    text-decoration: underline;
-                }
-            }
-        }
-    }
-
-    .no-comments {
-        padding: 10px;
-        color: #666666;
     }
 }
 

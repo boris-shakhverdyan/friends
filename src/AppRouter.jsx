@@ -15,28 +15,11 @@ const AppRouter = () => {
 
     return (
         <Routes>
-            <Route
-                path="/"
-                element={
-                    <Layout
-                        isLoading={isLoading}
-                        authUser={authUser}
-                        setAuthUser={setAuthUser}
-                    />
-                }
-            >
+            <Route path="/" element={<Layout isLoading={isLoading} authUser={authUser} setAuthUser={setAuthUser} />}>
                 {authUser?.id ? (
                     <>
-                        <Route
-                            path="profile"
-                            element={
-                                <Profile
-                                    authUser={authUser}
-                                    setIsLoading={setIsLoading}
-                                />
-                            }
-                        />
                         <Route index element={<News authUser={authUser} />} />
+                        <Route path="profile" element={<Profile authUser={authUser} setIsLoading={setIsLoading} />} />
                         <Route path="messenger" element={<Messages />} />
                         <Route path="friends" element={<Friends />} />
                         <Route path="shop" element={<Shop />} />
@@ -44,26 +27,10 @@ const AppRouter = () => {
                     </>
                 ) : (
                     <>
-                        <Route
-                            path="login"
-                            element={
-                                <Login
-                                    setAuthUser={setAuthUser}
-                                    setIsLoading={setIsLoading}
-                                />
-                            }
-                        />
-                        <Route
-                            path="register"
-                            element={
-                                <Register
-                                    setAuthUser={setAuthUser}
-                                    setIsLoading={setIsLoading}
-                                />
-                            }
-                        />
-                        <Route index element={<Navigate to={"login"} />} />
-                        <Route path="*" element={<Navigate to={"login"} />} />
+                        <Route index element={<Navigate to="login" />} />
+                        <Route path="login" element={<Login setAuthUser={setAuthUser} setIsLoading={setIsLoading} />} />
+                        <Route path="register" element={<Register setAuthUser={setAuthUser} setIsLoading={setIsLoading} />} />
+                        <Route path="*" element={<Navigate to="login" />} />
                     </>
                 )}
             </Route>
