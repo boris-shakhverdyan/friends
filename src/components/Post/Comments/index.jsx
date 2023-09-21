@@ -8,7 +8,7 @@ import "./style.scss";
 const Comments = ({ post, authUser, isWantToComment, setIsWantToComment }) => {
     const [comments, setComments] = useState(null);
     const [commentText, setCommentText] = useState("");
-    const { get, put, post: postReq } = useSendRequest();
+    const { get, post: postReq } = useSendRequest();
 
     useEffect(() => {
         (async () => {
