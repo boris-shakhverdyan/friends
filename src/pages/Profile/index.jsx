@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useSendRequest } from "../../hooks/useSendRequest";
@@ -8,20 +9,59 @@ import "./style.scss";
 
 const Profile = ({ authUser, setIsLoading }) => {
     const [posts, setPosts] = useState([]);
+    const [user, setUser] = useState(null);
     const { get } = useSendRequest();
+    const params = useParams();
 
     useEffect(() => {
         setIsLoading(true);
 
-        (async () => {
-            setPosts(
-                await get(
-                    `posts?userId=${authUser.id}&_sort=created_at&_order=desc`
-                )
-            );
-            setIsLoading(false);
-        })();
-    }, [authUser]);
+        if (params?.id) {
+            if (+params.id === authUser.id) {
+                setUser(authUser);
+
+                (async () => {
+                    setPosts(
+                        await get(
+                            `posts?userId=${authUser.id}&_sort=created_at&_order=desc`
+                        )
+                    );
+
+                    setIsLoading(false);
+                })();
+            } else {
+                (async () => {
+                    setUser(await get(`users/${params.id}`));
+
+                    setPosts(
+                        await get(
+                            `posts?userId=${params.id}&_sort=created_at&_order=desc`
+                        )
+                    );
+
+                    setIsLoading(false);
+                })();
+            }
+        } else if (
+            !params?.id &&
+            (!user || (user && user.id !== authUser.id))
+        ) {
+            setUser(authUser);
+
+            (async () => {
+                setPosts(
+                    await get(
+                        `posts?userId=${authUser.id}&_sort=created_at&_order=desc`
+                    )
+                );
+                setIsLoading(false);
+            })();
+        }
+    }, [params?.id]);
+
+    if (!user) {
+        return <h1>404 Not Found</h1>;
+    }
 
     return (
         <div className="profile">
@@ -36,14 +76,14 @@ const Profile = ({ authUser, setIsLoading }) => {
                     <div
                         className="avatar-big"
                         style={{
-                            backgroundImage: `url(${authUser.avatar})`,
+                            backgroundImage: `url(${user.avatar})`,
                         }}
                     >
                         <span className="status-active"></span>
                     </div>
                     <div className="profileInfo">
                         <div className="mainInfo">
-                            <h2>{`${authUser.firstName} ${authUser.lastName} (${authUser.username})`}</h2>
+                            <h2>{`${user.firstName} ${user.lastName} (${user.username})`}</h2>
                             <div className="fullInfo"></div>
                         </div>
                         <div className="actions">
@@ -56,7 +96,9 @@ const Profile = ({ authUser, setIsLoading }) => {
                 </div>
             </div>
             <div className="posts">
-                <CreatePost setPosts={setPosts} authUser={authUser} />
+                {user.id === authUser.id && (
+                    <CreatePost setPosts={setPosts} authUser={authUser} />
+                )}
                 {posts.map((post) => (
                     <Post
                         key={post.id}

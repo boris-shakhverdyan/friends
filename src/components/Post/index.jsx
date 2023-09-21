@@ -10,6 +10,7 @@ import {
 import { useSendRequest } from "../../hooks/useSendRequest";
 import Comments from "./Comments";
 import "./style.scss";
+import { Link } from "react-router-dom";
 
 const Post = ({ setPosts, post, authUser }) => {
     const [author, setAuthor] = useState(null);
@@ -100,7 +101,7 @@ const Post = ({ setPosts, post, authUser }) => {
                 <div className="author">
                     <div className="left">
                         <img src={author.avatar} alt={author.avatar} />
-                        <h4>{`${author.firstName} ${author.lastName} (${author.username})`}</h4>
+                        <Link className="link" to={`/profile/${author.id}`}>{`${author.firstName} ${author.lastName} (${author.username})`}</Link>
                         <span className="datetime">
                             {moment(post.created_at).fromNow()}
                         </span>

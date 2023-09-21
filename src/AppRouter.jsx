@@ -20,6 +20,7 @@ const AppRouter = () => {
                     <>
                         <Route index element={<News authUser={authUser} />} />
                         <Route path="profile" element={<Profile authUser={authUser} setIsLoading={setIsLoading} />} />
+                        <Route path="profile/:id" element={<Profile authUser={authUser} setIsLoading={setIsLoading} />} />
                         <Route path="messenger" element={<Messages />} />
                         <Route path="friends" element={<Friends />} />
                         <Route path="shop" element={<Shop />} />
