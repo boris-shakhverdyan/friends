@@ -1,23 +1,56 @@
 import { useEffect, useState } from "react";
+import { useSendRequest } from "../../hooks/useSendRequest";
+import Friend from "../../components/Friend";
 import "./style.scss";
 
-const Friends = () => {
+const Friends = ({ authUser }) => {
     const [friends, setFriends] = useState([]);
+    const { get, put } = useSendRequest();
 
     useEffect(() => {
-        fetch("https://dummyjson.com/users?limit=10")
-            .then((res) => res.json())
-            .then((data) => setFriends(data.users));
+        (async () => {
+            const query = `users?${authUser.friends
+                .map((friend) => "id=" + friend)
+                .join("&")}`;
+
+            const friends = (await get(query)) || [];
+
+            setFriends(friends);
+        })();
     }, []);
+
+    console.log(friends);
 
     return (
         <div className="friends">
-            {friends.map(({ firstName, lastName, username, image }) => (
-                <div className="friend">
-                    <img src={image} alt={image} />
-                    <h3>{`${firstName} ${lastName} (${username})`}</h3>
+            <div className="friends__header">
+                <div className="row flex">
+                    <button className="active">
+                        All friends <span>{friends.length}</span>
+                    </button>
+                    <button>
+                        Friends online <span>{friends.length}</span>
+                    </button>
                 </div>
-            ))}
+                <form className="row">
+                    <input
+                        type="text"
+                        autoComplete="off"
+                        placeholder="Find friends"
+                    />
+                </form>
+            </div>
+            <div className="friends__list">
+                {friends.map((friend) => (
+                    <Friend
+                        key={friend.id}
+                        friend={friend}
+                        authUser={authUser}
+                        friends={friends}
+                        setFriends={setFriends}
+                    />
+                ))}
+            </div>
         </div>
     );
 };

@@ -46,6 +46,7 @@ const Login = ({ setAuthUser, setIsLoading }) => {
                     name="password"
                     id="password"
                     placeholder="Password"
+                    autoComplete="off"
                     onChange={(e) => setPassword(e.target.value)}
                     value={password}
                 />

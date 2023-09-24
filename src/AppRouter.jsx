@@ -22,7 +22,7 @@ const AppRouter = () => {
                         <Route path="profile" element={<Profile authUser={authUser} setIsLoading={setIsLoading} />} />
                         <Route path="profile/:id" element={<Profile authUser={authUser} setIsLoading={setIsLoading} />} />
                         <Route path="messenger" element={<Messages />} />
-                        <Route path="friends" element={<Friends />} />
+                        <Route path="friends" element={<Friends authUser={authUser} />} />
                         <Route path="shop" element={<Shop />} />
                         <Route path="*" element={<Navigate to="/" />} />
                     </>
