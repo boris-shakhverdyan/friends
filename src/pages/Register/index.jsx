@@ -32,7 +32,7 @@ const Register = ({ setAuthUser, setIsLoading }) => {
 
                 reader.onload = async () => {
                     const user = {
-                        id: new Date().getTime().toString(),
+                        id: new Date().getTime(),
                         firstName: formData.firstName,
                         lastName: formData.lastName,
                         email: formData.email,

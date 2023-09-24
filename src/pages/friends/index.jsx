@@ -5,7 +5,7 @@ import "./style.scss";
 
 const Friends = ({ authUser }) => {
     const [friends, setFriends] = useState([]);
-    const { get, put } = useSendRequest();
+    const { get } = useSendRequest();
 
     useEffect(() => {
         (async () => {
@@ -18,8 +18,6 @@ const Friends = ({ authUser }) => {
             setFriends(friends);
         })();
     }, []);
-
-    console.log(friends);
 
     return (
         <div className="friends">

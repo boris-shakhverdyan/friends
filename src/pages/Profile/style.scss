@@ -93,6 +93,15 @@
                         align-items: center;
                     }
                 }
+
+                .action {
+                    background-color: #e1e3e6;
+                    color: #222222;
+
+                    &:hover {
+                        background-color: darken(#e1e3e6, 10);
+                    }
+                }
             }
         }
     }
