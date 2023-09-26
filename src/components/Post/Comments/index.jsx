@@ -1,47 +1,19 @@
 import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import { useSendRequest } from "../../../hooks/useSendRequest";
+import commentAPI from "../../../api/commentAPI";
 import Comment from "./Comment";
 import "./style.scss";
 
 const Comments = ({ post, authUser, isWantToComment, setIsWantToComment }) => {
     const [comments, setComments] = useState(null);
     const [commentText, setCommentText] = useState("");
-    const { get, post: postReq } = useSendRequest();
 
     useEffect(() => {
         (async () => {
-            let comments = await get(
-                `comments?postId=${post.id}&_sort=created_at`
-            );
+            const comments = await commentAPI.getByPostId(post.id);
 
-            const usersIds = new Set(comments.map((comment) => comment.userId));
-            usersIds.delete(authUser.id);
-
-            let users = [];
-
-            if (usersIds.size) {
-                const query = `users?${[...usersIds]
-                    .map((id) => "id=" + id)
-                    .join("&")}`;
-
-                users = await get(query);
-            }
-
-            setComments(
-                comments.map((comment) => {
-                    if (comment.userId === authUser.id) {
-                        comment.user = authUser;
-                    } else {
-                        comment.user = users.find(
-                            (user) => comment.userId === user.id
-                        );
-                    }
-
-                    return comment;
-                })
-            );
+            setComments(comments);
         })();
     }, [post.id, post.userId]);
 
@@ -49,16 +21,11 @@ const Comments = ({ post, authUser, isWantToComment, setIsWantToComment }) => {
         e.preventDefault();
 
         if (commentText.trim()) {
-            const newComment = {
-                id: new Date().getTime(),
-                body: commentText.trim(),
-                postId: post.id,
-                userId: authUser.id,
-                created_at: new Date().getTime(),
-                reactions: [],
-            };
-
-            await postReq(`comments`, newComment);
+            const newComment = await commentAPI.create(
+                authUser.id,
+                post.id,
+                commentText.trim()
+            );
 
             newComment.user = authUser;
 
@@ -87,7 +54,10 @@ const Comments = ({ post, authUser, isWantToComment, setIsWantToComment }) => {
             ) : null}
             {isWantToComment && (
                 <form onSubmit={addComment} className="addComment">
-                    <img src={"/assets/avatars/" + authUser.avatar} alt={authUser.firstName + " " + authUser.lastName} />
+                    <img
+                        src={"/assets/avatars/" + authUser.avatar}
+                        alt={authUser.firstName + " " + authUser.lastName}
+                    />
                     <input
                         type="text"
                         name="newComment"

@@ -1,19 +1,14 @@
 import { useEffect, useState } from "react";
-import { useSendRequest } from "../../hooks/useSendRequest";
+import userAPI from "../../api/userAPI";
 import Friend from "../../components/Friend";
 import "./style.scss";
 
 const Friends = ({ authUser }) => {
     const [friends, setFriends] = useState([]);
-    const { get } = useSendRequest();
 
     useEffect(() => {
         (async () => {
-            const query = `users?${authUser.friends
-                .map((friend) => "id=" + friend)
-                .join("&")}`;
-
-            const friends = (await get(query)) || [];
+            const friends = await userAPI.getByIds(authUser.friends);
 
             setFriends(friends);
         })();

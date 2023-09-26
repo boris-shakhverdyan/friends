@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
-import { useSendRequest } from "../../hooks/useSendRequest";
+import postAPI from "../../api/postAPI";
 import CreatePost from "../../components/CreatePost";
 import Post from "../../components/Post";
 import "./style.scss";
 
 const News = ({ authUser }) => {
     const [posts, setPosts] = useState([]);
-    const { get } = useSendRequest();
 
     useEffect(() => {
         (async () => {
-            setPosts(await get(`posts?_sort=created_at&_order=desc`));
+            setPosts(await postAPI.getAll());
         })();
     }, []);
 

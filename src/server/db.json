@@ -22,12 +22,7 @@
       "email": "nloiterton8@aol.com",
       "birthdate": "1979-10-11",
       "friends": [
-        [
-          3,
-          1695301134882,
-          4,
-          1
-        ],
+        [],
         1695149534759
       ],
       "username": "nloiterton8",
@@ -233,16 +228,10 @@
       "body": "Second post",
       "userId": "1695301134882",
       "reactions": [
+        1695149534759,
         "1695301134882"
       ],
       "created_at": 1695301998482
-    },
-    {
-      "id": 1695743579652,
-      "body": "Test",
-      "userId": 1695149534759,
-      "reactions": [],
-      "created_at": 1695743579652
     }
   ],
   "comments": [
@@ -391,8 +380,30 @@
       "userId": 1695301134882,
       "created_at": 1695302003344,
       "reactions": [
+        1695149534759,
         1695301134882
-      ]
+      ],
+      "user": {
+        "id": 1695301134882,
+        "firstName": "Digital",
+        "lastName": "Tester",
+        "email": "test@test.org",
+        "birthdate": "1979-01-01",
+        "friends": [
+          1695149534759
+        ],
+        "username": "tester",
+        "password": "tester",
+        "avatar": "9182491824112.jpeg"
+      }
+    },
+    {
+      "id": 1695747082370,
+      "body": "new Comment",
+      "postId": 1695245423779,
+      "userId": 1695149534759,
+      "created_at": 1695747082370,
+      "reactions": []
     }
   ]
 }

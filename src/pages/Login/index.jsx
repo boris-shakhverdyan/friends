@@ -1,21 +1,21 @@
 import { useState } from "react";
-import { useSendRequest } from "../../hooks/useSendRequest";
+import authAPI from "../../api/authAPI";
 import "./style.scss";
 
 const Login = ({ setAuthUser, setIsLoading }) => {
-    const [username, setUsername] = useState("admin");
-    const [password, setPassword] = useState("admin");
+    const [status, setStatus] = useState("typing");
     const [error, setError] = useState(null);
-    const { get } = useSendRequest();
 
     const onSubmit = (e) => {
         e.preventDefault();
+        setStatus("sending");
         setIsLoading(true);
 
         (async () => {
-            const user = (
-                await get(`users?username=${username}&password=${password}`)
-            )[0];
+            const user = await authAPI.login(
+                e.target.username.value,
+                e.target.password.value
+            );
 
             if (user?.id) {
                 setAuthUser(user);
@@ -23,6 +23,7 @@ const Login = ({ setAuthUser, setIsLoading }) => {
                 setError("Incorrect username or password");
             }
 
+            setStatus("sent");
             setIsLoading(false);
         })();
     };
@@ -37,8 +38,7 @@ const Login = ({ setAuthUser, setIsLoading }) => {
                     id="username"
                     placeholder="Username"
                     autoComplete="off"
-                    onChange={(e) => setUsername(e.target.value)}
-                    value={username}
+                    disabled={status === "sending"}
                 />
                 <input
                     required
@@ -47,10 +47,9 @@ const Login = ({ setAuthUser, setIsLoading }) => {
                     id="password"
                     placeholder="Password"
                     autoComplete="off"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
+                    disabled={status === "sending"}
                 />
-                <button>Login</button>
+                <button disabled={status === "sending"}>Login</button>
 
                 {error ? <p>{error}</p> : null}
             </form>

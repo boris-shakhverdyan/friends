@@ -19,6 +19,10 @@
             background-color: #222222;
             margin-bottom: 10px;
             color: #e1e3e6;
+
+            &:disabled {
+                color: #424242;
+            }
         }
 
         button {
@@ -31,6 +35,12 @@
 
             &:hover {
                 background-color: #409640;
+            }
+
+            &:disabled {
+                cursor: default;
+                background-color: #424242;
+                color: darken(#e1e3e6, 20);
             }
         }
 

@@ -27,8 +27,6 @@ const Register = ({ setAuthUser, setIsLoading }) => {
             (async () => {
                 const reader = new FileReader();
                 reader.readAsDataURL(e.target.avatar.files[0]);
-                // let img = await fetch("https://robohash.org/hicveldicta.png");
-                // reader.readAsDataURL(await img.blob());
 
                 reader.onload = async () => {
                     const user = {
@@ -127,7 +125,7 @@ const Register = ({ setAuthUser, setIsLoading }) => {
                     value={formData.password_confirmation}
                 />
                 <h3>Avatar</h3>
-                <input required type="file" name="avatar" id="avatar" />
+                <input required type="file" accept="image/png, image/jpg, image/jpeg" name="avatar" id="avatar" />
                 <button>Register</button>
 
                 {error ? <p>{error}</p> : null}

@@ -7,7 +7,6 @@ import {
     faEnvelope,
     faIdCard,
     faNewspaper,
-    faTaxi,
     faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import NavItem from "./NavItem";

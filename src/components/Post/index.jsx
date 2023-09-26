@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import moment from "moment/moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -7,76 +8,32 @@ import {
     faMessage,
     faShare,
 } from "@fortawesome/free-solid-svg-icons";
-import { useSendRequest } from "../../hooks/useSendRequest";
+import postAPI from "../../api/postAPI";
+import userAPI from "../../api/userAPI";
 import Comments from "./Comments";
 import "./style.scss";
-import { Link } from "react-router-dom";
 
 const Post = ({ setPosts, post, authUser }) => {
     const [author, setAuthor] = useState(null);
-    const [comments, setComments] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [isWantToComment, setIsWantToComment] = useState(false);
-    const { get, put, del } = useSendRequest();
 
     useEffect(() => {
-        if (authUser?.id !== post.userId) {
-            (async () => {
-                const author = await get(`users/${post.userId}`);
-                setAuthor(author);
-            })();
-        } else {
-            setAuthor(authUser);
-        }
-
         (async () => {
-            let comments = await get(
-                `comments?postId=${post.id}&_sort=created_at`
-            );
-
-            const usersIds = new Set(comments.map((comment) => comment.userId));
-            usersIds.delete(authUser.id);
-
-            let users = [];
-
-            if (usersIds.size) {
-                const query = `users?id=${[...usersIds].join(",")}`;
-
-                users = await get(query);
+            if (authUser?.id !== post.userId) {
+                setAuthor(await userAPI.getById(post.userId));
+            } else {
+                setAuthor(authUser);
             }
-
-            setComments(
-                comments.map((comment) => {
-                    if (comment.userId === authUser.id) {
-                        comment.user = authUser;
-                    } else {
-                        comment.user = users.find(
-                            (user) => comment.userId === user.id
-                        );
-                    }
-
-                    return comment;
-                })
-            );
         })();
     }, [post.id, post.userId]);
 
-    if (!author || !comments) {
+    if (!author) {
         return <div className="preloader"></div>;
     }
 
     const toggleLike = async () => {
-        let reactions = [];
-
-        if (post.reactions.includes(authUser.id)) {
-            reactions = post.reactions.filter(
-                (reaction) => reaction !== authUser.id
-            );
-        } else {
-            reactions = [authUser.id, ...post.reactions];
-        }
-
-        await put(`posts/${post.id}`, { ...post, reactions });
+        const reactions = await postAPI.toggleLike(authUser, post);
 
         setPosts((posts) =>
             posts.filter((item) => {
@@ -90,7 +47,7 @@ const Post = ({ setPosts, post, authUser }) => {
     };
 
     const deletePost = async () => {
-        await del(`posts/${post.id}`);
+        postAPI.delete(post.id);
 
         setPosts((posts) => posts.filter((item) => item.id !== post.id));
     };
@@ -100,8 +57,14 @@ const Post = ({ setPosts, post, authUser }) => {
             <div className="header">
                 <div className="author">
                     <div className="left">
-                        <img src={"/assets/avatars/" + author.avatar} alt={author.firstName + " " + author.lastName} />
-                        <Link className="link" to={`/profile/${author.id}`}>{`${author.firstName} ${author.lastName} (${author.username})`}</Link>
+                        <img
+                            src={"/assets/avatars/" + author.avatar}
+                            alt={author.firstName + " " + author.lastName}
+                        />
+                        <Link
+                            className="link"
+                            to={`/profile/${author.id}`}
+                        >{`${author.firstName} ${author.lastName} (${author.username})`}</Link>
                         <span className="datetime">
                             {moment(post.created_at).fromNow()}
                         </span>

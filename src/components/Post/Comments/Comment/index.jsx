@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import moment from "moment/moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faHeart } from "@fortawesome/free-solid-svg-icons";
+import commentAPI from "../../../../api/commentAPI";
 import "./style.scss";
-import { useSendRequest } from "../../../../hooks/useSendRequest";
 
 const Comment = ({
     comment,
@@ -14,33 +14,17 @@ const Comment = ({
     setCommentText,
 }) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const { put, del } = useSendRequest();
 
     const deleteComment = async () => {
-        await del(`comments/${comment.id}`);
+        await commentAPI.delete(comment.id);
 
-        setComments((comments) => comments.filter((item) => item.id !== comment.id));
+        setComments((comments) =>
+            comments.filter((item) => item.id !== comment.id)
+        );
     };
 
     const toggleLike = async (comment) => {
-        let reactions = [];
-
-        if (comment.reactions.includes(authUser.id)) {
-            reactions = comment.reactions.filter(
-                (reaction) => reaction !== authUser.id
-            );
-        } else {
-            reactions = [authUser.id, ...comment.reactions];
-        }
-
-        await put(`comments/${comment.id}`, {
-            id: comment.id,
-            body: comment.body,
-            postId: comment.postId,
-            userId: comment.userId,
-            created_at: comment.created_at,
-            reactions,
-        });
+        const reactions = await commentAPI.toggleLike(authUser, comment);
 
         setComments((comments) =>
             comments.filter((item) => {
@@ -51,12 +35,14 @@ const Comment = ({
                 return item;
             })
         );
-
     };
 
     return (
         <div className="comment">
-            <img src={"/assets/avatars/" + comment.user.avatar} alt={comment.user.firstName + " " + comment.user.lastName} />
+            <img
+                src={"/assets/avatars/" + comment.user.avatar}
+                alt={comment.user.firstName + " " + comment.user.lastName}
+            />
             <div>
                 <div className="header">
                     <Link className="link" to={`/profile/${comment.user.id}`}>

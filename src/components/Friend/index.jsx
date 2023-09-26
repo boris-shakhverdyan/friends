@@ -2,27 +2,14 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import { useSendRequest } from "../../hooks/useSendRequest";
+import userAPI from "../../api/userAPI";
 import "./style.scss";
 
 const Friend = ({ friend, setFriends, authUser }) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
-    const { put } = useSendRequest();
 
     const deleteFriend = async () => {
-        await put(`users/${friend.id}`, {
-            ...friend,
-            friends: friend.friends.filter((friend) => friend !== authUser.id),
-        });
-
-        const newFriendsIds = authUser.friends.filter((id) => id !== friend.id);
-
-        await put(`users/${authUser.id}`, {
-            ...authUser,
-            friends: newFriendsIds,
-        });
-
-        authUser.friends = newFriendsIds;
+        await userAPI.deleteFriend(authUser, friend);
 
         setFriends((friends => friends.filter(user => user.id !== friend.id)));
     };
