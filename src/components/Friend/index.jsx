@@ -11,20 +11,19 @@ const Friend = ({ friend, setFriends, authUser }) => {
     const deleteFriend = async () => {
         await userAPI.deleteFriend(authUser, friend);
 
-        setFriends((friends => friends.filter(user => user.id !== friend.id)));
+        setFriends((friends) =>
+            friends.filter((user) => user.id !== friend.id)
+        );
     };
 
     return (
         <div className="friend">
-            <img
-                src={"/assets/avatars/" + friend.avatar}
-                alt={friend.firstName + " " + friend.lastName}
-            />
+            <img src={friend.getAvatarPath()} alt={friend.fullName} />
             <div className="info">
                 <div className="header">
-                    <Link
-                        to={`/profile/${friend.id}`}
-                    >{`${friend.firstName} ${friend.lastName} (${friend.username})`}</Link>
+                    <Link to={`/profile/${friend.id}`}>
+                        {friend.getFullNameWithUsername()}
+                    </Link>
                     <div
                         className="right"
                         onMouseEnter={() => setIsPopupOpen(true)}

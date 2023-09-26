@@ -2,17 +2,15 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faUserCheck } from "@fortawesome/free-solid-svg-icons";
-import { useSendRequest } from "../../hooks/useSendRequest";
+import userAPI from "../../api/userAPI";
+import postAPI from "../../api/postAPI";
 import CreatePost from "../../components/CreatePost";
 import Post from "../../components/Post";
 import "./style.scss";
-import postAPI from "../../api/postAPI";
-import userAPI from "../../api/userAPI";
 
 const Profile = ({ authUser, setIsLoading }) => {
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState(null);
-    const { put } = useSendRequest();
     const params = useParams();
 
     useEffect(() => {
@@ -83,7 +81,7 @@ const Profile = ({ authUser, setIsLoading }) => {
                     <div
                         className="avatar-big"
                         style={{
-                            backgroundImage: `url(/assets/avatars/${user.avatar})`,
+                            backgroundImage: `url(${user.getAvatarPath()})`,
                         }}
                     >
                         <span className="status-active"></span>

@@ -40,13 +40,13 @@ const Comment = ({
     return (
         <div className="comment">
             <img
-                src={"/assets/avatars/" + comment.user.avatar}
-                alt={comment.user.firstName + " " + comment.user.lastName}
+                src={comment.user.getAvatarPath()}
+                alt={comment.user.fullName}
             />
             <div>
                 <div className="header">
                     <Link className="link" to={`/profile/${comment.user.id}`}>
-                        {comment.user.firstName + " " + comment.user.lastName}
+                        {comment.user.fullName}
                     </Link>
                     {authUser?.id === comment.user.id && (
                         <div

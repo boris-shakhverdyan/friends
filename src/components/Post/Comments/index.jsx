@@ -55,8 +55,8 @@ const Comments = ({ post, authUser, isWantToComment, setIsWantToComment }) => {
             {isWantToComment && (
                 <form onSubmit={addComment} className="addComment">
                     <img
-                        src={"/assets/avatars/" + authUser.avatar}
-                        alt={authUser.firstName + " " + authUser.lastName}
+                        src={authUser.getAvatarPath()}
+                        alt={authUser.fullName}
                     />
                     <input
                         type="text"

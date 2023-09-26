@@ -1,10 +1,17 @@
+import User from "../models/User";
 import instance from "./instance";
 
 const commentAPI = {
     getByPostId: async (postId) => {
         return await instance
             .get(`comments?postId=${postId}&_sort=created_at&_expand=user`)
-            .then((res) => res.data);
+            .then((res) =>
+                res.data.map((comment) => {
+                    comment.user = new User(comment.user);
+
+                    return comment;
+                })
+            );
     },
 
     create: async (authUserId, postId, body) => {

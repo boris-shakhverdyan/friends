@@ -58,13 +58,12 @@ const Post = ({ setPosts, post, authUser }) => {
                 <div className="author">
                     <div className="left">
                         <img
-                            src={"/assets/avatars/" + author.avatar}
-                            alt={author.firstName + " " + author.lastName}
+                            src={author.getAvatarPath()}
+                            alt={author.fullName}
                         />
-                        <Link
-                            className="link"
-                            to={`/profile/${author.id}`}
-                        >{`${author.firstName} ${author.lastName} (${author.username})`}</Link>
+                        <Link className="link" to={`/profile/${author.id}`}>
+                            {author.getFullNameWithUsername()}
+                        </Link>
                         <span className="datetime">
                             {moment(post.created_at).fromNow()}
                         </span>

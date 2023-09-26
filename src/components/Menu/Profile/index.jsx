@@ -51,7 +51,7 @@ const Profile = ({ authUser, setAuthUser }) => {
                 className={`avatar ${isOpened ? "active" : ""}`}
                 onClick={() => setIsOpened(!isOpened)}
             >
-                <img src={"/assets/avatars/" + authUser.avatar} alt={authUser.firstName + " " + authUser.lastName} />
+                <img src={authUser.getAvatarPath()} alt={authUser.fullName} />
                 <FontAwesomeIcon icon={faChevronDown} />
             </div>
             <div className={`dropdown ${isOpened ? "opened" : ""}`}>
@@ -60,8 +60,11 @@ const Profile = ({ authUser, setAuthUser }) => {
                     to={"profile"}
                     className="avatar"
                 >
-                    <img src={"/assets/avatars/" + authUser.avatar} alt={authUser.firstName + " " + authUser.lastName} />
-                    <span>{authUser.firstName + " " + authUser.lastName}</span>
+                    <img
+                        src={authUser.getAvatarPath()}
+                        alt={authUser.fullName}
+                    />
+                    <span>{authUser.fullName}</span>
                 </NavLink>
                 <div className="links">
                     {links.map((link, index) => (

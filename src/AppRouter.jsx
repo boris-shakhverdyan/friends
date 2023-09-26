@@ -9,6 +9,7 @@ import Shop from "./pages/Shop";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFoundPage from "./pages/NotFoundPage";
+import RouteMiddleware from "./components/RouteMiddleware";
 
 const AppRouter = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -17,24 +18,19 @@ const AppRouter = () => {
     return (
         <Routes>
             <Route path="/" element={<Layout isLoading={isLoading} authUser={authUser} setAuthUser={setAuthUser} />}>
-                {authUser?.id ? (
-                    <>
-                        <Route index element={<News authUser={authUser} />} />
-                        <Route path="profile" element={<Profile authUser={authUser} setIsLoading={setIsLoading} />} />
-                        <Route path="profile/:id" element={<Profile authUser={authUser} setIsLoading={setIsLoading} />} />
-                        <Route path="messenger" element={<Messages />} />
-                        <Route path="friends" element={<Friends authUser={authUser} />} />
-                        <Route path="shop" element={<Shop />} />
-                        <Route path="*" element={<NotFoundPage />} />
-                    </>
-                ) : (
-                    <>
-                        <Route index element={<Navigate to="login" />} />
-                        <Route path="login" element={<Login setAuthUser={setAuthUser} setIsLoading={setIsLoading} />} />
-                        <Route path="register" element={<Register setAuthUser={setAuthUser} setIsLoading={setIsLoading} />} />
-                        <Route path="*" element={<NotFoundPage />} />
-                    </>
-                )}
+                <Route element={<RouteMiddleware isAllowed={!!authUser} />}>
+                    <Route index element={<News authUser={authUser} />} />
+                    <Route path="profile" element={<Profile authUser={authUser} setIsLoading={setIsLoading} />} />
+                    <Route path="profile/:id" element={<Profile authUser={authUser} setIsLoading={setIsLoading} />} />
+                    <Route path="messenger" element={<Messages />} />
+                    <Route path="friends" element={<Friends authUser={authUser} />} />
+                    <Route path="shop" element={<Shop />} />
+                </Route>
+                <Route element={<RouteMiddleware isAllowed={!authUser} redirectPath="/" />}>
+                    <Route path="login" element={<Login setAuthUser={setAuthUser} setIsLoading={setIsLoading} />} />
+                    <Route path="register" element={<Register setAuthUser={setAuthUser} setIsLoading={setIsLoading} />} />
+                </Route>
+                <Route path="*" element={<NotFoundPage />} />
             </Route>
         </Routes>
     );

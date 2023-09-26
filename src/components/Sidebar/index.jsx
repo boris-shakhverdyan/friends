@@ -14,7 +14,7 @@ import NavItem from "./NavItem";
 const Sidebar = () => {
     const links = [
         { text: "Profile", path: "profile", icon: faIdCard },
-        { text: "News", path: "news", icon: faNewspaper },
+        { text: "News", path: "/", icon: faNewspaper },
         { text: "Messenger", path: "messenger", icon: faEnvelope },
         { text: "Friends", path: "friends", icon: faUserGroup },
         { text: "Shop", path: "shop", icon: faBasketShopping },

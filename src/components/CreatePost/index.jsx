@@ -23,8 +23,8 @@ const CreatePost = ({ setPosts, authUser }) => {
     return (
         <form onSubmit={onSubmit} className="createPost">
             <div className="author">
-                <img src={"/assets/avatars/" + authUser.avatar} alt={authUser.firstName + " " + authUser.lastName} />
-                <h4>{`${authUser.firstName} ${authUser.lastName} (${authUser.username})`}</h4>
+                <img src={authUser.getAvatarPath()} alt={authUser.fullName} />
+                <h4>{authUser.getFullNameWithUsername()}</h4>
             </div>
             <input
                 autoComplete="off"

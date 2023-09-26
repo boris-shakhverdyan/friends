@@ -1,6 +1,7 @@
 import { useState } from "react";
 import authAPI from "../../api/authAPI";
 import "./style.scss";
+import User from "../../models/User";
 
 const Login = ({ setAuthUser, setIsLoading }) => {
     const [status, setStatus] = useState("typing");
@@ -12,13 +13,13 @@ const Login = ({ setAuthUser, setIsLoading }) => {
         setIsLoading(true);
 
         (async () => {
-            const user = await authAPI.login(
+            const userData = await authAPI.login(
                 e.target.username.value,
                 e.target.password.value
             );
 
-            if (user?.id) {
-                setAuthUser(user);
+            if (userData?.id) {
+                setAuthUser(new User(userData));
             } else {
                 setError("Incorrect username or password");
             }

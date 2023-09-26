@@ -1,14 +1,24 @@
+import User from "../models/User";
 import instance from "./instance";
 
 const userAPI = {
+    create: async (user) => {
+        return await instance.post("users", user);
+    },
+
     getById: async (id) => {
-        return await instance.get(`users/${id}`).then((res) => res.data);
+        return new User(
+            await instance.get(`users/${id}`).then((res) => res.data)
+        );
     },
 
     getByIds: async (ids) => {
         const query = `users?${ids.map((id) => "id=" + id).join("&")}`;
 
-        return await instance.get(query).then((res) => res.data);
+        return await instance
+            .get(query)
+            .then((res) => res.data)
+            .then((users) => users.map((user) => new User(user)));
     },
 
     deleteFriend: async (authUser, friend) => {
