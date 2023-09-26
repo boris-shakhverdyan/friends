@@ -8,6 +8,7 @@ import Friends from "./pages/Friends";
 import Shop from "./pages/Shop";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const AppRouter = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -24,14 +25,14 @@ const AppRouter = () => {
                         <Route path="messenger" element={<Messages />} />
                         <Route path="friends" element={<Friends authUser={authUser} />} />
                         <Route path="shop" element={<Shop />} />
-                        <Route path="*" element={<Navigate to="/" />} />
+                        <Route path="*" element={<NotFoundPage />} />
                     </>
                 ) : (
                     <>
                         <Route index element={<Navigate to="login" />} />
                         <Route path="login" element={<Login setAuthUser={setAuthUser} setIsLoading={setIsLoading} />} />
                         <Route path="register" element={<Register setAuthUser={setAuthUser} setIsLoading={setIsLoading} />} />
-                        <Route path="*" element={<Navigate to="login" />} />
+                        <Route path="*" element={<NotFoundPage />} />
                     </>
                 )}
             </Route>
