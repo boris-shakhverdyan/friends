@@ -13,7 +13,7 @@ const Messages = () => {
     return (
         <div className="messages">
             {messages.map((message) => (
-                <div className="message">
+                <div key={message.id} className="message">
                     <h3>{message.author}</h3>
                     <p>{message.quote}</p>
                 </div>

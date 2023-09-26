@@ -56,7 +56,7 @@ const Comment = ({
 
     return (
         <div className="comment">
-            <img src={comment.user.avatar} alt={comment.user.avatar} />
+            <img src={"/assets/avatars/" + comment.user.avatar} alt={comment.user.firstName + " " + comment.user.lastName} />
             <div>
                 <div className="header">
                     <Link className="link" to={`/profile/${comment.user.id}`}>

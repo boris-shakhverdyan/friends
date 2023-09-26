@@ -30,7 +30,7 @@ const Friend = ({ friend, setFriends, authUser }) => {
     return (
         <div className="friend">
             <img
-                src={friend.avatar}
+                src={"/assets/avatars/" + friend.avatar}
                 alt={friend.firstName + " " + friend.lastName}
             />
             <div className="info">

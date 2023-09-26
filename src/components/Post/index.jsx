@@ -100,7 +100,7 @@ const Post = ({ setPosts, post, authUser }) => {
             <div className="header">
                 <div className="author">
                     <div className="left">
-                        <img src={author.avatar} alt={author.avatar} />
+                        <img src={"/assets/avatars/" + author.avatar} alt={author.firstName + " " + author.lastName} />
                         <Link className="link" to={`/profile/${author.id}`}>{`${author.firstName} ${author.lastName} (${author.username})`}</Link>
                         <span className="datetime">
                             {moment(post.created_at).fromNow()}

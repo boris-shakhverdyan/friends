@@ -1,21 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { useSendRequest } from "../../hooks/useSendRequest";
+import postAPI from "../../api/postAPI";
 import "./style.scss";
 
 const CreatePost = ({ setPosts, authUser }) => {
-    const { post } = useSendRequest();
-
     const addPost = async (value) => {
-        const newPost = {
-            id: new Date().getTime(),
-            body: value,
-            userId: authUser.id,
-            reactions: [],
-            created_at: new Date().getTime(),
-        };
-
-        await post("posts", newPost);
+        const newPost = await postAPI.create(authUser.id, value);
 
         setPosts((posts) => [newPost, ...posts]);
     };
@@ -33,7 +23,7 @@ const CreatePost = ({ setPosts, authUser }) => {
     return (
         <form onSubmit={onSubmit} className="createPost">
             <div className="author">
-                <img src={authUser.avatar} alt={authUser.avatar} />
+                <img src={"/assets/avatars/" + authUser.avatar} alt={authUser.firstName + " " + authUser.lastName} />
                 <h4>{`${authUser.firstName} ${authUser.lastName} (${authUser.username})`}</h4>
             </div>
             <input

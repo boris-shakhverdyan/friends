@@ -106,7 +106,7 @@ const Profile = ({ authUser, setIsLoading }) => {
                     <div
                         className="avatar-big"
                         style={{
-                            backgroundImage: `url(${user.avatar})`,
+                            backgroundImage: `url(/assets/avatars/${user.avatar})`,
                         }}
                     >
                         <span className="status-active"></span>
