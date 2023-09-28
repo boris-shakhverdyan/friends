@@ -11,9 +11,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import NavItem from "./NavItem";
 
-const Sidebar = () => {
+const Sidebar = ({ authUser }) => {
     const links = [
-        { text: "Profile", path: "profile", icon: faIdCard },
+        { text: "Profile", path: "profile/" + authUser.id, icon: faIdCard },
         { text: "News", path: "/", icon: faNewspaper },
         { text: "Messenger", path: "messenger", icon: faEnvelope },
         { text: "Friends", path: "friends", icon: faUserGroup },

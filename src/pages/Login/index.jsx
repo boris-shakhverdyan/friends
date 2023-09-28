@@ -1,7 +1,6 @@
 import { useState } from "react";
 import authAPI from "../../api/authAPI";
 import "./style.scss";
-import User from "../../models/User";
 
 const Login = ({ setAuthUser, setIsLoading }) => {
     const [status, setStatus] = useState("typing");
@@ -19,7 +18,7 @@ const Login = ({ setAuthUser, setIsLoading }) => {
             );
 
             if (userData?.id) {
-                setAuthUser(new User(userData));
+                setAuthUser(userData);
             } else {
                 setError("Incorrect username or password");
             }

@@ -2,17 +2,17 @@ import User from "../models/User";
 import instance from "./instance";
 
 const userAPI = {
-    create: async (user) => {
+    create: async function (user) {
         return await instance.post("users", user);
     },
 
-    getById: async (id) => {
+    getById: async function (id) {
         return new User(
             await instance.get(`users/${id}`).then((res) => res.data)
         );
     },
 
-    getByIds: async (ids) => {
+    getByIds: async function (ids) {
         const query = `users?${ids.map((id) => "id=" + id).join("&")}`;
 
         return await instance
@@ -21,23 +21,25 @@ const userAPI = {
             .then((users) => users.map((user) => new User(user)));
     },
 
-    deleteFriend: async (authUser, friend) => {
-        await instance.put(`users/${friend.id}`, {
-            ...friend,
-            friends: friend.friends.filter((id) => id !== authUser.id),
-        });
+    deleteFriend: async function (authUser, friend) {
+        friend.friends = new Set(
+            [...friend.friends].filter((id) => id !== authUser.id)
+        );
 
-        const newFriendsIds = authUser.friends.filter((id) => id !== friend.id);
+        await this.update(friend.getDbStructure());
 
-        await instance.put(`users/${authUser.id}`, {
-            ...authUser,
-            friends: newFriendsIds,
-        });
+        authUser.friends = new Set(
+            [...authUser.friends].filter((id) => id !== friend.id)
+        );
 
-        authUser.friends = newFriendsIds;
+        await this.update(authUser.getDbStructure());
     },
 
-    update: async (user) => {
+    addToFriend: async function (authUser, friend) {
+        authUser.addToFriend(friend);
+    },
+
+    update: async function (user) {
         return await instance.put(`users/${user.id}`, user);
     },
 };

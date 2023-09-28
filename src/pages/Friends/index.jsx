@@ -8,7 +8,7 @@ const Friends = ({ authUser }) => {
 
     useEffect(() => {
         (async () => {
-            const friends = await userAPI.getByIds(authUser.friends);
+            const friends = await userAPI.getByIds([...authUser.friends]);
 
             setFriends(friends);
         })();

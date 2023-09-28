@@ -7,41 +7,23 @@ import postAPI from "../../api/postAPI";
 import CreatePost from "../../components/CreatePost";
 import Post from "../../components/Post";
 import "./style.scss";
+import User from "../../models/User";
 
-const Profile = ({ authUser, setIsLoading }) => {
+const Profile = ({ authUser }) => {
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState(null);
-    const params = useParams();
+    const { id } = useParams();
 
     useEffect(() => {
-        setIsLoading(true);
-
         (async () => {
-            if (params?.id) {
-                if (+params.id === authUser.id) {
-                    setUser(authUser);
-
-                    setPosts(await postAPI.getByUserId(authUser.id));
-
-                    setIsLoading(false);
-                } else {
-                    setUser(await userAPI.getById(params.id));
-
-                    setPosts(await postAPI.getByUserId(params.id));
-
-                    setIsLoading(false);
-                }
-            } else if (
-                !params?.id &&
-                (!user || (user && user.id !== authUser.id))
-            ) {
-                setUser(authUser);
-
-                setPosts(await postAPI.getByUserId(authUser.id));
-                setIsLoading(false);
-            }
+            setUser(
+                authUser?.id && +id === authUser.id
+                    ? authUser
+                    : await userAPI.getById(id)
+            );
+            setPosts(await postAPI.getByUserId(+id));
         })();
-    }, [params?.id]);
+    }, [id]);
 
     if (!user) {
         return <h1>404 Not Found</h1>;
@@ -50,22 +32,13 @@ const Profile = ({ authUser, setIsLoading }) => {
     const deleteFriend = async () => {
         userAPI.deleteFriend(authUser, user);
 
-        setUser({
-            ...user,
-            friends: user.friends.filter((id) => id !== authUser.id),
-        });
+        setUser(new User(user));
     };
 
     const addToFriends = async () => {
-        authUser.friends.push(user.id);
+        userAPI.addToFriend(authUser, user);
 
-        await userAPI.update(authUser);
-
-        user.friends.push(authUser.id);
-
-        await userAPI.update(user);
-
-        setUser({ ...user, friends: [...user.friends] });
+        setUser(new User({ ...user, friends: [...user.friends] }));
     };
 
     return (
@@ -94,7 +67,7 @@ const Profile = ({ authUser, setIsLoading }) => {
                         <div className="actions">
                             {user.id === authUser.id ? (
                                 <button>Edit profile</button>
-                            ) : user.friends.includes(authUser.id) ? (
+                            ) : user.friends.has(authUser.id) ? (
                                 <button onClick={deleteFriend}>
                                     <FontAwesomeIcon icon={faUserCheck} />
                                 </button>

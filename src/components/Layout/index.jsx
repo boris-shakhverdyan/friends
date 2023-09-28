@@ -1,29 +1,25 @@
 import { Outlet } from "react-router-dom";
-import Loading from "../Loading";
 import Menu from "../Menu";
-import "./style.scss";
 import Sidebar from "../Sidebar";
+import "./style.scss";
 
-const Layout = ({ isLoading, authUser, setAuthUser }) => {
+const Layout = ({ authUser, setAuthUser }) => {
     return (
-        <>
-            {isLoading && <Loading />}
-            <div className="app">
-                <Menu authUser={authUser} setAuthUser={setAuthUser} />
-                {authUser ? (
-                    <div id="container" className="container">
-                        <div className="center">
-                            <Sidebar />
-                            <div className="content">
-                                <Outlet />
-                            </div>
+        <div className="app">
+            <Menu authUser={authUser} setAuthUser={setAuthUser} />
+            {authUser ? (
+                <div id="container" className="container">
+                    <div className="center">
+                        <Sidebar authUser={authUser} />
+                        <div className="content">
+                            <Outlet />
                         </div>
                     </div>
-                ) : (
-                    <Outlet />
-                )}
-            </div>
-        </>
+                </div>
+            ) : (
+                <Outlet />
+            )}
+        </div>
     );
 };
 

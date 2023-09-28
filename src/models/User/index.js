@@ -7,10 +7,11 @@ class User {
         this.lastName = user?.lastName ?? null;
         this.email = user?.email ?? null;
         this.birthdate = user?.birthdate ?? null;
-        this.friends = user?.friends ?? [];
+        this.friends = new Set(user?.friends ?? []);
         this.username = user?.username ?? null;
         this.password = user?.password ?? null;
         this.avatar = user?.avatar ?? null;
+        this.lastActivity = user?.lastActivity ?? null;
     }
 
     get fullName() {
@@ -27,6 +28,33 @@ class User {
         }
 
         return `/assets/avatars/${this.avatar}`;
+    }
+
+    getDbStructure() {
+        return {
+            id: this.id,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            email: this.email,
+            birthdate: this.birthdate,
+            friends: [...this.friends],
+            username: this.username,
+            password: this.password,
+            avatar: this.avatar,
+            lastActivity: this.lastActivity,
+        };
+    }
+
+    async addToFriend(friend) {
+        this.friends.add(friend.id);
+        friend.friends.add(this.id);
+
+        await this.save();
+        await friend.save();
+    }
+
+    async save() {
+        return await userAPI.update(this.getDbStructure());
     }
 
     static async create(

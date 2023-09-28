@@ -1,8 +1,11 @@
+import User from "../models/User";
 import instance from "./instance";
 
 const authAPI = {
     me: async () => {
-        return await JSON.parse(localStorage.getItem("authUser"));
+        const user = await JSON.parse(localStorage.getItem("authUser"));
+
+        return new User(user);
     },
 
     login: async (username, password) => {
@@ -11,7 +14,7 @@ const authAPI = {
             .then((res) => res.data[0]);
 
         localStorage.setItem("authUser", JSON.stringify(authUser));
-        return authUser;
+        return new User(authUser);
     },
 
     logout: () => {

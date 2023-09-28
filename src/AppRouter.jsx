@@ -12,6 +12,7 @@ import NotFoundPage from "./pages/NotFoundPage";
 import RouteMiddleware from "./components/RouteMiddleware";
 import User from "./models/User";
 import authAPI from "./api/authAPI";
+import Loading from "./components/Loading";
 
 const AppRouter = () => {
     const [isLoading, setIsLoading] = useState(true);
@@ -20,20 +21,23 @@ const AppRouter = () => {
     useEffect(() => {
         (async () => {
             if (localStorage.getItem("authUser")) {
-                setAuthUser(new User(await authAPI.me()));
+                setAuthUser(await authAPI.me());
             }
 
             setIsLoading(false);
         })()
     }, [])
 
+    if(isLoading) {
+        return <Loading />;
+    }
+
     return (
         <Routes>
-            <Route path="/" element={<Layout isLoading={isLoading} authUser={authUser} setAuthUser={setAuthUser} />}>
+            <Route path="/" element={<Layout authUser={authUser} setAuthUser={setAuthUser} />}>
                 <Route element={<RouteMiddleware isAllowed={!!authUser} />}>
                     <Route index element={<News authUser={authUser} />} />
-                    <Route path="profile" element={<Profile authUser={authUser} setIsLoading={setIsLoading} />} />
-                    <Route path="profile/:id" element={<Profile authUser={authUser} setIsLoading={setIsLoading} />} />
+                    <Route path="profile/:id" element={<Profile authUser={authUser} />} />
                     <Route path="messenger" element={<Messages />} />
                     <Route path="friends" element={<Friends authUser={authUser} />} />
                     <Route path="shop" element={<Shop />} />
@@ -42,8 +46,8 @@ const AppRouter = () => {
                     <Route path="login" element={<Login setAuthUser={setAuthUser} setIsLoading={setIsLoading} />} />
                     <Route path="register" element={<Register setAuthUser={setAuthUser} setIsLoading={setIsLoading} />} />
                 </Route>
-                <Route path="*" element={<NotFoundPage />} />
             </Route>
+            <Route path="*" element={<NotFoundPage />} />
         </Routes>
     );
 };
