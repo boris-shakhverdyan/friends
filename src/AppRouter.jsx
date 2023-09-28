@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout";
 import Profile from "./pages/Profile";
 import News from "./pages/News";
@@ -10,10 +10,22 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import NotFoundPage from "./pages/NotFoundPage";
 import RouteMiddleware from "./components/RouteMiddleware";
+import User from "./models/User";
+import authAPI from "./api/authAPI";
 
 const AppRouter = () => {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [authUser, setAuthUser] = useState(null);
+
+    useEffect(() => {
+        (async () => {
+            if (localStorage.getItem("authUser")) {
+                setAuthUser(new User(await authAPI.me()));
+            }
+
+            setIsLoading(false);
+        })()
+    }, [])
 
     return (
         <Routes>

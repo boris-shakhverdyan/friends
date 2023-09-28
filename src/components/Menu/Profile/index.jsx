@@ -11,6 +11,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "./Link";
 import "./style.scss";
+import authAPI from "../../../api/authAPI";
 
 const Profile = ({ authUser, setAuthUser }) => {
     const profileRef = useRef(null);
@@ -29,6 +30,7 @@ const Profile = ({ authUser, setAuthUser }) => {
     const logoutUser = (e) => {
         e.preventDefault();
         setIsOpened(false);
+        authAPI.logout();
         setAuthUser(null);
     };
 
