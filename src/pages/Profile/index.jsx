@@ -8,6 +8,7 @@ import CreatePost from "../../components/CreatePost";
 import Post from "../../components/Post";
 import "./style.scss";
 import User from "../../models/User";
+import moment from "moment";
 
 const Profile = ({ authUser }) => {
     const [posts, setPosts] = useState([]);
@@ -57,7 +58,13 @@ const Profile = ({ authUser }) => {
                             backgroundImage: `url(${user.getAvatarPath()})`,
                         }}
                     >
-                        <span className="status-active"></span>
+                        {user.isOnline ? (
+                            <span className="status-online"></span>
+                        ) : user.lastActivity ? (
+                            <span className="status-offline">
+                                {moment(user.lastActivity).fromNow(true)}
+                            </span>
+                        ) : null}
                     </div>
                     <div className="profileInfo">
                         <div className="mainInfo">

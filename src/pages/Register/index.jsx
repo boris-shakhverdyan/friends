@@ -2,6 +2,7 @@ import { useState } from "react";
 import userAPI from "../../api/userAPI";
 import User from "../../models/User";
 import "./style.scss";
+import authAPI from "../../api/authAPI";
 
 const Register = ({ setAuthUser, setIsLoading }) => {
     const [status, setStatus] = useState("typing");
@@ -29,9 +30,9 @@ const Register = ({ setAuthUser, setIsLoading }) => {
                         reader.result
                     );
 
-                    console.log(user);
+                    const authUser = await authAPI.login(user.username, user.password);
                     
-                    setAuthUser(user);
+                    setAuthUser(authUser);
                     setIsLoading(false);
                 };
 

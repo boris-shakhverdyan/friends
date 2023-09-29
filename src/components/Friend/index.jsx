@@ -18,7 +18,10 @@ const Friend = ({ friend, setFriends, authUser }) => {
 
     return (
         <div className="friend">
-            <img src={friend.getAvatarPath()} alt={friend.fullName} />
+            <div className="friend__avatar">
+                <img src={friend.getAvatarPath()} alt={friend.fullName} />
+                {friend.isOnline && <span className="friend__online"></span>}
+            </div>
             <div className="info">
                 <div className="header">
                     <Link to={`/profile/${friend.id}`}>

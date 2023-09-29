@@ -30,7 +30,7 @@ const Profile = ({ authUser, setAuthUser }) => {
     const logoutUser = (e) => {
         e.preventDefault();
         setIsOpened(false);
-        authAPI.logout();
+        authAPI.logout(authUser);
         setAuthUser(null);
     };
 

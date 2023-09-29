@@ -12,6 +12,7 @@ class User {
         this.password = user?.password ?? null;
         this.avatar = user?.avatar ?? null;
         this.lastActivity = user?.lastActivity ?? null;
+        this.isOnline = user?.isOnline ?? null;
     }
 
     get fullName() {
@@ -37,11 +38,12 @@ class User {
             lastName: this.lastName,
             email: this.email,
             birthdate: this.birthdate,
-            friends: [...this.friends],
+            friends: Array.from(this.friends),
             username: this.username,
             password: this.password,
             avatar: this.avatar,
             lastActivity: this.lastActivity,
+            isOnline: this.isOnline,
         };
     }
 
@@ -68,14 +70,16 @@ class User {
     ) {
         const user = {
             id: new Date().getTime(),
-            friends: [],
             firstName,
             lastName,
             email,
             birthdate,
+            friends: [],
             username,
             password,
             avatar,
+            lastActivity: new Date().getTime(),
+            isOnline: true
         };
 
         await userAPI.create(user);

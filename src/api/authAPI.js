@@ -1,5 +1,5 @@
 import User from "../models/User";
-import instance from "./instance";
+import userAPI from "./userAPI";
 
 const authAPI = {
     me: async () => {
@@ -9,15 +9,27 @@ const authAPI = {
     },
 
     login: async (username, password) => {
-        const authUser = await instance
-            .get(`users?username=${username}&password=${password}`)
-            .then((res) => res.data[0]);
+        const authUser = await userAPI.getByUsernameAndPassword(
+            username,
+            password
+        );
 
-        localStorage.setItem("authUser", JSON.stringify(authUser));
-        return new User(authUser);
+        authUser.lastActivity = new Date().getTime();
+        authUser.isOnline = true;
+
+        await authUser.save();
+
+        localStorage.setItem("authUser", JSON.stringify(authUser.getDbStructure()));
+
+        return authUser;
     },
 
-    logout: () => {
+    logout: (authUser) => {
+        authUser.lastActivity = new Date().getTime();
+        authUser.isOnline = false;
+
+        userAPI.update(authUser.getDbStructure());
+
         localStorage.removeItem("authUser");
     },
 };

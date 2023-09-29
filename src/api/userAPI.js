@@ -12,7 +12,19 @@ const userAPI = {
         );
     },
 
+    getByUsernameAndPassword: async function (username, password) {
+        return new User(
+            await instance
+                .get(`users?username=${username}&password=${password}`)
+                .then((res) => res.data[0])
+        );
+    },
+
     getByIds: async function (ids) {
+        if(!ids.length) {
+            return [];
+        }
+
         const query = `users?${ids.map((id) => "id=" + id).join("&")}`;
 
         return await instance
