@@ -7,6 +7,12 @@ const userAPI = {
         return await instance.post("users", user);
     },
 
+    search: async function (search) {
+        return await instance
+            .get("users?q=" + search)
+            .then((res) => res.data.map((user) => new User(user)));
+    },
+
     getById: async function (id) {
         return new User(
             await instance.get(`users/${id}`).then((res) => res.data)
@@ -52,7 +58,7 @@ const userAPI = {
 
     addToFriend: async function (authUser, friend) {
         authUser.addToFriend(friend);
-        
+
         authAPI.updateLocalStorage(authUser);
     },
 
