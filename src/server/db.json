@@ -7,12 +7,13 @@
       "email": "admin@test.test",
       "birthdate": "2002-12-01",
       "friends": [
-        4
+        4,
+        1
       ],
       "username": "admin",
       "password": "admin",
       "avatar": "12441512512.jpeg",
-      "lastActivity": 1695986709949,
+      "lastActivity": 1695987975526,
       "isOnline": true
     },
     {
@@ -21,7 +22,9 @@
       "lastName": "Corkery",
       "email": "nloiterton8@aol.com",
       "birthdate": "1979-10-11",
-      "friends": [],
+      "friends": [
+        1695149534759
+      ],
       "username": "nloiterton8",
       "password": "HTQxxXV9Bq4",
       "avatar": "31241241242515.png",

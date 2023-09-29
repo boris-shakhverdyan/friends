@@ -11,7 +11,9 @@ const SearchInput = () => {
 
     useEffect(() => {
         (async () => {
-            setUsers(await userAPI.search(search));
+            if(search) {
+                setUsers(await userAPI.search(search));
+            }
         })();
     }, [search]);
 

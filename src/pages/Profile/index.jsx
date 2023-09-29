@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faUserCheck } from "@fortawesome/free-solid-svg-icons";
 import userAPI from "../../api/userAPI";
@@ -9,6 +9,7 @@ import Post from "../../components/Post";
 import "./style.scss";
 import User from "../../models/User";
 import moment from "moment";
+import ProfileNotFound from "../../components/ProfileNotFound";
 
 const Profile = ({ authUser }) => {
     const [posts, setPosts] = useState([]);
@@ -17,17 +18,21 @@ const Profile = ({ authUser }) => {
 
     useEffect(() => {
         (async () => {
-            setUser(
-                authUser?.id && +id === authUser.id
-                    ? authUser
-                    : await userAPI.getById(id)
-            );
-            setPosts(await postAPI.getByUserId(+id));
+            try {
+                setUser(
+                    authUser?.id && +id === authUser.id
+                        ? authUser
+                        : await userAPI.getById(id)
+                );
+                setPosts(await postAPI.getByUserId(+id));
+            } catch (e) {
+                console.log(e);
+            }
         })();
     }, [id]);
 
     if (!user) {
-        return <h1>404 Not Found</h1>;
+        return <ProfileNotFound />;
     }
 
     const deleteFriend = async () => {
