@@ -7,13 +7,12 @@
       "email": "admin@test.test",
       "birthdate": "2002-12-01",
       "friends": [
-        4,
-        1695301134882
+        4
       ],
       "username": "admin",
       "password": "admin",
       "avatar": "12441512512.jpeg",
-      "lastActivity": 1695985142832,
+      "lastActivity": 1695986597569,
       "isOnline": true
     },
     {
@@ -141,9 +140,7 @@
       "lastName": "Tester",
       "email": "test@test.org",
       "birthdate": "1979-01-01",
-      "friends": [
-        1695149534759
-      ],
+      "friends": [],
       "username": "tester",
       "password": "tester",
       "avatar": "9182491824112.jpeg",

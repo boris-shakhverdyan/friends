@@ -1,4 +1,5 @@
 import User from "../models/User";
+import authAPI from "./authAPI";
 import instance from "./instance";
 
 const userAPI = {
@@ -21,7 +22,7 @@ const userAPI = {
     },
 
     getByIds: async function (ids) {
-        if(!ids.length) {
+        if (!ids.length) {
             return [];
         }
 
@@ -45,10 +46,14 @@ const userAPI = {
         );
 
         await this.update(authUser.getDbStructure());
+
+        authAPI.updateLocalStorage(authUser);
     },
 
     addToFriend: async function (authUser, friend) {
         authUser.addToFriend(friend);
+        
+        authAPI.updateLocalStorage(authUser);
     },
 
     update: async function (user) {

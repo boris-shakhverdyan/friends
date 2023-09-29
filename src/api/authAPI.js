@@ -2,13 +2,13 @@ import User from "../models/User";
 import userAPI from "./userAPI";
 
 const authAPI = {
-    me: async () => {
+    me: async function () {
         const user = await JSON.parse(localStorage.getItem("authUser"));
 
         return new User(user);
     },
 
-    login: async (username, password) => {
+    login: async function (username, password) {
         const authUser = await userAPI.getByUsernameAndPassword(
             username,
             password
@@ -19,18 +19,25 @@ const authAPI = {
 
         await authUser.save();
 
-        localStorage.setItem("authUser", JSON.stringify(authUser.getDbStructure()));
+        this.updateLocalStorage(authUser);
 
         return authUser;
     },
 
-    logout: (authUser) => {
+    logout: async function (authUser) {
         authUser.lastActivity = new Date().getTime();
         authUser.isOnline = false;
 
-        userAPI.update(authUser.getDbStructure());
+        await userAPI.update(authUser.getDbStructure());
 
         localStorage.removeItem("authUser");
+    },
+
+    updateLocalStorage: function (authUser) {
+        localStorage.setItem(
+            "authUser",
+            JSON.stringify(authUser.getDbStructure())
+        );
     },
 };
 
