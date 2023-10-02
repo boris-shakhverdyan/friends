@@ -1,9 +1,15 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import postAPI from "../../api/postAPI";
+import postAPI from "../../api1/postAPI";
 import "./style.scss";
+import { useContext } from "react";
+import AppContext from "../../contexts/AppContext";
 
-const CreatePost = ({ setPosts, authUser }) => {
+const CreatePost = ({ setPosts }) => {
+    const {
+        state: { authUser },
+    } = useContext(AppContext);
+
     const addPost = async (value) => {
         const newPost = await postAPI.create(authUser.id, value);
 

@@ -10,8 +10,14 @@ import {
     faUserGroup,
 } from "@fortawesome/free-solid-svg-icons";
 import NavItem from "./NavItem";
+import { useContext } from "react";
+import AppContext from "../../contexts/AppContext";
 
-const Sidebar = ({ authUser }) => {
+const Sidebar = () => {
+    const {
+        state: { authUser },
+    } = useContext(AppContext);
+
     const links = [
         { text: "Profile", path: "profile/" + authUser.id, icon: faIdCard },
         { text: "News", path: "/", icon: faNewspaper },

@@ -24,6 +24,13 @@ const authAPI = {
         return authUser;
     },
 
+    setIsOnline: async function (authUser, value) {
+        authUser.lastActivity = new Date().getTime();
+        authUser.isOnline = value;
+
+        authUser.save();
+    },
+
     logout: async function (authUser) {
         authUser.lastActivity = new Date().getTime();
         authUser.isOnline = false;

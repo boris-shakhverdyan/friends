@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
 import { Link } from "react-router-dom";
-import userAPI from "../../../api/userAPI";
+import userAPI from "../../../api1/userAPI";
 
 const SearchInput = () => {
     const [search, setSearch] = useState("");

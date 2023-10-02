@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import postAPI from "../../api/postAPI";
+import postAPI from "../../api1/postAPI";
 import CreatePost from "../../components/CreatePost";
 import Post from "../../components/Post";
 import "./style.scss";
 
-const News = ({ authUser }) => {
+const News = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect(() => {
@@ -15,14 +15,9 @@ const News = ({ authUser }) => {
 
     return (
         <div className="news">
-            <CreatePost setPosts={setPosts} authUser={authUser} />
+            <CreatePost setPosts={setPosts} />
             {posts.map((post) => (
-                <Post
-                    setPosts={setPosts}
-                    authUser={authUser}
-                    key={post.id}
-                    post={post}
-                />
+                <Post setPosts={setPosts} key={post.id} post={post} />
             ))}
         </div>
     );

@@ -1,12 +1,16 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import userAPI from "../../api/userAPI";
+import userAPI from "../../api1/userAPI";
 import "./style.scss";
+import AppContext from "../../contexts/AppContext";
 
-const Friend = ({ friend, setFriends, authUser }) => {
+const Friend = ({ friend, setFriends }) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const {
+        state: { authUser },
+    } = useContext(AppContext);
 
     const deleteFriend = async () => {
         await userAPI.deleteFriend(authUser, friend);

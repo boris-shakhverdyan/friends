@@ -1,18 +1,20 @@
-import { useState } from "react";
-import userAPI from "../../api/userAPI";
+import { useContext, useState } from "react";
 import User from "../../models/User";
+import authAPI from "../../api1/authAPI";
 import "./style.scss";
-import authAPI from "../../api/authAPI";
+import AppContext from "../../contexts/AppContext";
+import { CHANGE_LOADING_STATUS, SET_AUTH_USER } from "../../App";
 
-const Register = ({ setAuthUser, setIsLoading }) => {
+const Register = () => {
     const [status, setStatus] = useState("typing");
     const [error, setError] = useState(null);
+    const { dispatch } = useContext(AppContext);
 
     const onSubmit = (e) => {
         e.preventDefault();
 
         if (e.target.password.value === e.target.password_confirmation.value) {
-            setIsLoading(true);
+            dispatch({ type: CHANGE_LOADING_STATUS, payload: true });
             setStatus("sending");
 
             (async () => {
@@ -30,10 +32,13 @@ const Register = ({ setAuthUser, setIsLoading }) => {
                         reader.result
                     );
 
-                    const authUser = await authAPI.login(user.username, user.password);
-                    
-                    setAuthUser(authUser);
-                    setIsLoading(false);
+                    const authUser = await authAPI.login(
+                        user.username,
+                        user.password
+                    );
+
+                    dispatch({ type: SET_AUTH_USER, payload: authUser });
+                    dispatch({ type: CHANGE_LOADING_STATUS, payload: false });
                 };
 
                 setStatus("sent");

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment/moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,15 +8,19 @@ import {
     faMessage,
     faShare,
 } from "@fortawesome/free-solid-svg-icons";
-import postAPI from "../../api/postAPI";
-import userAPI from "../../api/userAPI";
+import postAPI from "../../api1/postAPI";
+import userAPI from "../../api1/userAPI";
 import Comments from "./Comments";
 import "./style.scss";
+import AppContext from "../../contexts/AppContext";
 
-const Post = ({ setPosts, post, authUser }) => {
+const Post = ({ setPosts, post }) => {
     const [author, setAuthor] = useState(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [isWantToComment, setIsWantToComment] = useState(false);
+    const {
+        state: { authUser },
+    } = useContext(AppContext);
 
     useEffect(() => {
         (async () => {

@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
-import userAPI from "../../api/userAPI";
+import { useContext, useEffect, useState } from "react";
+import userAPI from "../../api1/userAPI";
 import Friend from "../../components/Friend";
 import "./style.scss";
 import classNames from "classnames";
+import AppContext from "../../contexts/AppContext";
 
-const Friends = ({ authUser }) => {
+const Friends = () => {
     const [section, setSection] = useState("all");
     const [search, setSearch] = useState("");
     const [friends, setFriends] = useState([]);
+    const {
+        state: { authUser },
+    } = useContext(AppContext);
 
     useEffect(() => {
         (async () => {
@@ -70,7 +74,6 @@ const Friends = ({ authUser }) => {
                         <Friend
                             key={friend.id}
                             friend={friend}
-                            authUser={authUser}
                             friends={friends}
                             setFriends={setFriends}
                         />

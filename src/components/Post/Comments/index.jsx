@@ -1,13 +1,17 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import commentAPI from "../../../api/commentAPI";
+import commentAPI from "../../../api1/commentAPI";
 import Comment from "./Comment";
 import "./style.scss";
+import AppContext from "../../../contexts/AppContext";
 
-const Comments = ({ post, authUser, isWantToComment, setIsWantToComment }) => {
+const Comments = ({ post, isWantToComment, setIsWantToComment }) => {
     const [comments, setComments] = useState(null);
     const [commentText, setCommentText] = useState("");
+    const {
+        state: { authUser },
+    } = useContext(AppContext);
 
     useEffect(() => {
         (async () => {
@@ -44,7 +48,6 @@ const Comments = ({ post, authUser, isWantToComment, setIsWantToComment }) => {
                         <Comment
                             key={comment.id}
                             comment={comment}
-                            authUser={authUser}
                             setComments={setComments}
                             setIsWantToComment={setIsWantToComment}
                             setCommentText={setCommentText}

@@ -1,20 +1,24 @@
-import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faUserCheck } from "@fortawesome/free-solid-svg-icons";
-import userAPI from "../../api/userAPI";
-import postAPI from "../../api/postAPI";
+import userAPI from "../../api1/userAPI";
+import postAPI from "../../api1/postAPI";
 import CreatePost from "../../components/CreatePost";
 import Post from "../../components/Post";
 import "./style.scss";
 import User from "../../models/User";
 import moment from "moment";
 import ProfileNotFound from "../../components/ProfileNotFound";
+import AppContext from "../../contexts/AppContext";
 
-const Profile = ({ authUser }) => {
+const Profile = () => {
     const [posts, setPosts] = useState([]);
     const [user, setUser] = useState(null);
     const { id } = useParams();
+    const {
+        state: { authUser },
+    } = useContext(AppContext);
 
     useEffect(() => {
         (async () => {
@@ -100,12 +104,11 @@ const Profile = ({ authUser }) => {
             </div>
             <div className="posts">
                 {user.id === authUser.id && (
-                    <CreatePost setPosts={setPosts} authUser={authUser} />
+                    <CreatePost setPosts={setPosts} />
                 )}
                 {posts.map((post) => (
                     <Post
                         key={post.id}
-                        authUser={authUser}
                         post={post}
                         setPosts={setPosts}
                     />

@@ -1,15 +1,18 @@
-import { useState } from "react";
-import authAPI from "../../api/authAPI";
+import { useContext, useState } from "react";
+import authAPI from "../../api1/authAPI";
 import "./style.scss";
+import AppContext from "../../contexts/AppContext";
+import { CHANGE_LOADING_STATUS, SET_AUTH_USER } from "../../App";
 
-const Login = ({ setAuthUser, setIsLoading }) => {
+const Login = () => {
     const [status, setStatus] = useState("typing");
     const [error, setError] = useState(null);
+    const { dispatch } = useContext(AppContext);
 
     const onSubmit = (e) => {
         e.preventDefault();
         setStatus("sending");
-        setIsLoading(true);
+        dispatch({ type: CHANGE_LOADING_STATUS, payload: true });
 
         (async () => {
             const userData = await authAPI.login(
@@ -18,13 +21,13 @@ const Login = ({ setAuthUser, setIsLoading }) => {
             );
 
             if (userData?.id) {
-                setAuthUser(userData);
+                dispatch({ type: SET_AUTH_USER, payload: userData });
             } else {
                 setError("Incorrect username or password");
             }
 
             setStatus("sent");
-            setIsLoading(false);
+            dispatch({ type: CHANGE_LOADING_STATUS, payload: false });
         })();
     };
 

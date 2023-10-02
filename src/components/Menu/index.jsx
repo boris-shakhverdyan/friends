@@ -3,8 +3,14 @@ import Notifications from "./Notifications";
 import SearchInput from "./SearchInput";
 import Profile from "./Profile";
 import "./style.scss";
+import { useContext } from "react";
+import AppContext from "../../contexts/AppContext";
 
-const Menu = ({ authUser, setAuthUser }) => {
+const Menu = () => {
+    const {
+        state: { authUser },
+    } = useContext(AppContext);
+
     return (
         <div className="menu">
             <div className="container">
@@ -21,10 +27,7 @@ const Menu = ({ authUser, setAuthUser }) => {
                 </div>
                 <div className="right">
                     {authUser ? (
-                        <Profile
-                            setAuthUser={setAuthUser}
-                            authUser={authUser}
-                        />
+                        <Profile />
                     ) : (
                         <>
                             <NavLink to={"register"}>Register</NavLink>

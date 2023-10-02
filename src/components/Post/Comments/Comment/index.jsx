@@ -1,19 +1,22 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment/moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faHeart } from "@fortawesome/free-solid-svg-icons";
-import commentAPI from "../../../../api/commentAPI";
+import commentAPI from "../../../../api1/commentAPI";
 import "./style.scss";
+import AppContext from "../../../../contexts/AppContext";
 
 const Comment = ({
     comment,
-    authUser,
     setComments,
     setIsWantToComment,
     setCommentText,
 }) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const {
+        state: { authUser },
+    } = useContext(AppContext);
 
     const deleteComment = async () => {
         await commentAPI.delete(comment.id);

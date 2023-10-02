@@ -7,14 +7,15 @@
       "email": "admin@test.test",
       "birthdate": "2002-12-01",
       "friends": [
-        4,
-        1
+        1695759523073,
+        1695301134882,
+        1695762021947
       ],
       "username": "admin",
       "password": "admin",
       "avatar": "12441512512.jpeg",
-      "lastActivity": 1695987975526,
-      "isOnline": true
+      "lastActivity": 1696278687854,
+      "isOnline": false
     },
     {
       "id": 1,
@@ -22,9 +23,7 @@
       "lastName": "Corkery",
       "email": "nloiterton8@aol.com",
       "birthdate": "1979-10-11",
-      "friends": [
-        1695149534759
-      ],
+      "friends": [],
       "username": "nloiterton8",
       "password": "HTQxxXV9Bq4",
       "avatar": "31241241242515.png",
@@ -63,9 +62,7 @@
       "lastName": "Douglas",
       "email": "lgribbinc@posterous.com",
       "birthdate": "1989-08-07",
-      "friends": [
-        1695149534759
-      ],
+      "friends": [],
       "username": "lgribbinc",
       "password": "ftGj8LZTtv9g",
       "avatar": "12551512513.png",
@@ -143,7 +140,9 @@
       "lastName": "Tester",
       "email": "test@test.org",
       "birthdate": "1979-01-01",
-      "friends": [],
+      "friends": [
+        1695149534759
+      ],
       "username": "tester",
       "password": "tester",
       "avatar": "9182491824112.jpeg",
@@ -156,7 +155,9 @@
       "lastName": "Corleone",
       "email": "godfather@test.com",
       "birthdate": "1917-09-09",
-      "friends": [],
+      "friends": [
+        1695149534759
+      ],
       "username": "godfather",
       "password": "123123123",
       "avatar": "57657436264.jpeg",
@@ -169,7 +170,9 @@
       "lastName": "Morgan",
       "email": "john@morgan.com",
       "birthdate": "1837-04-17",
-      "friends": [],
+      "friends": [
+        1695149534759
+      ],
       "username": "morgan",
       "password": "123123123",
       "avatar": "87129841410247.jpeg",
@@ -448,6 +451,20 @@
       "userId": 1695149534759,
       "created_at": 1695747082370,
       "reactions": []
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "body": "Hello. How are you?",
+      "sender": 1695149534759,
+      "receiver": 1695759523073
+    },
+    {
+      "id": 2,
+      "body": "Im Fine bro?",
+      "sender": 1695759523073,
+      "receiver": 1695149534759
     }
   ]
 }

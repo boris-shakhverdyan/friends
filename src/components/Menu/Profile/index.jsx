@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Link as NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,11 +11,17 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "./Link";
 import "./style.scss";
-import authAPI from "../../../api/authAPI";
+import authAPI from "../../../api1/authAPI";
+import AppContext from "../../../contexts/AppContext";
+import { SET_AUTH_USER } from "../../../App";
 
-const Profile = ({ authUser, setAuthUser }) => {
+const Profile = () => {
     const profileRef = useRef(null);
     const [isOpened, setIsOpened] = useState(false);
+    const {
+        state: { authUser },
+        dispatch,
+    } = useContext(AppContext);
 
     document.addEventListener("mousedown", (e) => {
         if (
@@ -31,7 +37,7 @@ const Profile = ({ authUser, setAuthUser }) => {
         e.preventDefault();
         setIsOpened(false);
         authAPI.logout(authUser);
-        setAuthUser(null);
+        dispatch({ type: SET_AUTH_USER, payload: null });
     };
 
     const links = [
