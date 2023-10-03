@@ -2,13 +2,15 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import "./style.scss";
 import AppContext from "../../contexts/AppContext";
+import "./style.scss";
+import { CHANGE_MODAL_STATUS } from "../../App";
 
 const Friend = ({ friend, setFriends }) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const {
         state: { authUser },
+        dispatch,
     } = useContext(AppContext);
 
     const deleteFriend = async () => {
@@ -17,6 +19,19 @@ const Friend = ({ friend, setFriends }) => {
         setFriends((friends) =>
             friends.filter((user) => user.id !== friend.id)
         );
+    };
+
+    const deleteFriendModal = () => {
+        dispatch({
+            type: CHANGE_MODAL_STATUS,
+            payload: {
+                isActive: true,
+                title: "Do you want to Unfriend him?",
+                body: null,
+                onDanger: deleteFriend,
+                dangerContent: "Unfriend",
+            },
+        });
     };
 
     return (
@@ -42,7 +57,7 @@ const Friend = ({ friend, setFriends }) => {
                             }`}
                         >
                             <ul className="actions">
-                                <li className="delete" onClick={deleteFriend}>
+                                <li className="delete" onClick={deleteFriendModal}>
                                     Unfriend
                                 </li>
                             </ul>

@@ -42,10 +42,16 @@ class PostAPI {
         return post;
     }
 
-    public static async get(
-        filters: Object | null = null
-    ): Promise<PostType[] | null> {
+    public static async get(filters: any = {}): Promise<PostType[] | null> {
         let posts: PostType[] | null = null;
+
+        if (!filters?._sort) {
+            filters._sort = "created_at";
+        }
+
+        if (!filters?._order) {
+            filters._order = "desc";
+        }
 
         try {
             posts = await instance

@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faHeart } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
 import AppContext from "../../../../contexts/AppContext";
+import { CHANGE_MODAL_STATUS } from "../../../../App";
 
 const Comment = ({
     comment,
@@ -15,6 +16,7 @@ const Comment = ({
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const {
         state: { authUser },
+        dispatch,
     } = useContext(AppContext);
 
     const deleteComment = async () => {
@@ -23,6 +25,19 @@ const Comment = ({
         setComments((comments) =>
             comments.filter((item) => item.id !== comment.id)
         );
+    };
+
+    const deleteCommentModal = () => {
+        dispatch({
+            type: CHANGE_MODAL_STATUS,
+            payload: {
+                isActive: true,
+                title: "Do you want to remove your comment?",
+                body: "Comment will be deleted permanently.",
+                onDanger: deleteComment,
+                dangerContent: "Delete",
+            },
+        });
     };
 
     const toggleLike = async () => {
@@ -62,7 +77,7 @@ const Comment = ({
                                 <ul className="actions">
                                     <li
                                         className="delete"
-                                        onClick={deleteComment}
+                                        onClick={deleteCommentModal}
                                     >
                                         Delete
                                     </li>

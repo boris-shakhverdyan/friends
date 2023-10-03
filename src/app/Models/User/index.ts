@@ -157,19 +157,19 @@ class User {
             await friend.save();
         }
 
+        Auth.updateLocalStorage();
+
         return this;
     }
 
     public async deleteFriend(friend: User): Promise<User> {
         if (friend.friends.includes(this.id)) {
             friend.friends = friend.friends.filter((id) => id !== this.id);
-
             await friend.save();
         }
 
         if (this.friends.includes(friend.id)) {
             this.friends = this.friends.filter((id) => id !== friend.id);
-
             await this.save();
         }
 

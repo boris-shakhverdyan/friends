@@ -68,7 +68,6 @@ const Friends = () => {
                         <Friend
                             key={friend.id}
                             friend={friend}
-                            friends={friends}
                             setFriends={setFriends}
                         />
                     );

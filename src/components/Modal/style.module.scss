@@ -1,0 +1,117 @@
+.modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    // opacity: 0.3;
+    background-color: rgba(0, 0, 0, 0.4);
+    z-index: 99999;
+
+    .content {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        transform: translate(-50%, -25%);
+        width: 500px;
+        border-radius: 10px;
+        background-color: #222222;
+        border: 1px solid #424242;
+
+        .header {
+            display: flex;
+            padding: 15px;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #424242;
+            color: white;
+
+            h3 {
+                font-weight: normal;
+            }
+
+            button {
+                border: 1px solid #424242;
+                background-color: #222222;
+                color: white;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                position: relative;
+                transition: background-color .2s;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: #424242;
+                }
+
+                svg {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+            }
+        }
+
+        .body {
+            padding: 10px;
+            border-bottom: 1px solid #424242;
+            color: white;
+        }
+
+        .footer {
+            padding: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+
+            button {
+                padding: 5px 20px;
+                background-color: transparent;
+                color: white;
+                cursor: pointer;
+                transition: background-color .2s;
+                border: 1px solid black;
+                border-radius: 10px;
+
+                &.success {
+                    border-color: chartreuse;
+                    background-color: darkgreen;
+
+                    &:hover {
+                        background-color: forestgreen;
+                    }
+                }
+
+                &.default {
+                    border-color: #424242;
+                    background-color: #222222;
+
+                    &:hover {
+                        background-color: lighten(#222222, 5);
+                    }
+                }
+
+                &.danger {
+                    border-color: crimson;
+                    background-color: darkred;
+
+                    &:hover {
+                        background-color: lighten(darkred, 5);
+                    }
+                }
+
+                &.warning {
+                    border-color: orangered;
+                    background-color: orange;
+                    color: black;
+
+                    &:hover {
+                        background-color: darken(orange, 5);
+                    }
+                }
+            }
+        }
+    }
+}

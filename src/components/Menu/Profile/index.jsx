@@ -12,7 +12,7 @@ import {
 import Link from "./Link";
 import "./style.scss";
 import AppContext from "../../../contexts/AppContext";
-import { SET_AUTH_USER } from "../../../App";
+import { CHANGE_MODAL_STATUS, SET_AUTH_USER } from "../../../App";
 import Auth from "../../../app/Services/Auth";
 
 const Profile = () => {
@@ -34,22 +34,37 @@ const Profile = () => {
     });
 
     const logoutUser = (e) => {
-        e.preventDefault();
         setIsOpened(false);
         Auth.logout();
         dispatch({ type: SET_AUTH_USER, payload: null });
     };
 
+    const LogoutModal = (e) => {
+        e.preventDefault();
+
+        dispatch({
+            type: CHANGE_MODAL_STATUS,
+            payload: {
+                isActive: true,
+                title: "Do you want to logout?",
+                onDanger: logoutUser,
+                dangerContent: "Logout",
+                onSuccess: () => {},
+                successContent: "Stay",
+            },
+        });
+    };
+
     const links = [
-        { href: "settings", text: "Правки", icon: faGear },
-        { href: "theme", text: "Тема", icon: faPalette },
-        { href: "lang", text: "Язык", icon: faGlobeAmericas },
-        { href: "help", text: "Справочная", icon: faQuestionCircle },
+        { href: "settings", text: "Settings", icon: faGear },
+        { href: "theme", text: "Theme", icon: faPalette },
+        { href: "lang", text: "Language", icon: faGlobeAmericas },
+        { href: "help", text: "Help", icon: faQuestionCircle },
         {
             href: "logout",
-            text: "Эмигрировать",
+            text: "Logout",
             icon: faRightFromBracket,
-            onClick: logoutUser,
+            onClick: LogoutModal,
         },
     ];
 
@@ -65,7 +80,7 @@ const Profile = () => {
             <div className={`dropdown ${isOpened ? "opened" : ""}`}>
                 <NavLink
                     onClick={() => setIsOpened(false)}
-                    to={"profile"}
+                    to={"/profile/" + authUser.id}
                     className="avatar"
                 >
                     <img src={authUser.avatar} alt={authUser.fullName} />

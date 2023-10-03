@@ -34,12 +34,12 @@ const Sidebar = () => {
                 ))}
                 <hr />
                 <NavItem
-                    text={"Коллекции"}
+                    text={"Bookmarks"}
                     path={"bookmarks"}
                     icon={faBookmark}
                 />
-                <NavItem text={"Архив"} path={"files"} icon={faArchive} />
-                <NavItem text={"Агитация"} path={"ads"} icon={faBullhorn} />
+                <NavItem text={"Files"} path={"files"} icon={faArchive} />
+                <NavItem text={"Ads"} path={"ads"} icon={faBullhorn} />
             </div>
         </div>
     );

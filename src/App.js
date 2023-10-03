@@ -3,9 +3,11 @@ import Loading from "./components/Loading";
 import AppContext from "./contexts/AppContext";
 import AppRouter from "./AppRouter";
 import Auth from "./app/Services/Auth";
+import Modal from "./components/Modal";
 
 export const CHANGE_LOADING_STATUS = "CHANGE_LOADING_STATUS";
 export const SET_AUTH_USER = "SET_AUTH_USER";
+export const CHANGE_MODAL_STATUS = "CHANGE_MODAL_STATUS";
 
 function App() {
     const appReducer = (state, action) => {
@@ -20,6 +22,14 @@ function App() {
                     ...state,
                     authUser: action.payload,
                 };
+            case CHANGE_MODAL_STATUS:
+                return {
+                    ...state,
+                    modal: {
+                        ...state.modal,
+                        ...action.payload,
+                    },
+                };
             default:
                 return state;
         }
@@ -28,6 +38,9 @@ function App() {
     const [state, dispatch] = useReducer(appReducer, {
         authUser: null,
         isLoading: true,
+        modal: {
+            isActive: false,
+        },
     });
 
     useEffect(() => {
@@ -54,6 +67,7 @@ function App() {
 
     return (
         <AppContext.Provider value={{ state, dispatch }}>
+            {state.modal.isActive && <Modal {...state.modal} />}
             <AppRouter />
         </AppContext.Provider>
     );

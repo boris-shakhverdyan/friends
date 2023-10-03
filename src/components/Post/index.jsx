@@ -12,6 +12,7 @@ import Comments from "./Comments";
 import AppContext from "../../contexts/AppContext";
 import User from "../../app/Models/User";
 import "./style.scss";
+import { CHANGE_MODAL_STATUS } from "../../App";
 
 const Post = ({ setPosts, post }) => {
     const [author, setAuthor] = useState(null);
@@ -19,6 +20,7 @@ const Post = ({ setPosts, post }) => {
     const [isWantToComment, setIsWantToComment] = useState(false);
     const {
         state: { authUser },
+        dispatch,
     } = useContext(AppContext);
 
     useEffect(() => {
@@ -55,6 +57,18 @@ const Post = ({ setPosts, post }) => {
         setPosts((posts) => posts.filter((item) => item.id !== post.id));
     };
 
+    const deletePostModal = () => {
+        dispatch({
+            type: CHANGE_MODAL_STATUS,
+            payload: {
+                isActive: true,
+                title: "Do you want to remove post?",
+                body: "The post will be deleted permanently.",
+                onDanger: deletePost,
+            },
+        });
+    };
+
     return (
         <div className="post">
             <div className="header">
@@ -81,7 +95,10 @@ const Post = ({ setPosts, post }) => {
                                 }`}
                             >
                                 <ul className="actions">
-                                    <li className="delete" onClick={deletePost}>
+                                    <li
+                                        className="delete"
+                                        onClick={deletePostModal}
+                                    >
                                         Delete
                                     </li>
                                 </ul>

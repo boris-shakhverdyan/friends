@@ -14,8 +14,8 @@
       "username": "admin",
       "password": "admin",
       "avatar": "12441512512.jpeg",
-      "lastActivity": 1696334894439,
-      "isOnline": false
+      "lastActivity": 1696365702509,
+      "isOnline": true
     },
     {
       "id": 1,
@@ -220,13 +220,6 @@
       "created_at": 1695244976623
     },
     {
-      "id": 1695245409060,
-      "body": "dasdd",
-      "userId": 1695149534759,
-      "reactions": [],
-      "created_at": 1695245409060
-    },
-    {
       "id": 1695245423779,
       "body": "Post from profile",
       "userId": 1695149534759,
@@ -298,6 +291,20 @@
         1695149534759
       ],
       "created_at": 1696334859463
+    },
+    {
+      "id": 1696363370534,
+      "body": "This is it",
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1696363370534
+    },
+    {
+      "id": 1696363637239,
+      "body": "asd asd a",
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1696363637239
     }
   ],
   "comments": [

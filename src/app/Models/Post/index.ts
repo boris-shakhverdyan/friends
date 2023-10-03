@@ -126,8 +126,10 @@ class Post {
         return posts.map((post) => new Post(post));
     }
 
-    public static async getByUserId(userId: number): Promise<Post[] | null> {
-        const posts = await PostAPI.getByUserId(userId);
+    public static async getByUserId(
+        userId: number | Array<number>
+    ): Promise<Post[] | null> {
+        const posts = await PostAPI.get({ userId });
 
         if (!posts) {
             return null;
