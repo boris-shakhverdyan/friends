@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import moment from "moment/moment";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis, faHeart } from "@fortawesome/free-solid-svg-icons";
-import commentAPI from "../../../../api1/commentAPI";
 import "./style.scss";
 import AppContext from "../../../../contexts/AppContext";
 
@@ -19,18 +18,18 @@ const Comment = ({
     } = useContext(AppContext);
 
     const deleteComment = async () => {
-        await commentAPI.delete(comment.id);
+        await comment.delete();
 
         setComments((comments) =>
             comments.filter((item) => item.id !== comment.id)
         );
     };
 
-    const toggleLike = async (comment) => {
-        const reactions = await commentAPI.toggleLike(authUser, comment);
+    const toggleLike = async () => {
+        const reactions = (await comment.toggleLike(authUser)).reactions;
 
         setComments((comments) =>
-            comments.filter((item) => {
+            comments.map((item) => {
                 if (item.id === comment.id) {
                     item.reactions = reactions;
                 }
@@ -42,10 +41,7 @@ const Comment = ({
 
     return (
         <div className="comment">
-            <img
-                src={comment.user.avatar}
-                alt={comment.user.fullName}
-            />
+            <img src={comment.user.avatar} alt={comment.user.fullName} />
             <div>
                 <div className="header">
                     <Link className="link" to={`/profile/${comment.user.id}`}>
@@ -97,7 +93,7 @@ const Comment = ({
                                 ? "liked"
                                 : ""
                         }
-                        onClick={() => toggleLike(comment)}
+                        onClick={toggleLike}
                     >
                         <FontAwesomeIcon icon={faHeart} />
                         <span>{comment.reactions.length}</span>

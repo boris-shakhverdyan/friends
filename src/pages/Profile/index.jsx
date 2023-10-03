@@ -2,14 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faUserCheck } from "@fortawesome/free-solid-svg-icons";
-import postAPI from "../../api1/postAPI";
 import CreatePost from "../../components/CreatePost";
-import Post from "../../components/Post";
+import PostComponent from "../../components/Post";
 import "./style.scss";
 import moment from "moment";
 import ProfileNotFound from "../../components/ProfileNotFound";
 import AppContext from "../../contexts/AppContext";
 import User from "../../app/Models/User";
+import Post from "../../app/Models/Post";
 
 const Profile = () => {
     const [posts, setPosts] = useState([]);
@@ -33,7 +33,7 @@ const Profile = () => {
                 }
 
                 setUser(user);
-                setPosts(await postAPI.getByUserId(+id));
+                setPosts(await Post.getByUserId(+id));
             } catch (e) {
                 console.log(e);
             }
@@ -118,7 +118,11 @@ const Profile = () => {
             <div className="posts">
                 {user.id === authUser.id && <CreatePost setPosts={setPosts} />}
                 {posts.map((post) => (
-                    <Post key={post.id} post={post} setPosts={setPosts} />
+                    <PostComponent
+                        key={post.id}
+                        post={post}
+                        setPosts={setPosts}
+                    />
                 ))}
             </div>
         </div>

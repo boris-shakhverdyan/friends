@@ -8,13 +8,14 @@
       "birthdate": "2002-12-01",
       "friends": [
         1695759523073,
-        1695762021947
+        1695762021947,
+        1695301134882
       ],
       "username": "admin",
       "password": "admin",
       "avatar": "12441512512.jpeg",
-      "lastActivity": 1696297624935,
-      "isOnline": true
+      "lastActivity": 1696334894439,
+      "isOnline": false
     },
     {
       "id": 1,
@@ -185,6 +186,7 @@
       "body": "His mother had always taught him not to ever think of himself as better than others. He'd tried to live by this motto. He never looked down on those who were less fortunate or who had less money than him. But the stupidity of the group of people he was talking to made him change his mind.",
       "userId": 1695149534759,
       "reactions": [
+        1695149534759,
         9
       ],
       "created_at": 1695155341586
@@ -265,7 +267,7 @@
       "body": "This is it",
       "userId": "1695301134882",
       "reactions": [
-        "1695301134882"
+        1695301134882
       ],
       "created_at": 1695301493046
     },
@@ -275,7 +277,7 @@
       "userId": "1695301134882",
       "reactions": [
         1695149534759,
-        "1695301134882"
+        1695301134882
       ],
       "created_at": 1695301998482
     },
@@ -287,6 +289,15 @@
         1695149534759
       ],
       "created_at": 1696297562536
+    },
+    {
+      "id": 1696334859463,
+      "body": "trust",
+      "userId": 1695149534759,
+      "reactions": [
+        1695149534759
+      ],
+      "created_at": 1696334859463
     }
   ],
   "comments": [
@@ -496,6 +507,22 @@
       "userId": 1695149534759,
       "created_at": 1696297572355,
       "reactions": []
+    },
+    {
+      "id": 1696334644845,
+      "body": "new one",
+      "postId": 1,
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1696334644845
+    },
+    {
+      "id": 1696334796728,
+      "body": "Test",
+      "postId": 1,
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1696334796728
     }
   ],
   "messages": [

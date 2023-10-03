@@ -1,7 +1,7 @@
 class Query {
     public static parseToURI(params: any | null): string | null {
         if (!params) {
-            return null;
+            return "";
         }
 
         let result: string[] = [];

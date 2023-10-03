@@ -1,5 +1,5 @@
 import { UserType } from "../types/UserType";
-import instance from "../api1/instance";
+import instance from "./instance";
 
 class AuthAPI {
     public static me(): UserType | null {

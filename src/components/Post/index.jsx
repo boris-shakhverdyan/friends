@@ -8,11 +8,10 @@ import {
     faMessage,
     faShare,
 } from "@fortawesome/free-solid-svg-icons";
-import postAPI from "../../api1/postAPI";
 import Comments from "./Comments";
-import "./style.scss";
 import AppContext from "../../contexts/AppContext";
 import User from "../../app/Models/User";
+import "./style.scss";
 
 const Post = ({ setPosts, post }) => {
     const [author, setAuthor] = useState(null);
@@ -37,7 +36,7 @@ const Post = ({ setPosts, post }) => {
     }
 
     const toggleLike = async () => {
-        const reactions = await postAPI.toggleLike(authUser, post);
+        const reactions = (await post.toggleLike(authUser)).reactions;
 
         setPosts((posts) =>
             posts.filter((item) => {
@@ -51,7 +50,7 @@ const Post = ({ setPosts, post }) => {
     };
 
     const deletePost = async () => {
-        postAPI.delete(post.id);
+        await post.delete();
 
         setPosts((posts) => posts.filter((item) => item.id !== post.id));
     };

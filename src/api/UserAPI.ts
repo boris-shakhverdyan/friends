@@ -1,6 +1,6 @@
 import Query from "../app/Services/Query";
 import { UserType } from "../types/UserType";
-import instance from "../api1/instance";
+import instance from "./instance";
 
 class UserAPI {
     public static async create(user: UserType): Promise<UserType | null> {
@@ -77,18 +77,7 @@ class UserAPI {
     public static async getByIds(
         ids: Array<number>
     ): Promise<UserType[] | null> {
-        let users: UserType[] | null = null;
-
-        try {
-            users = await instance
-                .get(`users${Query.parseToURI({ ids })}`)
-                .then((res) => res.data);
-        } catch (e) {
-            console.log(e);
-            console.error(`ERROR: UserAPI.getByIds(${ids}});`);
-        }
-
-        return users;
+        return await this.get({ id: ids });
     }
 }
 

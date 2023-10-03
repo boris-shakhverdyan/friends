@@ -253,7 +253,7 @@ class User {
     }
 
     public static async getByIds(ids: Array<number>): Promise<User[] | null> {
-        const users = await UserAPI.get({ id: ids });
+        const users = await UserAPI.getByIds(ids);
 
         if (!users) {
             return null;

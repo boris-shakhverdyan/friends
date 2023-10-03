@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPaperPlane } from "@fortawesome/free-solid-svg-icons";
-import commentAPI from "../../../api1/commentAPI";
-import Comment from "./Comment";
-import "./style.scss";
+import CommentComponent from "./Comment";
 import AppContext from "../../../contexts/AppContext";
+import Comment from "../../../app/Models/Comment";
+import "./style.scss";
 
 const Comments = ({ post, isWantToComment, setIsWantToComment }) => {
     const [comments, setComments] = useState(null);
@@ -15,7 +15,7 @@ const Comments = ({ post, isWantToComment, setIsWantToComment }) => {
 
     useEffect(() => {
         (async () => {
-            const comments = await commentAPI.getByPostId(post.id);
+            const comments = await Comment.getByPostId(post.id);
 
             setComments(comments);
         })();
@@ -25,11 +25,11 @@ const Comments = ({ post, isWantToComment, setIsWantToComment }) => {
         e.preventDefault();
 
         if (commentText.trim()) {
-            const newComment = await commentAPI.create(
-                authUser.id,
-                post.id,
-                commentText.trim()
-            );
+            const newComment = await Comment.create({
+                userId: authUser.id,
+                postId: post.id,
+                body: commentText.trim(),
+            });
 
             newComment.user = authUser;
 
@@ -45,7 +45,7 @@ const Comments = ({ post, isWantToComment, setIsWantToComment }) => {
             {comments && comments.length ? (
                 <div className="comments">
                     {comments.map((comment) => (
-                        <Comment
+                        <CommentComponent
                             key={comment.id}
                             comment={comment}
                             setComments={setComments}
@@ -57,10 +57,7 @@ const Comments = ({ post, isWantToComment, setIsWantToComment }) => {
             ) : null}
             {isWantToComment && (
                 <form onSubmit={addComment} className="addComment">
-                    <img
-                        src={authUser.avatar}
-                        alt={authUser.fullName}
-                    />
+                    <img src={authUser.avatar} alt={authUser.fullName} />
                     <input
                         type="text"
                         name="newComment"
