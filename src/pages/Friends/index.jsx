@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from "react";
-import userAPI from "../../api1/userAPI";
 import Friend from "../../components/Friend";
 import "./style.scss";
 import classNames from "classnames";
@@ -15,11 +14,7 @@ const Friends = () => {
 
     useEffect(() => {
         (async () => {
-            const friends = await userAPI.getByIds(
-                Array.from(authUser.friends)
-            );
-
-            setFriends(friends);
+            setFriends(await authUser.getFriends());
         })();
     }, []);
 
@@ -62,8 +57,7 @@ const Friends = () => {
 
                     if (
                         search &&
-                        friend
-                            .getFullNameWithUsername()
+                        friend.fullNameWithUsername
                             .toLowerCase()
                             .indexOf(search.toLowerCase()) < 0
                     ) {

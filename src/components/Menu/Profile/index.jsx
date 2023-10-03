@@ -11,9 +11,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import Link from "./Link";
 import "./style.scss";
-import authAPI from "../../../api1/authAPI";
 import AppContext from "../../../contexts/AppContext";
 import { SET_AUTH_USER } from "../../../App";
+import Auth from "../../../app/Services/Auth";
 
 const Profile = () => {
     const profileRef = useRef(null);
@@ -36,7 +36,7 @@ const Profile = () => {
     const logoutUser = (e) => {
         e.preventDefault();
         setIsOpened(false);
-        authAPI.logout(authUser);
+        Auth.logout();
         dispatch({ type: SET_AUTH_USER, payload: null });
     };
 
@@ -59,7 +59,7 @@ const Profile = () => {
                 className={`avatar ${isOpened ? "active" : ""}`}
                 onClick={() => setIsOpened(!isOpened)}
             >
-                <img src={authUser.getAvatarPath()} alt={authUser.fullName} />
+                <img src={authUser.avatar} alt={authUser.fullName} />
                 <FontAwesomeIcon icon={faChevronDown} />
             </div>
             <div className={`dropdown ${isOpened ? "opened" : ""}`}>
@@ -68,10 +68,7 @@ const Profile = () => {
                     to={"profile"}
                     className="avatar"
                 >
-                    <img
-                        src={authUser.getAvatarPath()}
-                        alt={authUser.fullName}
-                    />
+                    <img src={authUser.avatar} alt={authUser.fullName} />
                     <span>{authUser.fullName}</span>
                 </NavLink>
                 <div className="links">

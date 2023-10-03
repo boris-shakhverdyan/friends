@@ -1,4 +1,4 @@
-import User from ".";
+import { UserType } from "../../../types/UserType";
 
 class UserDBStructure {
     public id: number;
@@ -13,7 +13,7 @@ class UserDBStructure {
     public lastActivity: number;
     public isOnline: boolean;
 
-    constructor(user: User) {
+    constructor(user: UserType) {
         this.id = user.id;
         this.firstName = user.firstName;
         this.lastName = user.lastName;

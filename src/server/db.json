@@ -8,14 +8,13 @@
       "birthdate": "2002-12-01",
       "friends": [
         1695759523073,
-        1695301134882,
         1695762021947
       ],
       "username": "admin",
       "password": "admin",
       "avatar": "12441512512.jpeg",
-      "lastActivity": 1696278687854,
-      "isOnline": false
+      "lastActivity": 1696297624935,
+      "isOnline": true
     },
     {
       "id": 1,
@@ -279,6 +278,15 @@
         "1695301134882"
       ],
       "created_at": 1695301998482
+    },
+    {
+      "id": 1696297562536,
+      "body": "a sda sd asd sad ",
+      "userId": 1695149534759,
+      "reactions": [
+        1695149534759
+      ],
+      "created_at": 1696297562536
     }
   ],
   "comments": [
@@ -321,10 +329,21 @@
       "body": "You are my administrator. Pls don't remove me!",
       "postId": 1695245423779,
       "userId": 1,
-      "reactions": [
-        1695149534759
-      ],
-      "created_at": 1695293219470
+      "reactions": [],
+      "created_at": 1695293219470,
+      "user": {
+        "_id": 1,
+        "_firstName": "Demetrius",
+        "_lastName": "Corkery",
+        "_email": "nloiterton8@aol.com",
+        "_birthdate": "1979-10-11",
+        "_friends": [],
+        "_username": "nloiterton8",
+        "_password": "HTQxxXV9Bq4",
+        "_avatar": "31241241242515.png",
+        "_lastActivity": null,
+        "_isOnline": false
+      }
     },
     {
       "id": 1695294403230,
@@ -431,17 +450,19 @@
         1695301134882
       ],
       "user": {
-        "id": 1695301134882,
-        "firstName": "Digital",
-        "lastName": "Tester",
-        "email": "test@test.org",
-        "birthdate": "1979-01-01",
-        "friends": [
+        "_id": 1695301134882,
+        "_firstName": "Digital",
+        "_lastName": "Tester",
+        "_email": "test@test.org",
+        "_birthdate": "1979-01-01",
+        "_friends": [
           1695149534759
         ],
-        "username": "tester",
-        "password": "tester",
-        "avatar": "9182491824112.jpeg"
+        "_username": "tester",
+        "_password": "tester",
+        "_avatar": "9182491824112.jpeg",
+        "_lastActivity": null,
+        "_isOnline": false
       }
     },
     {
@@ -450,6 +471,30 @@
       "postId": 1695245423779,
       "userId": 1695149534759,
       "created_at": 1695747082370,
+      "reactions": []
+    },
+    {
+      "id": 1696295459712,
+      "body": "Digital, asdasda s",
+      "postId": 1695301998482,
+      "userId": 1695149534759,
+      "created_at": 1696295459712,
+      "reactions": []
+    },
+    {
+      "id": 1696297567132,
+      "body": "as dasdasd aposdk aposkd",
+      "postId": 1696297562536,
+      "userId": 1695149534759,
+      "created_at": 1696297567132,
+      "reactions": []
+    },
+    {
+      "id": 1696297572355,
+      "body": "Admin,  asdkpa oksdo kaspdo",
+      "postId": 1696297562536,
+      "userId": 1695149534759,
+      "created_at": 1696297572355,
       "reactions": []
     }
   ],

@@ -2,7 +2,6 @@ import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
-import userAPI from "../../api1/userAPI";
 import "./style.scss";
 import AppContext from "../../contexts/AppContext";
 
@@ -13,7 +12,7 @@ const Friend = ({ friend, setFriends }) => {
     } = useContext(AppContext);
 
     const deleteFriend = async () => {
-        await userAPI.deleteFriend(authUser, friend);
+        await authUser.deleteFriend(friend);
 
         setFriends((friends) =>
             friends.filter((user) => user.id !== friend.id)
@@ -23,13 +22,13 @@ const Friend = ({ friend, setFriends }) => {
     return (
         <div className="friend">
             <div className="friend__avatar">
-                <img src={friend.getAvatarPath()} alt={friend.fullName} />
+                <img src={friend.avatar} alt={friend.fullName} />
                 {friend.isOnline && <span className="friend__online"></span>}
             </div>
             <div className="info">
                 <div className="header">
                     <Link to={`/profile/${friend.id}`}>
-                        {friend.getFullNameWithUsername()}
+                        {friend.fullNameWithUsername}
                     </Link>
                     <div
                         className="right"

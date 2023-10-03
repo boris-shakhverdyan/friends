@@ -1,4 +1,4 @@
-import User from "../models/User";
+import User from "../app/Models/User";
 import instance from "./instance";
 
 const commentAPI = {

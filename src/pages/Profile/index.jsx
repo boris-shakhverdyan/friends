@@ -2,15 +2,14 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown, faUserCheck } from "@fortawesome/free-solid-svg-icons";
-import userAPI from "../../api1/userAPI";
 import postAPI from "../../api1/postAPI";
 import CreatePost from "../../components/CreatePost";
 import Post from "../../components/Post";
 import "./style.scss";
-import User from "../../models/User";
 import moment from "moment";
 import ProfileNotFound from "../../components/ProfileNotFound";
 import AppContext from "../../contexts/AppContext";
+import User from "../../app/Models/User";
 
 const Profile = () => {
     const [posts, setPosts] = useState([]);
@@ -23,11 +22,17 @@ const Profile = () => {
     useEffect(() => {
         (async () => {
             try {
-                setUser(
-                    authUser?.id && +id === authUser.id
-                        ? authUser
-                        : await userAPI.getById(id)
-                );
+                if (+id === authUser.id) {
+                    setUser(authUser);
+                }
+
+                const user = await User.find(id);
+
+                if (!user) {
+                    return;
+                }
+
+                setUser(user);
                 setPosts(await postAPI.getByUserId(+id));
             } catch (e) {
                 console.log(e);
@@ -40,15 +45,23 @@ const Profile = () => {
     }
 
     const deleteFriend = async () => {
-        userAPI.deleteFriend(authUser, user);
+        await authUser.deleteFriend(user);
 
-        setUser(new User(user));
+        setUser((user) => {
+            user.friends = [...user.friends];
+
+            return new User(user.getDBStructure());
+        });
     };
 
     const addToFriends = async () => {
-        userAPI.addToFriend(authUser, user);
+        await authUser.addToFriend(user);
 
-        setUser(new User({ ...user, friends: [...user.friends] }));
+        setUser((user) => {
+            user.friends = [...user.friends];
+
+            return new User(user.getDBStructure());
+        });
     };
 
     return (
@@ -64,7 +77,7 @@ const Profile = () => {
                     <div
                         className="avatar-big"
                         style={{
-                            backgroundImage: `url(${user.getAvatarPath()})`,
+                            backgroundImage: `url(${user.avatar})`,
                         }}
                     >
                         {user.isOnline ? (
@@ -83,7 +96,7 @@ const Profile = () => {
                         <div className="actions">
                             {user.id === authUser.id ? (
                                 <button>Edit profile</button>
-                            ) : user.friends.has(authUser.id) ? (
+                            ) : user.friends.includes(authUser.id) ? (
                                 <button onClick={deleteFriend}>
                                     <FontAwesomeIcon icon={faUserCheck} />
                                 </button>
@@ -103,15 +116,9 @@ const Profile = () => {
                 </div>
             </div>
             <div className="posts">
-                {user.id === authUser.id && (
-                    <CreatePost setPosts={setPosts} />
-                )}
+                {user.id === authUser.id && <CreatePost setPosts={setPosts} />}
                 {posts.map((post) => (
-                    <Post
-                        key={post.id}
-                        post={post}
-                        setPosts={setPosts}
-                    />
+                    <Post key={post.id} post={post} setPosts={setPosts} />
                 ))}
             </div>
         </div>

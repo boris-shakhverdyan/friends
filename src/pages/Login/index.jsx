@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
-import authAPI from "../../api1/authAPI";
-import "./style.scss";
 import AppContext from "../../contexts/AppContext";
 import { CHANGE_LOADING_STATUS, SET_AUTH_USER } from "../../App";
+import "./style.scss";
+import Auth from "../../app/Services/Auth";
 
 const Login = () => {
     const [status, setStatus] = useState("typing");
@@ -15,12 +15,12 @@ const Login = () => {
         dispatch({ type: CHANGE_LOADING_STATUS, payload: true });
 
         (async () => {
-            const userData = await authAPI.login(
+            const userData = await Auth.attempt(
                 e.target.username.value,
                 e.target.password.value
             );
 
-            if (userData?.id) {
+            if (userData) {
                 dispatch({ type: SET_AUTH_USER, payload: userData });
             } else {
                 setError("Incorrect username or password");
@@ -38,7 +38,6 @@ const Login = () => {
                     required
                     type="text"
                     name="username"
-                    id="username"
                     placeholder="Username"
                     autoComplete="off"
                     disabled={status === "sending"}
@@ -47,7 +46,6 @@ const Login = () => {
                     required
                     type="password"
                     name="password"
-                    id="password"
                     placeholder="Password"
                     autoComplete="off"
                     disabled={status === "sending"}

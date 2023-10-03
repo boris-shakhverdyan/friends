@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
 import { Link } from "react-router-dom";
-import userAPI from "../../../api1/userAPI";
+import User from "../../../app/Models/User";
 
 const SearchInput = () => {
     const [search, setSearch] = useState("");
@@ -11,8 +11,8 @@ const SearchInput = () => {
 
     useEffect(() => {
         (async () => {
-            if(search) {
-                setUsers(await userAPI.search(search));
+            if (search) {
+                setUsers(await User.search(search));
             }
         })();
     }, [search]);
@@ -39,10 +39,10 @@ const SearchInput = () => {
                             onClick={() => setSearch("")}
                         >
                             <img
-                                src={user.getAvatarPath()}
-                                alt={user.getFullNameWithUsername()}
+                                src={user.avatar}
+                                alt={user.fullNameWithUsername}
                             />
-                            {user.getFullNameWithUsername()}
+                            {user.fullNameWithUsername}
                         </Link>
                     ))}
                 </div>

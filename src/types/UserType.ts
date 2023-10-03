@@ -11,3 +11,13 @@ export type UserType = {
     lastActivity: number;
     isOnline: boolean;
 };
+
+export type IncompleteUserType = {
+    firstName: string;
+    lastName: string;
+    email: string;
+    birthdate: number;
+    username: string;
+    password: string;
+    avatar: string;
+};

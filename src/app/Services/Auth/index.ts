@@ -1,4 +1,5 @@
 import AuthAPI from "../../../api/AuthAPI";
+import { IncompleteUserType } from "../../../types/UserType";
 import User from "../../Models/User";
 
 class Auth {
@@ -51,6 +52,24 @@ class Auth {
         }
 
         return await this._user.updateOnlineStatus(isOnline);
+    }
+
+    public static async createAndLogin(userData: IncompleteUserType) {
+        const user = await User.create({
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            email: userData.email,
+            birthdate: userData.birthdate,
+            username: userData.username,
+            password: userData.password,
+            avatar: userData.avatar,
+        });
+
+        if (!user) {
+            return null;
+        }
+
+        return await this.attempt(user.username, user.password);
     }
 }
 

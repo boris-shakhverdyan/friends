@@ -9,10 +9,10 @@ import {
     faShare,
 } from "@fortawesome/free-solid-svg-icons";
 import postAPI from "../../api1/postAPI";
-import userAPI from "../../api1/userAPI";
 import Comments from "./Comments";
 import "./style.scss";
 import AppContext from "../../contexts/AppContext";
+import User from "../../app/Models/User";
 
 const Post = ({ setPosts, post }) => {
     const [author, setAuthor] = useState(null);
@@ -24,8 +24,8 @@ const Post = ({ setPosts, post }) => {
 
     useEffect(() => {
         (async () => {
-            if (authUser?.id !== post.userId) {
-                setAuthor(await userAPI.getById(post.userId));
+            if (authUser.id !== post.userId) {
+                setAuthor(await User.find(post.userId));
             } else {
                 setAuthor(authUser);
             }
@@ -61,12 +61,9 @@ const Post = ({ setPosts, post }) => {
             <div className="header">
                 <div className="author">
                     <div className="left">
-                        <img
-                            src={author.getAvatarPath()}
-                            alt={author.fullName}
-                        />
+                        <img src={author.avatar} alt={author.fullName} />
                         <Link className="link" to={`/profile/${author.id}`}>
-                            {author.getFullNameWithUsername()}
+                            {author.fullNameWithUsername}
                         </Link>
                         <span className="datetime">
                             {moment(post.created_at).fromNow()}

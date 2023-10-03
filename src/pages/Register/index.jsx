@@ -1,9 +1,8 @@
 import { useContext, useState } from "react";
-import User from "../../models/User";
-import authAPI from "../../api1/authAPI";
-import "./style.scss";
 import AppContext from "../../contexts/AppContext";
 import { CHANGE_LOADING_STATUS, SET_AUTH_USER } from "../../App";
+import Auth from "../../app/Services/Auth";
+import "./style.scss";
 
 const Register = () => {
     const [status, setStatus] = useState("typing");
@@ -22,26 +21,21 @@ const Register = () => {
                 reader.readAsDataURL(e.target.avatar.files[0]);
 
                 reader.onload = async () => {
-                    const user = await User.create(
-                        e.target.firstName.value,
-                        e.target.lastName.value,
-                        e.target.email.value,
-                        e.target.birthdate.value,
-                        e.target.username.value,
-                        e.target.password.value,
-                        reader.result
-                    );
-
-                    const authUser = await authAPI.login(
-                        user.username,
-                        user.password
-                    );
+                    const authUser = await Auth.createAndLogin({
+                        firstName: e.target.firstName.value,
+                        lastName: e.target.lastName.value,
+                        email: e.target.email.value,
+                        birthdate: e.target.birthdate.value,
+                        username: e.target.username.value,
+                        password: e.target.password.value,
+                        avatar: reader.result,
+                    });
 
                     dispatch({ type: SET_AUTH_USER, payload: authUser });
                     dispatch({ type: CHANGE_LOADING_STATUS, payload: false });
-                };
 
-                setStatus("sent");
+                    setStatus("sent");
+                };
             })();
         } else {
             setError("Password mismatch");
@@ -113,7 +107,6 @@ const Register = () => {
                     type="file"
                     accept="image/png, image/jpg, image/jpeg"
                     name="avatar"
-                    id="avatar"
                     disabled={status === "sending"}
                 />
                 <button disabled={status === "sending"}>Register</button>

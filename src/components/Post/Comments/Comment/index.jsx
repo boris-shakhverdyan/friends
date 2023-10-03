@@ -43,7 +43,7 @@ const Comment = ({
     return (
         <div className="comment">
             <img
-                src={comment.user.getAvatarPath()}
+                src={comment.user.avatar}
                 alt={comment.user.fullName}
             />
             <div>
