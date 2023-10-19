@@ -1,0 +1,38 @@
+@import "../../variables";
+
+.container {
+    overflow-y: auto;
+
+    .center {
+        width: 1085px;
+        margin: 20px auto;
+        height: 100%;
+        position: relative;
+
+        >.content {
+            position: absolute;
+            width: calc(100% - 170px);
+            right: 0;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: $darkGray;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: lighten($gray, 5);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background: lighten($gray, 10);
+    }
+
+    &::-webkit-scrollbar-thumb:active {
+        background: lighten($gray, 15);
+    }
+}

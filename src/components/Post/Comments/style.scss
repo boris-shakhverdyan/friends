@@ -1,0 +1,187 @@
+.comments {
+    border-top: 1px solid #424242;
+
+    .comment {
+        padding: 10px;
+        display: grid;
+        grid-template-columns: 50px 1fr;
+        justify-content: space-between;
+        border-bottom: 1px solid #424242;
+
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e1e3e6;
+            object-fit: cover;
+        }
+
+        .link,
+        .link-small {
+            color: #71aaeb;
+            cursor: pointer;
+            text-decoration: none;
+            padding-right: 10px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .link-small {
+            font-size: small;
+        }
+
+        .dateTime {
+            color: #666666;
+            font-size: small;
+            padding-right: 10px;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .right {
+            position: relative;
+
+            .popup {
+                position: absolute;
+                top: 100%;
+                right: 0;
+                border-radius: 10px;
+                padding: 5px 0;
+                width: 173px;
+                background-color: #333333;
+                overflow: hidden;
+                transition: opacity .2s, visibility .2s, transform .2s;
+
+                &.opened {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+
+                &.closed {
+                    opacity: 0;
+                    transform: translateY(5px);
+                    visibility: hidden;
+                }
+
+                ul {
+                    list-style-type: none;
+
+                    li {
+                        display: block;
+                        width: 100%;
+                        padding: 5px 10px;
+                        transition: background-color .2s;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: #424242;
+                        }
+                    }
+                }
+            }
+
+            svg {
+                font-size: 24px;
+                color: #555555;
+                padding: 0px 10px;
+                cursor: pointer;
+                transition: color .1s;
+            }
+
+            &:hover svg {
+                color: #424242;
+            }
+        }
+    }
+
+    .actions {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            border: none;
+            background-color: transparent;
+            color: #919191;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: color .2s;
+
+            svg {
+                width: 14px;
+                height: 14px;
+            }
+
+            &:hover {
+                color: #e1e3e6;
+            }
+
+            &.liked {
+                color: crimson;
+
+                &:hover {
+                    color: darken(crimson, 5);
+                }
+            }
+        }
+    }
+}
+
+.addComment {
+    padding: 10px;
+    border-top: 1px solid #424242;
+    display: grid;
+    grid-template-columns: 50px 1fr 40px;
+    align-items: center;
+    gap: 10px;
+
+    img {
+        display: block;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #e1e3e6;
+        background-position: center;
+        background-size: contain;
+        box-sizing: content-box;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 10px;
+        background-color: #333333;
+        outline: none;
+        color: white;
+    }
+
+    button {
+        background-color: transparent;
+        border: none;
+    }
+
+    .commentSentIcon {
+        color: #4bb34b;
+        font-size: 20px;
+        padding: 5px;
+        cursor: pointer;
+        transition: color .2s;
+
+        &:hover {
+            color: darken(#4bb34b, 5);
+        }
+    }
+}

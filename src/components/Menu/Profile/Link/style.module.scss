@@ -1,0 +1,16 @@
+.link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #e1e3e6;
+    text-decoration: none;
+    padding: 10px 15px;
+
+    &:hover {
+        background-color: lighten(#222222, 10);
+    }
+
+    svg {
+        color: #6898d0;
+    }
+}

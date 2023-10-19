@@ -1,0 +1,52 @@
+.friends {
+    border: 1px solid #424242;
+    background-color: #222222;
+    border-radius: 10px;
+    color: #e1e3e6;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+    &__header {
+        .row {
+            padding: 20px 20px 0 20px;
+
+            button {
+                padding: 5px 10px;
+                border: none;
+                background-color: transparent;
+                color: lighten(#424242, 15);
+                border-radius: 5px;
+                transition: background-color .2s;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: darken(#333333, 3);
+                }
+
+                &.active {
+                    border: 1px solid #424242;
+                    background-color: #333333;
+                    color: #e1e3e6;
+                }
+            }
+
+            input {
+                width: 100%;
+                padding: 10px 15px;
+                border: 1px solid #424242;
+                background-color: transparent;
+                border-radius: 5px;
+                color: #e1e3e6;
+            }
+
+            &.flex {
+                display: flex;
+                gap: 10px;
+            }
+        }
+    }
+
+    &__list {
+        padding: 10px;
+    }
+}

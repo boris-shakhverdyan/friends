@@ -1,0 +1,16 @@
+.notifications {
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    svg {
+        color: lighten(#424242, 10);
+        font-size: 18px;
+    }
+
+    &:hover {
+        background-color: lighten(#222222, 5);
+    }
+}

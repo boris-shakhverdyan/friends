@@ -1,0 +1,13 @@
+$darkGray: #333333;
+$gray: #424242;
+
+#app {
+    height: 100vh;
+    overflow: hidden;
+
+    #content {
+        display: grid;
+        grid-template-rows: 50px 1fr;
+        height: 100%;
+    }
+}
