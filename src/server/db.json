@@ -1,0 +1,549 @@
+{
+  "users": [
+    {
+      "id": 1695149534759,
+      "firstName": "Admin",
+      "lastName": "Admin",
+      "email": "admin@test.test",
+      "birthdate": "2002-12-01",
+      "friends": [
+        1695759523073,
+        1695762021947,
+        1695301134882
+      ],
+      "username": "admin",
+      "password": "admin",
+      "avatar": "12441512512.jpeg",
+      "lastActivity": 1696365702509,
+      "isOnline": true
+    },
+    {
+      "id": 1,
+      "firstName": "Demetrius",
+      "lastName": "Corkery",
+      "email": "nloiterton8@aol.com",
+      "birthdate": "1979-10-11",
+      "friends": [],
+      "username": "nloiterton8",
+      "password": "HTQxxXV9Bq4",
+      "avatar": "31241241242515.png",
+      "lastActivity": null,
+      "isOnline": false
+    },
+    {
+      "id": 2,
+      "firstName": "Eleanora",
+      "lastName": "Price",
+      "email": "umcgourty9@jalbum.net",
+      "birthdate": "2000-05-10",
+      "friends": [],
+      "username": "umcgourty9",
+      "password": "i0xzpX",
+      "avatar": "1311522612423.png",
+      "lastActivity": null,
+      "isOnline": false
+    },
+    {
+      "id": 3,
+      "firstName": "Assunta",
+      "lastName": "Rath",
+      "email": "rhallawellb@dropbox.com",
+      "birthdate": "1998-01-05",
+      "friends": [],
+      "username": "rhallawellb",
+      "password": "esTkitT1r",
+      "avatar": "1562734363532.png",
+      "lastActivity": null,
+      "isOnline": false
+    },
+    {
+      "id": 4,
+      "firstName": "Trace",
+      "lastName": "Douglas",
+      "email": "lgribbinc@posterous.com",
+      "birthdate": "1989-08-07",
+      "friends": [],
+      "username": "lgribbinc",
+      "password": "ftGj8LZTtv9g",
+      "avatar": "12551512513.png",
+      "lastActivity": 1695983389033,
+      "isOnline": false
+    },
+    {
+      "id": 5,
+      "firstName": "Enoch",
+      "lastName": "Lynch",
+      "email": "mturleyd@tumblr.com",
+      "birthdate": "2000-08-17",
+      "friends": [],
+      "username": "mturleyd",
+      "password": "GyLnCB8gNIp",
+      "avatar": "1215123123123.png",
+      "lastActivity": null,
+      "isOnline": false
+    },
+    {
+      "id": 6,
+      "firstName": "Jeanne",
+      "lastName": "Halvorson",
+      "email": "kminchelle@qq.com",
+      "birthdate": "1999-09-09",
+      "friends": [],
+      "username": "kminchelle",
+      "password": "0lelplR",
+      "avatar": "1262325343243.png",
+      "lastActivity": null,
+      "isOnline": false
+    },
+    {
+      "id": 7,
+      "firstName": "Trycia",
+      "lastName": "Fadel",
+      "email": "dpierrof@vimeo.com",
+      "birthdate": "1999-10-03",
+      "friends": [],
+      "username": "dpierrof",
+      "password": "Vru55Y4tufI4",
+      "avatar": "98982193123.png",
+      "lastActivity": null,
+      "isOnline": false
+    },
+    {
+      "id": 8,
+      "firstName": "Bradford",
+      "lastName": "Prohaska",
+      "email": "vcholdcroftg@ucoz.com",
+      "birthdate": "2001-04-27",
+      "friends": [],
+      "username": "vcholdcroftg",
+      "password": "mSPzYZfR",
+      "avatar": "19283912839123.png",
+      "lastActivity": null,
+      "isOnline": false
+    },
+    {
+      "id": 9,
+      "firstName": "Arely",
+      "lastName": "Skiles",
+      "email": "sberminghamh@chron.com",
+      "birthdate": "2003-06-07",
+      "friends": [],
+      "username": "sberminghamh",
+      "password": "cAjfb8vg",
+      "avatar": "81278718231231.png",
+      "lastActivity": null,
+      "isOnline": false
+    },
+    {
+      "id": 1695301134882,
+      "firstName": "Digital",
+      "lastName": "Tester",
+      "email": "test@test.org",
+      "birthdate": "1979-01-01",
+      "friends": [
+        1695149534759
+      ],
+      "username": "tester",
+      "password": "tester",
+      "avatar": "9182491824112.jpeg",
+      "lastActivity": null,
+      "isOnline": false
+    },
+    {
+      "id": 1695759523073,
+      "firstName": "Vito",
+      "lastName": "Corleone",
+      "email": "godfather@test.com",
+      "birthdate": "1917-09-09",
+      "friends": [
+        1695149534759
+      ],
+      "username": "godfather",
+      "password": "123123123",
+      "avatar": "57657436264.jpeg",
+      "lastActivity": null,
+      "isOnline": false
+    },
+    {
+      "id": 1695762021947,
+      "firstName": "John",
+      "lastName": "Morgan",
+      "email": "john@morgan.com",
+      "birthdate": "1837-04-17",
+      "friends": [
+        1695149534759
+      ],
+      "username": "morgan",
+      "password": "123123123",
+      "avatar": "87129841410247.jpeg",
+      "lastActivity": null,
+      "isOnline": false
+    }
+  ],
+  "posts": [
+    {
+      "id": 1,
+      "body": "His mother had always taught him not to ever think of himself as better than others. He'd tried to live by this motto. He never looked down on those who were less fortunate or who had less money than him. But the stupidity of the group of people he was talking to made him change his mind.",
+      "userId": 1695149534759,
+      "reactions": [
+        1695149534759,
+        9
+      ],
+      "created_at": 1695155341586
+    },
+    {
+      "id": 3,
+      "body": "Dave watched as the forest burned up on the hill, only a few miles from her house. The car had been hastily packed and Marta was inside trying to round up the last of the pets. Dave went through his mental list of the most important papers and documents that they couldn't leave behind. He scolded himself for not having prepared these better in advance and hoped that he had remembered everything that was needed. He continued to wait for Marta to appear with the pets, but she still was nowhere to be seen.",
+      "userId": 1695149534759,
+      "reactions": [
+        1695149534759,
+        1
+      ],
+      "created_at": 1695155365142
+    },
+    {
+      "id": 4,
+      "body": "Things aren't going well at all with mom today. She is just a limp noodle and wants to sleep all the time. I sure hope that things get better soon.",
+      "userId": 2,
+      "reactions": [
+        1695149534759
+      ],
+      "created_at": 1695155374906
+    },
+    {
+      "id": 1695244976623,
+      "body": "Everyone can like the posts!!!1",
+      "userId": 1695149534759,
+      "reactions": [
+        1695149534759
+      ],
+      "created_at": 1695244976623
+    },
+    {
+      "id": 1695245423779,
+      "body": "Post from profile",
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1695245423779
+    },
+    {
+      "id": 1695293099973,
+      "body": "WoHAHAHAhA",
+      "userId": 1,
+      "reactions": [
+        1,
+        4,
+        1695149534759
+      ],
+      "created_at": 1695293099973
+    },
+    {
+      "id": 1695294497156,
+      "body": "But I dont wanna to talk about my day!!",
+      "userId": 4,
+      "reactions": [
+        1
+      ],
+      "created_at": 1695294497156
+    },
+    {
+      "id": 1695296469872,
+      "body": "This is my second post, enough!!!",
+      "userId": 1,
+      "reactions": [
+        1695149534759
+      ],
+      "created_at": 1695296469872
+    },
+    {
+      "id": 1695301493046,
+      "body": "This is it",
+      "userId": "1695301134882",
+      "reactions": [
+        1695301134882
+      ],
+      "created_at": 1695301493046
+    },
+    {
+      "id": 1695301998482,
+      "body": "Second post",
+      "userId": "1695301134882",
+      "reactions": [
+        1695149534759,
+        1695301134882
+      ],
+      "created_at": 1695301998482
+    },
+    {
+      "id": 1696297562536,
+      "body": "a sda sd asd sad ",
+      "userId": 1695149534759,
+      "reactions": [
+        1695149534759
+      ],
+      "created_at": 1696297562536
+    },
+    {
+      "id": 1696334859463,
+      "body": "trust",
+      "userId": 1695149534759,
+      "reactions": [
+        1695149534759
+      ],
+      "created_at": 1696334859463
+    },
+    {
+      "id": 1696363370534,
+      "body": "This is it",
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1696363370534
+    },
+    {
+      "id": 1696363637239,
+      "body": "asd asd a",
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1696363637239
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "This is some awesome thinking!",
+      "postId": 1,
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1695290112887
+    },
+    {
+      "id": 2,
+      "body": "What terrific math skills you’re showing!",
+      "postId": 1,
+      "userId": 1,
+      "reactions": [],
+      "created_at": 1695290148367
+    },
+    {
+      "id": 1695291860806,
+      "body": "new comment",
+      "postId": 1695245423779,
+      "userId": 1695149534759,
+      "created_at": 1695291860806,
+      "reactions": [
+        1695149534759
+      ]
+    },
+    {
+      "id": 1695292856969,
+      "body": "Can i like too pls?",
+      "postId": 1695244976623,
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1695292856969
+    },
+    {
+      "id": 1695293219470,
+      "body": "You are my administrator. Pls don't remove me!",
+      "postId": 1695245423779,
+      "userId": 1,
+      "reactions": [],
+      "created_at": 1695293219470,
+      "user": {
+        "_id": 1,
+        "_firstName": "Demetrius",
+        "_lastName": "Corkery",
+        "_email": "nloiterton8@aol.com",
+        "_birthdate": "1979-10-11",
+        "_friends": [],
+        "_username": "nloiterton8",
+        "_password": "HTQxxXV9Bq4",
+        "_avatar": "31241241242515.png",
+        "_lastActivity": null,
+        "_isOnline": false
+      }
+    },
+    {
+      "id": 1695294403230,
+      "body": "Hm....",
+      "postId": 1695293099973,
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1695294403230
+    },
+    {
+      "id": 1695294455958,
+      "body": "I AM DOUGLAS",
+      "postId": 1695293099973,
+      "userId": 4,
+      "created_at": 1695294455958,
+      "reactions": []
+    },
+    {
+      "id": 1695294538193,
+      "body": "No one cares....",
+      "postId": 1695294497156,
+      "userId": 4,
+      "created_at": 1695294538193,
+      "reactions": [
+        1695149534759,
+        1
+      ]
+    },
+    {
+      "id": 1695296517334,
+      "body": "And my comment",
+      "postId": 1695296469872,
+      "userId": 1,
+      "created_at": 1695296517334,
+      "reactions": [
+        1695149534759,
+        1
+      ]
+    },
+    {
+      "id": 1695296913641,
+      "body": "Trace, Off OR YOU'LL DISAPPEAR",
+      "postId": 1695293099973,
+      "userId": 1695149534759,
+      "created_at": 1695296913641,
+      "reactions": [
+        1695149534759
+      ]
+    },
+    {
+      "id": 1695297271211,
+      "body": "Admin, test",
+      "postId": 1695245423779,
+      "userId": 1695149534759,
+      "created_at": 1695297271211,
+      "reactions": [
+        1695149534759
+      ]
+    },
+    {
+      "id": 1695298105902,
+      "body": "Im joking Huh",
+      "postId": 4,
+      "userId": 1695149534759,
+      "created_at": 1695298105902,
+      "reactions": []
+    },
+    {
+      "id": 1695298121707,
+      "body": "Where are you from?",
+      "postId": 4,
+      "userId": 1695149534759,
+      "created_at": 1695298121707,
+      "reactions": [
+        1695149534759
+      ]
+    },
+    {
+      "id": 1695298198836,
+      "body": "Demetrius, test",
+      "postId": 1695245423779,
+      "userId": 1695149534759,
+      "created_at": 1695298198836,
+      "reactions": [
+        1695149534759
+      ]
+    },
+    {
+      "id": 1695301990711,
+      "body": "My comment",
+      "postId": 1695301493046,
+      "userId": 1695301134882,
+      "created_at": 1695301990711,
+      "reactions": []
+    },
+    {
+      "id": 1695302003344,
+      "body": "i like it",
+      "postId": 1695301998482,
+      "userId": 1695301134882,
+      "created_at": 1695302003344,
+      "reactions": [
+        1695149534759,
+        1695301134882
+      ],
+      "user": {
+        "_id": 1695301134882,
+        "_firstName": "Digital",
+        "_lastName": "Tester",
+        "_email": "test@test.org",
+        "_birthdate": "1979-01-01",
+        "_friends": [
+          1695149534759
+        ],
+        "_username": "tester",
+        "_password": "tester",
+        "_avatar": "9182491824112.jpeg",
+        "_lastActivity": null,
+        "_isOnline": false
+      }
+    },
+    {
+      "id": 1695747082370,
+      "body": "new Comment",
+      "postId": 1695245423779,
+      "userId": 1695149534759,
+      "created_at": 1695747082370,
+      "reactions": []
+    },
+    {
+      "id": 1696295459712,
+      "body": "Digital, asdasda s",
+      "postId": 1695301998482,
+      "userId": 1695149534759,
+      "created_at": 1696295459712,
+      "reactions": []
+    },
+    {
+      "id": 1696297567132,
+      "body": "as dasdasd aposdk aposkd",
+      "postId": 1696297562536,
+      "userId": 1695149534759,
+      "created_at": 1696297567132,
+      "reactions": []
+    },
+    {
+      "id": 1696297572355,
+      "body": "Admin,  asdkpa oksdo kaspdo",
+      "postId": 1696297562536,
+      "userId": 1695149534759,
+      "created_at": 1696297572355,
+      "reactions": []
+    },
+    {
+      "id": 1696334644845,
+      "body": "new one",
+      "postId": 1,
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1696334644845
+    },
+    {
+      "id": 1696334796728,
+      "body": "Test",
+      "postId": 1,
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1696334796728
+    }
+  ],
+  "messages": [
+    {
+      "id": 1,
+      "body": "Hello. How are you?",
+      "sender": 1695149534759,
+      "receiver": 1695759523073
+    },
+    {
+      "id": 2,
+      "body": "Im Fine bro?",
+      "sender": 1695759523073,
+      "receiver": 1695149534759
+    }
+  ]
+}

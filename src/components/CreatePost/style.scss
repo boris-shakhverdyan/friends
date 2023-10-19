@@ -1,0 +1,112 @@
+.createPost {
+    margin-bottom: 20px;
+    background-color: #222222;
+    color: #e1e3e6;
+    border-radius: 10px;
+    border: 1px solid #424242;
+    padding: 0 10px;
+    display: grid;
+    grid-template-columns: 230px 1fr 153px;
+    align-items: center;
+
+    .author {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #e1e3e6;
+            cursor: pointer;
+            object-fit: cover;
+        }
+
+        h4 {
+            color: #71aaeb;
+            font-weight: normal;
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    input {
+        display: inline-block;
+        width: 100%;
+        border-radius: 5px;
+        border: none;
+        padding: 10px 15px;
+        background-color: #333333;
+        color: #e1e3e6;
+    }
+
+    input::placeholder {
+        color: #666666;
+    }
+
+    .actions {
+        display: flex;
+        flex-direction: row-reverse;
+        gap: 10px;
+        align-items: center;
+        padding: 10px;
+
+        button {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            background-color: #4bb34b;
+            color: white;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: background-color .2s;
+
+            svg {
+                width: 18px;
+                height: 18px;
+            }
+
+            &:hover {
+                background-color: darken(#4bb34b, 5);
+            }
+        }
+    }
+
+    .comments {
+        .comment {
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+
+            .link {
+                color: #71aaeb;
+                cursor: pointer;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    .no-comments {
+        padding-top: 10px;
+        color: #666666;
+    }
+}
+
+.preloader {
+    padding: 10px;
+    margin-bottom: 20px;
+    color: #e1e3e6;
+    height: 100px;
+    background-color: #222222;
+    border-radius: 10px;
+}

@@ -1,0 +1,41 @@
+.profileNotFound {
+    background-color: #222222;
+    height: 200px;
+    width: 100%;
+    border-radius: 12px;
+    border: 1px solid #424242;
+    display: grid;
+    grid-template-rows: 44px 1fr;
+
+    h3 {
+        padding: 10px;
+        color: #e1e3e6;
+        border-bottom: 1px solid #424242;
+    }
+
+    >.content {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+
+        p {
+            color: #e1e3e6;
+        }
+
+        button {
+            padding: 8px 30px;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            background-color: #fff;
+            transition: background-color .2s;
+
+            &:hover {
+                background-color: #dadada;
+            }
+        }
+    }
+}

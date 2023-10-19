@@ -1,0 +1,32 @@
+.nav-item {
+    color: #e1e3e6;
+    text-decoration: none;
+    padding: 8px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    font-size: 14px;
+    width: 94%;
+    border-radius: 7px;
+
+    &.active {
+        background-color: #222222;
+    }
+
+    &:hover {
+        background-color: #222222;
+    }
+
+    span {
+        display: flex;
+        height: 100%;
+        align-items: center;
+        font-size: 14px;
+    }
+
+    svg {
+        width: 18px;
+        height: 18px;
+        color: #6898d0;
+    }
+}
