@@ -5,6 +5,7 @@ import Profile from "./Profile";
 import "./style.scss";
 import { useSelector } from "react-redux";
 import { selectAuthUser } from "../../store/Slices/auth/selectors";
+import { route } from "../../utils/helpers";
 
 const Menu = () => {
     const authUser = useSelector(selectAuthUser);
@@ -13,7 +14,7 @@ const Menu = () => {
         <div id="menu">
             <div className="center">
                 <div className="left">
-                    <Link to="/" className="logo">
+                    <Link to={route("index")} className="logo">
                         <span>Friends</span>
                     </Link>
                     {authUser ? (
@@ -28,8 +29,8 @@ const Menu = () => {
                         <Profile />
                     ) : (
                         <>
-                            <NavLink to={"register"}>Register</NavLink>
-                            <NavLink to={"login"}>Login</NavLink>
+                            <NavLink to={route("register")}>Register</NavLink>
+                            <NavLink to={route("login")}>Login</NavLink>
                         </>
                     )}
                 </div>

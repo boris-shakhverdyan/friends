@@ -1,13 +1,13 @@
 import { useSelector } from "react-redux";
 import { Navigate, Outlet } from "react-router-dom";
 import { selectAuthUser } from "../../store/Slices/auth/selectors";
-import { ROUTE_LOGIN } from "../../Router/routes";
 import { TRouteMiddlewareProps } from "./types";
+import { route } from "../../utils/helpers";
 
 const RouteMiddleware = ({
     user = false,
     guest = false,
-    redirectPath = ROUTE_LOGIN,
+    redirectPath = route("login"),
 }: TRouteMiddlewareProps) => {
     const authUser = useSelector(selectAuthUser);
 

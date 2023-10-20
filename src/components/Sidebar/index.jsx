@@ -12,16 +12,17 @@ import {
 import NavItem from "./NavItem";
 import { useSelector } from "react-redux";
 import { selectAuthUser } from "../../store/Slices/auth/selectors";
+import { route } from "../../utils/helpers";
 
 const Sidebar = () => {
     const authUser = useSelector(selectAuthUser);
 
     const links = [
-        { text: "Profile", path: "profile/" + authUser.id, icon: faIdCard },
-        { text: "News", path: "/", icon: faNewspaper },
-        { text: "Messenger", path: "messenger", icon: faEnvelope },
-        { text: "Friends", path: "friends", icon: faUserGroup },
-        { text: "Shop", path: "shop", icon: faBasketShopping },
+        { text: "Profile", path: route("profile", authUser.id), icon: faIdCard },
+        { text: "News", path: route("index"), icon: faNewspaper },
+        { text: "Messenger", path: route("messenger"), icon: faEnvelope },
+        { text: "Friends", path: route("friends"), icon: faUserGroup },
+        { text: "Shop", path: route("shop"), icon: faBasketShopping },
     ];
 
     return (

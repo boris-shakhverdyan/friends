@@ -7,6 +7,7 @@ import { selectAuthUser } from "../../store/Slices/auth/selectors";
 import "./style.scss";
 import { useDispatch } from "react-redux";
 import { showModalAC } from "../../store/Slices/app/actions";
+import { route } from "../../utils/helpers";
 
 const Friend = ({ friend, setFriends }) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -37,7 +38,7 @@ const Friend = ({ friend, setFriends }) => {
             </div>
             <div className="info">
                 <div className="header">
-                    <Link to={`/profile/${friend.id}`}>{friend.fullNameWithUsername}</Link>
+                    <Link to={route("profile", friend.id)}>{friend.fullNameWithUsername}</Link>
                     <div
                         className="right"
                         onMouseEnter={() => setIsPopupOpen(true)}
@@ -54,7 +55,7 @@ const Friend = ({ friend, setFriends }) => {
                     </div>
                 </div>
                 <p className="actions">
-                    <Link to={`/messages/${friend.id}`} className="action">
+                    <Link to={route("messages")} className="action">
                         Send message
                     </Link>
                 </p>

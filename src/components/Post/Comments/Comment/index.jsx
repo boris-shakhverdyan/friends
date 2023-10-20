@@ -7,6 +7,7 @@ import { faEllipsis, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { selectAuthUser } from "../../../../store/Slices/auth/selectors";
 import "./style.scss";
 import { showModalAC } from "../../../../store/Slices/app/actions";
+import { route } from "../../../../utils/helpers";
 
 const Comment = ({ comment, setComments, setIsWantToComment, setCommentText }) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
@@ -49,7 +50,7 @@ const Comment = ({ comment, setComments, setIsWantToComment, setCommentText }) =
             <img src={comment.user.avatar} alt={comment.user.fullName} />
             <div>
                 <div className="header">
-                    <Link className="link" to={`/profile/${comment.user.id}`}>
+                    <Link className="link" to={route("profile", comment.user.id)}>
                         {comment.user.fullName}
                     </Link>
                     {authUser?.id === comment.user.id && (

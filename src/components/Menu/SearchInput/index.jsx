@@ -4,6 +4,7 @@ import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
 import { Link } from "react-router-dom";
 import User from "../../../app/Models/User";
+import { route } from "../../../utils/helpers";
 
 const SearchInput = () => {
     const [search, setSearch] = useState("");
@@ -33,7 +34,7 @@ const SearchInput = () => {
                 <div className="search-results">
                     {users.map((user) => (
                         <Link
-                            to={`/profile/${user.id}`}
+                            to={route("profile", user.id)}
                             className="search-user"
                             key={user.id}
                             onClick={() => setSearch("")}

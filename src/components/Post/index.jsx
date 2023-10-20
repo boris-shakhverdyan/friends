@@ -9,6 +9,7 @@ import User from "../../app/Models/User";
 import { selectAuthUser } from "../../store/Slices/auth/selectors";
 import "./style.scss";
 import { showModalAC } from "../../store/Slices/app/actions";
+import { route } from "../../utils/helpers";
 
 const Post = ({ setPosts, post }) => {
     const [author, setAuthor] = useState(null);
@@ -67,7 +68,7 @@ const Post = ({ setPosts, post }) => {
                 <div className="author">
                     <div className="left">
                         <img src={author.avatar} alt={author.fullName} />
-                        <Link className="link" to={`/profile/${author.id}`}>
+                        <Link className="link" to={route("profile", author.id)}>
                             {author.fullNameWithUsername}
                         </Link>
                         <span className="datetime">{moment(post.created_at).fromNow()}</span>

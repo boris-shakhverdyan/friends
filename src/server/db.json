@@ -8,12 +8,14 @@
       "birthdate": "2002-12-01",
       "friends": [
         1695762021947,
-        1695301134882
+        1695301134882,
+        1695759523073,
+        1
       ],
       "username": "admin",
       "password": "admin",
       "avatar": "12441512512.jpeg",
-      "lastActivity": 1697755700578,
+      "lastActivity": 1697798195838,
       "isOnline": false
     },
     {
@@ -22,7 +24,9 @@
       "lastName": "Corkery",
       "email": "nloiterton8@aol.com",
       "birthdate": "1979-10-11",
-      "friends": [],
+      "friends": [
+        1695149534759
+      ],
       "username": "nloiterton8",
       "password": "HTQxxXV9Bq4",
       "avatar": "31241241242515.png",
@@ -154,7 +158,9 @@
       "lastName": "Corleone",
       "email": "godfather@test.com",
       "birthdate": "1917-09-09",
-      "friends": [],
+      "friends": [
+        1695149534759
+      ],
       "username": "godfather",
       "password": "123123123",
       "avatar": "57657436264.jpeg",
@@ -304,6 +310,15 @@
         1695149534759
       ],
       "created_at": 1697755643705
+    },
+    {
+      "id": 1697797485933,
+      "body": " asda sdasd",
+      "userId": 1695149534759,
+      "reactions": [
+        1695149534759
+      ],
+      "created_at": 1697797485933
     }
   ],
   "comments": [
@@ -549,12 +564,28 @@
       "created_at": 1697755650023
     },
     {
-      "id": 1697755653631,
-      "body": "Admin,  asd",
+      "id": 1697797483729,
+      "body": "Admin, dasd asd",
       "postId": 1697755643705,
       "userId": 1695149534759,
       "reactions": [],
-      "created_at": 1697755653631
+      "created_at": 1697797483729
+    },
+    {
+      "id": 1697797490333,
+      "body": "a sdas ds",
+      "postId": 1697797485933,
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1697797490333
+    },
+    {
+      "id": 1697797492925,
+      "body": "Admin, a sdasd",
+      "postId": 1697797485933,
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1697797492925
     }
   ],
   "messages": [
