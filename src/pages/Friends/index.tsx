@@ -4,16 +4,19 @@ import "./style.scss";
 import classNames from "classnames";
 import { useSelector } from "react-redux";
 import { selectAuthUser } from "../../store/Slices/auth/selectors";
+import User from "../../app/Models/User";
 
 const Friends = () => {
     const [section, setSection] = useState("all");
     const [search, setSearch] = useState("");
-    const [friends, setFriends] = useState([]);
+    const [friends, setFriends] = useState<User[]>([]);
     const authUser = useSelector(selectAuthUser);
 
     useEffect(() => {
         (async () => {
-            setFriends(await authUser.getFriends());
+            if (authUser) {
+                setFriends((await authUser.getFriends()) ?? []);
+            }
         })();
     }, []);
 

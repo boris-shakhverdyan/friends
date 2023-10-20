@@ -240,11 +240,11 @@ class User {
         return users.map((user) => new User(user));
     }
 
-    public static async search(query: string): Promise<User[] | null> {
+    public static async search(query: string): Promise<User[]> {
         const users = await UserAPI.get({ q: query });
 
         if (!users) {
-            return null;
+            return [];
         }
 
         return users.map((user) => new User(user));

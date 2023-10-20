@@ -2,8 +2,9 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import "./style.scss";
+import { TProductProps } from "./types";
 
-const Product = ({ title, images, price, discountPercentage }) => {
+const Product = ({ title, images, price, discountPercentage }: TProductProps) => {
     const [image, setImage] = useState(0);
 
     const toRight = () => {

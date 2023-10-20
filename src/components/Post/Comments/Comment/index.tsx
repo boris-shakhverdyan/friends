@@ -8,11 +8,16 @@ import { selectAuthUser } from "../../../../store/Slices/auth/selectors";
 import "./style.scss";
 import { showModalAC } from "../../../../store/Slices/app/actions";
 import { route } from "../../../../utils/helpers";
+import { TCommentProps } from "./types";
 
-const Comment = ({ comment, setComments, setIsWantToComment, setCommentText }) => {
+const Comment = ({ comment, setComments, setIsWantToComment, setCommentText }: TCommentProps) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const authUser = useSelector(selectAuthUser);
     const dispatch = useDispatch();
+
+    if (!authUser) {
+        return null;
+    }
 
     const deleteComment = async () => {
         await comment.delete();

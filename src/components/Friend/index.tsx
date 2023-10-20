@@ -1,18 +1,22 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEllipsis } from "@fortawesome/free-solid-svg-icons";
 import { selectAuthUser } from "../../store/Slices/auth/selectors";
-import "./style.scss";
-import { useDispatch } from "react-redux";
 import { showModalAC } from "../../store/Slices/app/actions";
 import { route } from "../../utils/helpers";
+import { TFriendProps } from "./types";
+import "./style.scss";
 
-const Friend = ({ friend, setFriends }) => {
+const Friend = ({ friend, setFriends }: TFriendProps) => {
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const authUser = useSelector(selectAuthUser);
     const dispatch = useDispatch();
+
+    if (!authUser) {
+        return null;
+    }
 
     const deleteFriend = async () => {
         await authUser.deleteFriend(friend);

@@ -13,31 +13,37 @@ import { selectAuthUser } from "../../store/Slices/auth/selectors";
 import "./style.scss";
 
 const Profile = () => {
-    const [posts, setPosts] = useState([]);
-    const [user, setUser] = useState(null);
+    const [posts, setPosts] = useState<Post[]>([]);
+    const [user, setUser] = useState<User | null>(null);
     const { id } = useParams();
     const authUser = useSelector(selectAuthUser);
 
     useEffect(() => {
         (async () => {
             try {
-                if (+id === authUser.id) {
-                    setUser(authUser);
+                if (id && authUser) {
+                    if (+id === authUser.id) {
+                        setUser(authUser);
+                    }
+
+                    const user = await User.find(+id);
+
+                    if (!user) {
+                        return;
+                    }
+
+                    setUser(user);
+                    setPosts((await Post.getByUserId(+id)) ?? []);
                 }
-
-                const user = await User.find(id);
-
-                if (!user) {
-                    return;
-                }
-
-                setUser(user);
-                setPosts(await Post.getByUserId(+id));
             } catch (e) {
                 console.log(e);
             }
         })();
     }, [id]);
+
+    if (!authUser) {
+        return null;
+    }
 
     if (!user) {
         return <ProfileNotFound />;
@@ -47,9 +53,13 @@ const Profile = () => {
         await authUser.deleteFriend(user);
 
         setUser((user) => {
-            user.friends = [...user.friends];
+            if (user) {
+                user.friends = [...user.friends];
 
-            return new User(user.getDBStructure());
+                return new User(user.getDBStructure());
+            }
+
+            return null;
         });
     };
 
@@ -57,9 +67,13 @@ const Profile = () => {
         await authUser.addToFriend(user);
 
         setUser((user) => {
-            user.friends = [...user.friends];
+            if (user) {
+                user.friends = [...user.friends];
 
-            return new User(user.getDBStructure());
+                return new User(user.getDBStructure());
+            }
+
+            return null;
         });
     };
 

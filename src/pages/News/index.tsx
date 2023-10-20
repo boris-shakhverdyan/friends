@@ -7,13 +7,14 @@ import { selectAuthUser } from "../../store/Slices/auth/selectors";
 import "./style.scss";
 
 const News = () => {
-    const [posts, setPosts] = useState([]);
+    const [posts, setPosts] = useState<Post[]>([]);
     const authUser = useSelector(selectAuthUser);
 
     useEffect(() => {
         (async () => {
-            setPosts(await Post.all());
-            setPosts(await Post.getByUserId([authUser.id, ...authUser.friends]));
+            if (authUser) {
+                setPosts((await Post.getByUserId([authUser.id, ...authUser.friends])) ?? []);
+            }
         })();
     }, []);
 

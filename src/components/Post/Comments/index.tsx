@@ -6,9 +6,10 @@ import CommentComponent from "./Comment";
 import Comment from "../../../app/Models/Comment";
 import { selectAuthUser } from "../../../store/Slices/auth/selectors";
 import "./style.scss";
+import { TCommentsProps } from "./types";
 
-const Comments = ({ post, isWantToComment, setIsWantToComment }) => {
-    const [comments, setComments] = useState(null);
+const Comments = ({ post, isWantToComment, setIsWantToComment }: TCommentsProps) => {
+    const [comments, setComments] = useState<Comment[]>([]);
     const [commentText, setCommentText] = useState("");
     const authUser = useSelector(selectAuthUser);
 
@@ -16,11 +17,15 @@ const Comments = ({ post, isWantToComment, setIsWantToComment }) => {
         (async () => {
             const comments = await Comment.getByPostId(post.id);
 
-            setComments(comments);
+            setComments(comments ?? []);
         })();
     }, [post.id, post.userId]);
 
-    const addComment = async (e) => {
+    if (!authUser) {
+        return null;
+    }
+
+    const addComment = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         const body = commentText.trim();
 
@@ -31,10 +36,12 @@ const Comments = ({ post, isWantToComment, setIsWantToComment }) => {
                 body,
             });
 
-            setComments([...comments, newComment]);
+            if (newComment) {
+                setComments([...comments, newComment]);
+            }
         }
 
-        e.target.reset();
+        (e.target as HTMLFormElement).reset();
         setCommentText("");
     };
 

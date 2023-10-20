@@ -19,24 +19,28 @@ import { setAuthUserAC } from "../../../store/Slices/auth/actions";
 import { showModalAC } from "../../../store/Slices/app/actions";
 
 const Profile = () => {
-    const profileRef = useRef(null);
+    const profileRef = useRef<HTMLInputElement | null>(null);
     const [isOpened, setIsOpened] = useState(false);
     const authUser = useSelector(selectAuthUser);
     const dispatch = useDispatch();
 
-    document.addEventListener("mousedown", (e) => {
-        if (profileRef.current && isOpened && !profileRef.current.contains(e.target)) {
+    if (!authUser) {
+        return null;
+    }
+
+    document.addEventListener("mousedown", (e: MouseEvent) => {
+        if (profileRef.current && isOpened && !profileRef.current.contains(e.target as HTMLInputElement)) {
             setIsOpened(false);
         }
     });
 
-    const logoutUser = (e) => {
+    const logoutUser = (e: React.MouseEventHandler<HTMLAnchorElement>) => {
         setIsOpened(false);
         Auth.logout();
         dispatch(setAuthUserAC(null));
     };
 
-    const LogoutModal = (e) => {
+    const LogoutModal = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         e.preventDefault();
 
         dispatch(
@@ -76,7 +80,7 @@ const Profile = () => {
                 </NavLink>
                 <div className="links">
                     {links.map((link, index) => (
-                        <Link onClick={() => setIsOpened(false)} key={index} {...link} />
+                        <Link onClick={(r) => setIsOpened(false)} key={index} {...link} />
                     ))}
                 </div>
             </div>

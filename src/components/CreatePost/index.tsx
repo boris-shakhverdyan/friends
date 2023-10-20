@@ -3,12 +3,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Post from "../../app/Models/Post";
 import { selectAuthUser } from "../../store/Slices/auth/selectors";
+import { TCreatePostProps } from "./types";
 import "./style.scss";
 
-const CreatePost = ({ setPosts }) => {
+const CreatePost = ({ setPosts }: TCreatePostProps) => {
     const authUser = useSelector(selectAuthUser);
 
-    const addPost = async (value) => {
+    if (!authUser) {
+        return null;
+    }
+
+    const addPost = async (value: string) => {
         const newPost = await Post.create({
             userId: authUser.id,
             body: value,
@@ -21,13 +26,15 @@ const CreatePost = ({ setPosts }) => {
         setPosts((posts) => [newPost, ...posts]);
     };
 
-    const onSubmit = async (e) => {
+    const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        if (e.target.content.value) {
-            addPost(e.target.content.value);
+        const form = e.target as HTMLFormElement;
 
-            e.target.reset();
+        if (form.content.value) {
+            addPost(form.content.value);
+
+            form.reset();
         }
     };
 

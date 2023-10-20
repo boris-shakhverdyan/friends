@@ -8,7 +8,7 @@ import { route } from "../../../utils/helpers";
 
 const SearchInput = () => {
     const [search, setSearch] = useState("");
-    const [users, setUsers] = useState([]);
+    const [users, setUsers] = useState<User[]>([]);
 
     useEffect(() => {
         (async () => {
@@ -18,10 +18,10 @@ const SearchInput = () => {
         })();
     }, [search]);
 
-    const inputRef = useRef(null);
+    const inputRef = useRef<HTMLInputElement>(null);
 
     return (
-        <div className="search-input" onClick={() => inputRef.current.focus()}>
+        <div className="search-input" onClick={() => (inputRef.current as HTMLInputElement).focus()}>
             <FontAwesomeIcon icon={faMagnifyingGlass} />
             <input
                 ref={inputRef}

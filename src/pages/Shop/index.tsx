@@ -6,12 +6,17 @@ const Shop = () => {
     const [currentPage, setCurrentPage] = useState(0);
     const [productsPerPage] = useState(12);
     const [totalProductsCount, setTotalProductsCount] = useState(0);
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState<any[]>([]);
 
     const indexOfLastProduct = currentPage * productsPerPage;
 
-    const changeCurrentPage = (page) => {
-        document.getElementById("container").scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    const changeCurrentPage = (page: number) => {
+        let container = document.getElementById("container");
+
+        if (container) {
+            container.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        }
+
         setCurrentPage(page);
     };
 

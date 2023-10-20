@@ -17,6 +17,10 @@ import { route } from "../../utils/helpers";
 const Sidebar = () => {
     const authUser = useSelector(selectAuthUser);
 
+    if (!authUser) {
+        return null;
+    }
+
     const links = [
         { text: "Profile", path: route("profile", authUser.id), icon: faIdCard },
         { text: "News", path: route("index"), icon: faNewspaper },

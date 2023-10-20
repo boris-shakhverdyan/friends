@@ -10,9 +10,10 @@ import { selectAuthUser } from "../../store/Slices/auth/selectors";
 import "./style.scss";
 import { showModalAC } from "../../store/Slices/app/actions";
 import { route } from "../../utils/helpers";
+import { TPostProps } from "./types";
 
-const Post = ({ setPosts, post }) => {
-    const [author, setAuthor] = useState(null);
+const Post = ({ setPosts, post }: TPostProps) => {
+    const [author, setAuthor] = useState<User | null>(null);
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const [isWantToComment, setIsWantToComment] = useState(false);
     const authUser = useSelector(selectAuthUser);
@@ -20,13 +21,19 @@ const Post = ({ setPosts, post }) => {
 
     useEffect(() => {
         (async () => {
-            if (authUser.id !== post.userId) {
+            if (authUser && authUser.id !== post.userId) {
                 setAuthor(await User.find(post.userId));
             } else {
-                setAuthor(authUser);
+                if (authUser) {
+                    setAuthor(authUser);
+                }
             }
         })();
     }, [post.id, post.userId]);
+
+    if (!authUser) {
+        return null;
+    }
 
     if (!author) {
         return <div className="preloader"></div>;
@@ -95,10 +102,7 @@ const Post = ({ setPosts, post }) => {
                 <p>{post.body}</p>
             </div>
             <div className="actions">
-                <button
-                    className={post.reactions.includes(authUser.id) ? "liked" : ""}
-                    onClick={() => toggleLike(post)}
-                >
+                <button className={post.reactions.includes(authUser.id) ? "liked" : ""} onClick={toggleLike}>
                     <FontAwesomeIcon icon={faHeart} />
                     <span>{post.reactions.length}</span>
                 </button>
@@ -111,12 +115,7 @@ const Post = ({ setPosts, post }) => {
                     <span>{0}</span>
                 </button>
             </div>
-            <Comments
-                post={post}
-                authUser={authUser}
-                isWantToComment={isWantToComment}
-                setIsWantToComment={setIsWantToComment}
-            />
+            <Comments post={post} isWantToComment={isWantToComment} setIsWantToComment={setIsWantToComment} />
         </div>
     );
 };

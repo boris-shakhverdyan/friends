@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "./style.scss";
 
 const Messages = () => {
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState<any[]>([]);
 
     useEffect(() => {
         fetch("https://dummyjson.com/quotes?limit=10")

@@ -9,13 +9,12 @@
       "friends": [
         1695762021947,
         1695301134882,
-        1695759523073,
-        1
+        1695759523073
       ],
       "username": "admin",
       "password": "admin",
       "avatar": "12441512512.jpeg",
-      "lastActivity": 1697798195838,
+      "lastActivity": 1697839108153,
       "isOnline": false
     },
     {
@@ -24,9 +23,7 @@
       "lastName": "Corkery",
       "email": "nloiterton8@aol.com",
       "birthdate": "1979-10-11",
-      "friends": [
-        1695149534759
-      ],
+      "friends": [],
       "username": "nloiterton8",
       "password": "HTQxxXV9Bq4",
       "avatar": "31241241242515.png",
@@ -586,6 +583,24 @@
       "userId": 1695149534759,
       "reactions": [],
       "created_at": 1697797492925
+    },
+    {
+      "id": 1697839039686,
+      "body": "Admin, asdasd",
+      "postId": 1697797485933,
+      "userId": 1695149534759,
+      "reactions": [
+        1695149534759
+      ],
+      "created_at": 1697839039686
+    },
+    {
+      "id": 1697839051973,
+      "body": "Admin, adsa sd",
+      "postId": 1696363370534,
+      "userId": 1695149534759,
+      "reactions": [],
+      "created_at": 1697839051973
     }
   ],
   "messages": [
